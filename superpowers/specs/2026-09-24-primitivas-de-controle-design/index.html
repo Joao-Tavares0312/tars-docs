@@ -1,0 +1,1673 @@
+
+<!doctype html>
+<html lang="pt" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Guia de uso, arquitetura, segurança e referência técnica do TARS.">
+      
+      
+        <meta name="author" content="TARS">
+      
+      
+        <link rel="canonical" href="https://joao-tavares0312.github.io/tars-docs/superpowers/specs/2026-09-24-primitivas-de-controle-design/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/tars-mark.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Primitivas de controle — campo, acionador e aba - TARS — Manual do Produto</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="amber">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#primitivas-de-controle-campo-acionador-e-aba" class="md-skip">
+          Pular para conteúdo
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabeçalho">
+    <a href="../../.." title="TARS — Manual do Produto" class="md-header__button md-logo" aria-label="TARS — Manual do Produto" data-md-component="logo">
+      
+  <img src="../../../assets/tars-mark.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            TARS — Manual do Produto
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Primitivas de controle — campo, acionador e aba
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="amber"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Buscar" placeholder="Buscar" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Pesquisar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpar" aria-label="Limpar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando busca
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navegação" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="TARS — Manual do Produto" class="md-nav__button md-logo" aria-label="TARS — Manual do Produto" data-md-component="logo">
+      
+  <img src="../../../assets/tars-mark.svg" alt="logo">
+
+    </a>
+    TARS — Manual do Produto
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Início
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Produto
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Produto
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../produto/visao-geral/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Visão geral
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../produto/painel/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guia do painel
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../produto/atendimento/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Conversas e atendimento
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../produto/conhecimento/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Conhecimento e avaliações
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../produto/avaliacoes-publicacao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Avaliações antes de publicar
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../produto/publicacao-operacao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Publicação e operação
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../produto/seguranca/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Segurança e privacidade
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../produto/recuperacao-conta/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Recuperação de conta
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Engenharia
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Engenharia
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../engenharia/arquitetura/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Arquitetura
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../engenharia/fluxo-mensagem/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fluxo de uma mensagem
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../engenharia/apis-e-dados/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    APIs e banco
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../engenharia/desenvolvimento/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Executar localmente
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../engenharia/configuracao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Referência de configuração
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Integrações
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Integrações
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../integracoes/telegram/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Telegram
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../integracoes/webchat/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Webchat
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../integracoes/ferramentas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ferramentas externas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../integracoes/zendesk/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Zendesk
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../telas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Capturas de tela
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../estado/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Estado do produto
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#o-problema" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        O problema
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="O problema">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-causa-dos-sintomas-2-e-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A causa dos sintomas 2 e 3
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a-causa-do-sintoma-3-em-particular" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A causa do sintoma 3, em particular
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a-contradicao-com-o-designmd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A contradição com o DESIGN.md
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#abordagem-escolhida" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Abordagem escolhida
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#o-contrato-das-primitivas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        O contrato das primitivas
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="O contrato das primitivas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#onde-mora" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Onde mora
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tokens-novos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tokens novos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#atribuicao-de-camada" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Atribuição de camada
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#o-divorcio-da-linha-acao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        O divórcio da .linha-acao
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#as-excecoes-nomeadas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        As exceções, nomeadas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#estado-desabilitado" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Estado desabilitado
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#frente-1-as-duas-secoes-da-lp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Frente 1 — as duas seções da LP
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Frente 1 — as duas seções da LP">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#secao-cabeca-appglobalscss1459" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        .secao-cabeca (app/globals.css:1459)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#home-seguranca-appglobalscss1493" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        .home-seguranca (app/globals.css:1493)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#media-query" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Media query
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#frente-2-campos-e-botoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Frente 2 — campos e botões
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#frente-3-abas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Frente 3 — abas
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Frente 3 — abas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#css" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CSS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#componente-abas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Componente &lt;Abas&gt;
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#verificacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verificação
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Verificação">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#testes-automatizados" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Testes automatizados
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#verificacao-visual" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verificação visual
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fora-de-escopo-declarado" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fora de escopo, declarado
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#atualizacao-do-designmd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Atualização do DESIGN.md
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="primitivas-de-controle-campo-acionador-e-aba">Primitivas de controle — campo, acionador e aba<a class="headerlink" href="#primitivas-de-controle-campo-acionador-e-aba" title="Permanent link">&para;</a></h1>
+<p>Data: 2026-09-24
+Branch de origem: <code>design/identidade-terminal</code></p>
+<h2 id="o-problema">O problema<a class="headerlink" href="#o-problema" title="Permanent link">&para;</a></h2>
+<p>Três sintomas relatados, uma causa.</p>
+<ol>
+<li><strong>LP.</strong> Duas seções com o texto desalinhado: <code>O SISTEMA / Do conhecimento à
+   conversa</code> e <code>ARQUITETURA HONESTA / Privado quando é local</code>.</li>
+<li><strong>Painel.</strong> Inputs que parecem HTML cru — o bloco de filtros de conversas é
+   o caso mais visível, com <code>dd/mm/aaaa</code> no tom do sistema operacional e
+   <code>APLICAR</code> / <code>LIMPAR</code> em alturas diferentes.</li>
+<li><strong>Projeto inteiro.</strong> Botões e abas com o texto colado na borda da caixa. A
+   fileira de abas da instância (<code>Identidade</code>, <code>Conhecimento &amp; testes</code>,
+   <code>Regras de atendimento</code>, <code>Canais</code>, <code>Zona de risco</code>) é o pior caso.</li>
+</ol>
+<h3 id="a-causa-dos-sintomas-2-e-3">A causa dos sintomas 2 e 3<a class="headerlink" href="#a-causa-dos-sintomas-2-e-3" title="Permanent link">&para;</a></h3>
+<p><code>app/globals.css</code> tem 1882 linhas e <strong>nenhuma regra de elemento para
+controles</strong> — exceto <code>font: inherit</code> na linha 74. Toda aparência de campo e de
+botão é declarada por escopo de componente: <code>.equipe-convidar input</code>,
+<code>.fonte-manual input</code>, <code>.conversa-filtros input</code>, <code>.eval-central-novo input</code>,
+e mais de vinte outros. Cada escopo escolheu o próprio padding (8, 9, 11, 12 ou
+13px), a própria borda e o próprio hex literal (<code>#060804</code>, <code>#464944</code>,
+<code>#070805</code>, <code>#444444</code>, <code>#50534e</code>).</p>
+<p>A consequência é estrutural, não estética: <strong>um controle só fica estilizado se
+alguém lembrar de escrevê-lo no escopo certo.</strong> Quem esquece cai no agente de
+usuário. O comentário da linha 67 já descreve exatamente essa classe de defeito
+— aplicada a <code>font-family</code> — e o arquivo parou ali.</p>
+<h3 id="a-causa-do-sintoma-3-em-particular">A causa do sintoma 3, em particular<a class="headerlink" href="#a-causa-do-sintoma-3-em-particular" title="Permanent link">&para;</a></h3>
+<p><code>button.linha-acao</code> (linha 281) nasceu como <strong>ação de texto sublinhada dentro
+de uma linha de especificação</strong>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">button</span><span class="p">.</span><span class="nc">linha-acao</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">border</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="k">border-bottom</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="kt">px</span><span class="w"> </span><span class="kc">solid</span><span class="p">;</span><span class="w"> </span><span class="k">padding</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="mi">1</span><span class="kt">px</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<p>Padding zero é correto para um sublinhado inline. Depois, a leva do vidro
+(camada 2) deu à mesma classe fundo, raio e sombra:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="p">.</span><span class="nc">linha-acao</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">background</span><span class="p">:</span><span class="w"> </span><span class="nf">var</span><span class="p">(</span><span class="nv">--vidro-fundo</span><span class="p">);</span><span class="w"> </span><span class="k">border-radius</span><span class="p">:</span><span class="w"> </span><span class="nf">var</span><span class="p">(</span><span class="nv">--raio-sm</span><span class="p">);</span><span class="w"> </span><span class="err">…</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<p>O elemento virou <strong>botão preenchido sem padding e sem altura</strong>. O retângulo de
+vidro passa a colar no texto, e <code>--raio-sm</code> (10px) come a letra no canto. O que
+parece "texto vazando a borda" em <code>Zona de risco</code> é o fundo do vidro rente à
+palavra — não existe borda ali.</p>
+<p>Uma primitiva com duas personalidades incompatíveis produziu todos os botões
+errados do projeto de uma vez.</p>
+<h3 id="a-contradicao-com-o-designmd">A contradição com o DESIGN.md<a class="headerlink" href="#a-contradicao-com-o-designmd" title="Permanent link">&para;</a></h3>
+<p><code>DESIGN.md</code>, seção <em>As duas folhas</em>: <strong>"A navegação é a aba do arquivo — mono
+maiúsculo, régua embaixo, nenhuma pílula arredondada."</strong></p>
+<p>O estado atual é uma fileira de pílulas arredondadas. Não foi decisão — foi
+acidente de cascata: o vidro da camada 2 alcançou <code>.linha-acao</code> de carona. As
+referências de layout fornecidas (Lattice Observatory, NightGlass, FoldCraft,
+Axiomatica) concordam com o documento: aba sublinhada ou com marcador, nunca
+pílula.</p>
+<p>O padrão correto <strong>já existe no código</strong>, em um canto só:
+<code>.conhecimento-origens nav button.ativo { border-bottom: 2px solid var(--ambar) }</code>
+(linha 1635). Ninguém o generalizou.</p>
+<h2 id="abordagem-escolhida">Abordagem escolhida<a class="headerlink" href="#abordagem-escolhida" title="Permanent link">&para;</a></h2>
+<p><strong>CSS no elemento nativo, mais um componente React só para as abas.</strong></p>
+<p>Alternativas descartadas e por quê:</p>
+<ul>
+<li><strong>Componentes React para tudo (<code>&lt;Campo&gt;</code>, <code>&lt;Acionador&gt;</code>).</strong> A garantia de um
+  componente é condicional: ele protege de quem lembra de usá-lo, e nada impede
+  <code>&lt;input&gt;</code> cru num arquivo novo. Fechar o buraco exigiria uma regra de lint
+  proibindo o elemento nativo — dois mecanismos em vez de um. Custo medido:
+  243 call sites (74 <code>input</code>, 25 <code>select</code>, 21 <code>textarea</code>, 123 <code>button</code>) em 21
+  arquivos, dentro de um PR de correção visual. E o agravante decisivo:
+  <code>tests/identidade-visual.test.mjs</code> verifica a identidade <strong>parseando a folha
+  de estilo</strong>. Mover aparência para dentro de componente cega a suíte que pegou
+  o preto-sobre-preto na revisão anterior.</li>
+<li><strong>Quebrar o <code>globals.css</code> em vários arquivos.</strong> Resolve legibilidade, não
+  resolve o defeito: vinte declarações ad-hoc em cinco arquivos continuam sendo
+  vinte declarações ad-hoc.</li>
+</ul>
+<p>Estilizar o <strong>elemento</strong> dá garantia incondicional: o controle que alguém
+esquecer de classificar nasce correto. E torna um <code>&lt;Campo&gt;</code> futuro barato — ele
+passa a ser ganho puro de ergonomia e acessibilidade, migrável arquivo por
+arquivo, sem nenhuma mudança visual, porque o CSS já garante a aparência.</p>
+<h2 id="o-contrato-das-primitivas">O contrato das primitivas<a class="headerlink" href="#o-contrato-das-primitivas" title="Permanent link">&para;</a></h2>
+<h3 id="onde-mora">Onde mora<a class="headerlink" href="#onde-mora" title="Permanent link">&para;</a></h3>
+<p>Bloco novo em <code>app/globals.css</code>, imediatamente após a regra <code>font: inherit</code> da
+linha 74 e antes de qualquer regra de componente. Seletores de elemento.</p>
+<h3 id="tokens-novos">Tokens novos<a class="headerlink" href="#tokens-novos" title="Permanent link">&para;</a></h3>
+<p>Três, e apenas porque não existe equivalente:</p>
+<table>
+<thead>
+<tr>
+<th>Token</th>
+<th>Valor</th>
+<th>Papel</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--controle-alt</code></td>
+<td><code>40px</code></td>
+<td><code>min-height</code> de todo controle</td>
+</tr>
+<tr>
+<td><code>--controle-pad-x</code></td>
+<td><code>var(--e3)</code></td>
+<td>padding horizontal</td>
+</tr>
+<tr>
+<td><code>--controle-pad-y</code></td>
+<td><code>10px</code></td>
+<td>padding vertical</td>
+</tr>
+</tbody>
+</table>
+<p>Cor, borda, raio e vidro <strong>não ganham token novo</strong> — <code>--papel-alto</code>, <code>--regua</code>,
+<code>--raio-sm</code> e <code>--vidro-*</code> já existem. Todo hex literal de controle é eliminado
+e substituído por token.</p>
+<h3 id="atribuicao-de-camada">Atribuição de camada<a class="headerlink" href="#atribuicao-de-camada" title="Permanent link">&para;</a></h3>
+<p>Segue o <code>DESIGN.md</code> sem exceção nova:</p>
+<ul>
+<li><strong><code>input</code>, <code>select</code>, <code>textarea</code> → camada 0.</strong> Fundo <code>--papel-alto</code>, borda de
+  1px em <code>--regua</code>, cantos vivos, sem <code>backdrop-filter</code>, sem raio. É o que a
+  regra das três camadas já manda: campo é onde o dado mora, não um gatilho.</li>
+<li><strong><code>button</code> → camada 2.</strong> Vidro (<code>--vidro-fundo</code>, <code>--vidro-borda</code>,
+  <code>--vidro-blur</code>, <code>--vidro-sombra</code>), <code>--raio-sm</code>, e o padding e a altura que
+  nunca teve.</li>
+<li><strong>Aba → nem uma nem outra.</strong> Sem fundo e sem raio: mono maiúsculo com
+  <code>border-bottom</code> transparente, que acende em <code>--ambar</code> quando ativa.</li>
+</ul>
+<p><code>color-scheme: dark</code> sobe de <code>.dashboard .dash-view</code> (linha 1787) para a base
+do elemento. É o que põe o seletor de data e o calendário nativos no tom do
+produto em todas as telas, não só no painel.</p>
+<h3 id="o-divorcio-da-linha-acao">O divórcio da <code>.linha-acao</code><a class="headerlink" href="#o-divorcio-da-linha-acao" title="Permanent link">&para;</a></h3>
+<p>A classe se parte em duas, cada uma honesta sobre o que é:</p>
+<ul>
+<li><strong><code>.acao-inline</code></strong> — o sublinhado sem fundo e sem raio da regra original.
+  Continua correto dentro de <code>.spec</code>.</li>
+<li><strong><code>.acionador</code></strong> — o botão de verdade, que herda a primitiva de <code>button</code>.
+  Todos os usos que hoje viram caixa de vidro migram para cá.</li>
+</ul>
+<h3 id="as-excecoes-nomeadas">As exceções, nomeadas<a class="headerlink" href="#as-excecoes-nomeadas" title="Permanent link">&para;</a></h3>
+<p>A primitiva governa o controle <strong>de bloco</strong> — o campo e o botão que ocupam uma
+linha própria. Três famílias ficam fora, e ficam por razão de desenho, não por
+esquecimento. Cada uma é declarada por seletor, nunca por <code>!important</code>:</p>
+<ul>
+<li><strong>Controle binário.</strong> <code>input[type="checkbox"]</code> e <code>input[type="radio"]</code> não
+  recebem <code>--controle-alt</code>, fundo de campo nem padding. Ficam com
+  <code>accent-color</code>, como já estão em <code>.chave input</code>. Dar 40px de altura e fundo
+  a uma caixa de marcar produziria um retângulo com um pontinho dentro.</li>
+<li><strong>Controle inline.</strong> <code>.spec select</code> é a <strong>linha de especificação editável</strong> —
+  o átomo da folha de dados, e a razão de o <code>DESIGN.md</code> dizer "uma folha de
+  dados cuja especificação você pode trocar". Ela é inline: 13px mono,
+  <code>max-width: 46ch</code>, padding mínimo. Aplicar <code>--controle-alt</code> a ela viraria a
+  linha do datasheet numa caixa de 40px. É o gêmeo exato de <code>.acao-inline</code> do
+  lado dos campos, e recebe o nome <code>.campo-inline</code> para que a exceção seja
+  legível no seletor em vez de implícita.</li>
+<li><strong>Campo de régua.</strong> <code>.modulo-acesso input</code> (acesso, cadastro, recuperação) é
+  <code>border: 0</code> com <code>border-bottom</code> de propósito — campo sobre régua, não caixa.
+  Mantém a geometria; o que ele ganha da primitiva é só o que não conflita:
+  <code>color-scheme</code>, tratamento de <code>disabled</code> e anel de foco.</li>
+</ul>
+<p><code>.arquivo-acionador input</code> é um input de arquivo escondido
+(<code>position: absolute</code>, 1px, <code>opacity: 0</code>) e é explicitamente isentado de
+<code>min-height</code> — não é superfície visível.</p>
+<p>Essas quatro exceções entram no <code>DESIGN.md</code> junto com a primitiva. Uma exceção
+que não está escrita vira, na revisão seguinte, um <code>!important</code>.</p>
+<h3 id="estado-desabilitado">Estado desabilitado<a class="headerlink" href="#estado-desabilitado" title="Permanent link">&para;</a></h3>
+<p>Mantém o tratamento único já documentado no comentário da linha 300: fundo
+transparente, borda <code>--regua</code>, texto <code>--tinta-fraca</code>. <strong>Nunca <code>opacity</code></strong> —
+<code>opacity</code> derruba o contraste do texto claro sobre fundo escuro abaixo de
+4.5:1.</p>
+<h2 id="frente-1-as-duas-secoes-da-lp">Frente 1 — as duas seções da LP<a class="headerlink" href="#frente-1-as-duas-secoes-da-lp" title="Permanent link">&para;</a></h2>
+<h3 id="secao-cabeca-appglobalscss1459"><code>.secao-cabeca</code> (<code>app/globals.css:1459</code>)<a class="headerlink" href="#secao-cabeca-appglobalscss1459" title="Permanent link">&para;</a></h3>
+<p>A grade <code>grid-template-columns: 1fr 2fr</code> é removida. Rótulo e título passam a
+ser um bloco único centralizado na folha, rótulo acima do título.</p>
+<p>O <code>&lt;br/&gt;</code> cravado em <code>app/page.tsx:33</code> sai. No lugar, <code>max-width</code> em <code>ch</code> mais
+<code>text-wrap: balance</code> — a quebra passa a ser calculada pela largura disponível
+em vez de forçada, e deixa de produzir duas linhas quando a tela não pede.</p>
+<h3 id="home-seguranca-appglobalscss1493"><code>.home-seguranca</code> (<code>app/globals.css:1493</code>)<a class="headerlink" href="#home-seguranca-appglobalscss1493" title="Permanent link">&para;</a></h3>
+<p>A grade <code>1fr 1fr</code> vira layout empilhado: título centralizado acima,
+<code>.seguranca-lista</code> ocupando a largura inteira abaixo.</p>
+<p>O <code>&lt;br/&gt;</code> de <code>app/page.tsx:44</code> sai pelo mesmo motivo — é ele que deixa <code>é.</code>
+sozinho em uma linha.</p>
+<p>A coluna de rótulo de <code>.seguranca-lista p</code> sai de <code>145px</code> cravados para
+<code>minmax(180px, auto)</code>. São os 145px que fazem <code>BOTS CONECTADOS</code> quase encostar
+no texto ao lado.</p>
+<h3 id="media-query">Media query<a class="headerlink" href="#media-query" title="Permanent link">&para;</a></h3>
+<p><code>.secao-cabeca,.home-seguranca { grid-template-columns: 1fr }</code> (linha 1514)
+fica órfã e é removida: não há mais grade para desfazer em tela estreita.</p>
+<h2 id="frente-2-campos-e-botoes">Frente 2 — campos e botões<a class="headerlink" href="#frente-2-campos-e-botoes" title="Permanent link">&para;</a></h2>
+<p>Com o bloco de primitivas no ar, a aparência de controle é <strong>apagada</strong> dos
+escopos abaixo, que passam a herdar:</p>
+<p><code>.equipe-convidar</code>, <code>.equipe-lista</code>, <code>.convite-link</code>, <code>.fonte-manual</code>,
+<code>.conversa-filtros</code>, <code>.eval-central-novo</code>, <code>.eval-central-lista</code>,
+<code>.seguranca-form</code>, <code>.seguranca-bloco</code>, <code>.grade-regras</code>, <code>.regra-larga</code>,
+<code>.horario-regra</code>, <code>.webchat-personalizar</code>, <code>.transferencia-equipe</code>,
+<code>.ticket-detalhes</code>, <code>.ticket-controles</code>, <code>.feedback-inbox</code>,
+<code>.campo-resumo-atendimento</code>, <code>.fila-atendimento</code>, <code>.documentos-grade</code>,
+<code>.compositor textarea</code>, <code>.seletor-instancia</code>.</p>
+<p>Cada escopo mantém apenas o que é <strong>geometria própria</strong>: <code>grid-template-columns</code>,
+<code>min-height</code> de textarea, <code>resize</code>, <code>justify-self</code>. Nada de padding, borda,
+fundo ou cor de controle.</p>
+<p><code>.spec select</code> e <code>.modulo-acesso input</code> <strong>não</strong> entram nesta lista — são as
+exceções nomeadas acima e mantêm a geometria própria de propósito.</p>
+<p>Dois efeitos verificáveis disso, ambos no print dos filtros:</p>
+<ul>
+<li>O seletor de data deixa de renderizar no tema do sistema operacional.</li>
+<li><code>APLICAR</code> e <code>LIMPAR</code> passam a ter a mesma altura, por compartilharem
+  <code>--controle-alt</code> em vez de dois paddings diferentes.</li>
+</ul>
+<h2 id="frente-3-abas">Frente 3 — abas<a class="headerlink" href="#frente-3-abas" title="Permanent link">&para;</a></h2>
+<h3 id="css">CSS<a class="headerlink" href="#css" title="Permanent link">&para;</a></h3>
+<p><code>.obra-grupos .linha-acao</code> perde vidro, fundo, raio e sombra. As abas passam a
+ser mono maiúsculo com <code>border-bottom: 2px solid transparent</code>; a ativa acende
+em <code>--ambar</code>.</p>
+<p><code>.grupo-risco</code> mantém o <code>margin-left: auto</code> que a separa do grupo — a separação
+é intencional — e acende em <code>--carmim</code> quando ativa.</p>
+<p>O estado ativo continua carregando <strong>texto, borda e posição</strong>, nunca só cor,
+conforme a regra de acessibilidade do <code>DESIGN.md</code>.</p>
+<h3 id="componente-abas">Componente <code>&lt;Abas&gt;</code><a class="headerlink" href="#componente-abas" title="Permanent link">&para;</a></h3>
+<p>Um componente React novo, porque o defeito restante é <strong>comportamento</strong>, não
+aparência, e CSS não o resolve.</p>
+<p>Hoje <code>Painel.tsx:483</code> renderiza <code>role="tablist"</code> com cinco <code>&lt;button&gt;</code> soltos.
+São cinco paradas de <code>Tab</code> sem navegação entre elas — fora do padrão WAI-ARIA
+para tablist.</p>
+<p>O componente implementa:</p>
+<ul>
+<li><code>role="tablist"</code> no contêiner, <code>role="tab"</code> e <code>aria-selected</code> nos itens;</li>
+<li>navegação por <code>ArrowLeft</code> / <code>ArrowRight</code>, com volta circular nas pontas;</li>
+<li><code>Home</code> e <code>End</code> para primeira e última;</li>
+<li><code>tabindex</code> rotativo: apenas a aba ativa é tabulável (<code>tabIndex={0}</code>), as
+  demais recebem <code>tabIndex={-1}</code>.</li>
+</ul>
+<p>Dois call sites: <code>.obra-grupos</code> (<code>components/Painel.tsx</code>) e
+<code>.conhecimento-origens nav</code> (<code>components/CentralConhecimento.tsx</code>).</p>
+<h2 id="verificacao">Verificação<a class="headerlink" href="#verificacao" title="Permanent link">&para;</a></h2>
+<h3 id="testes-automatizados">Testes automatizados<a class="headerlink" href="#testes-automatizados" title="Permanent link">&para;</a></h3>
+<p><code>tests/identidade-visual.test.mjs</code> ganha asserções novas — a regra vira teste,
+como manda a seção <em>A regra é verificada por teste</em> do <code>DESIGN.md</code>:</p>
+<ol>
+<li><strong>Nenhum hex literal em declaração de controle.</strong> Cor de campo ou de botão
+   só por token.</li>
+<li><strong>Nenhum <code>padding</code> de controle fora dos tokens</strong> <code>--controle-pad-x</code> /
+   <code>--controle-pad-y</code>. A asserção carrega a <strong>lista fechada</strong> das exceções
+   nomeadas (<code>input[type=checkbox]</code>, <code>input[type=radio]</code>, <code>.campo-inline</code>,
+   <code>.modulo-acesso input</code>, <code>.arquivo-acionador input</code>) — exceção nova só passa
+   sendo adicionada ali de propósito, o que força a decisão a ser escrita.</li>
+<li><strong>Nenhuma pílula em tablist.</strong> Regra que aplique <code>border-radius</code> ou
+   <code>background</code> a descendente de <code>[role="tablist"]</code> quebra a suíte — é o freio
+   que impede o acidente de cascata de se repetir.</li>
+<li><strong>Nenhuma declaração de aparência de controle reintroduzida por escopo de
+   componente</strong> para as propriedades que a primitiva governa.</li>
+</ol>
+<p>A suíte existente (87 testes) precisa continuar verde, incluindo as regras já
+codificadas: piso de 11px na mono, proibição de <code>!important</code> em vidro, literal
+de blur ou raio fora dos tokens.</p>
+<p>Testes novos para o componente <code>&lt;Abas&gt;</code> cobrindo seta, <code>Home</code>/<code>End</code>, volta
+circular e <code>tabindex</code> rotativo.</p>
+<h3 id="verificacao-visual">Verificação visual<a class="headerlink" href="#verificacao-visual" title="Permanent link">&para;</a></h3>
+<p>Captura das rotas afetadas <strong>com varredura de contraste junto</strong> — recapturar
+sem medir contraste foi o que deixou passar dois casos de preto-sobre-preto na
+revisão anterior. As duas seções da LP, o bloco de filtros de conversas, a
+fileira de abas da instância e ao menos três telas que herdam a primitiva sem
+ter sido tocadas diretamente.</p>
+<h2 id="fora-de-escopo-declarado">Fora de escopo, declarado<a class="headerlink" href="#fora-de-escopo-declarado" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>O timeout do bot.</strong> É bug de runtime, não de layout; tem ciclo de
+  verificação próprio. Fica para uma frente separada, por decisão do João.</li>
+<li><strong>Quebrar <code>components/Painel.tsx</code>.</strong> 906 linhas com 59 controles — precisa
+  acontecer, por razões próprias do arquivo, e não dentro de uma correção
+  visual. Dois riscos não devem ser multiplicados.</li>
+<li><strong>Componentes <code>&lt;Campo&gt;</code> e <code>&lt;Acionador&gt;</code>.</strong> A abordagem escolhida os torna
+  baratos depois; fazê-los agora seria fazer duas mudanças sem linha de base
+  para comparar.</li>
+</ul>
+<h2 id="atualizacao-do-designmd">Atualização do DESIGN.md<a class="headerlink" href="#atualizacao-do-designmd" title="Permanent link">&para;</a></h2>
+<p>O <code>DESIGN.md</code> ganha a seção que falta: <strong>as primitivas de controle</strong> — os três
+tokens, a atribuição de camada de campo, botão e aba, e o registro de que
+<code>.linha-acao</code> se partiu em <code>.acao-inline</code> e <code>.acionador</code>, com o motivo.</p>
+<p>A seção <em>As duas folhas</em> não muda: a regra da aba sublinhada já estava lá e
+estava certa. O que muda é o produto passar a obedecê-la.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Voltar para o topo
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.sections", "navigation.top", "navigation.indexes", "content.code.copy", "content.code.annotate", "search.suggest", "toc.follow"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado para \u00e1rea de transfer\u00eancia", "clipboard.copy": "Copiar para \u00e1rea de transfer\u00eancia", "search.result.more.one": "mais 1 nesta p\u00e1gina", "search.result.more.other": "# mais nesta p\u00e1gina", "search.result.none": "Nenhum documento encontrado", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Digite para iniciar a busca", "search.result.term.missing": "Ausente", "select.version": "Selecione a vers\u00e3o"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

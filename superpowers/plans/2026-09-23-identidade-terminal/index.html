@@ -1,0 +1,1866 @@
+
+<!doctype html>
+<html lang="pt" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Guia de uso, arquitetura, segurança e referência técnica do TARS.">
+      
+      
+        <meta name="author" content="TARS">
+      
+      
+        <link rel="canonical" href="https://joao-tavares0312.github.io/tars-docs/superpowers/plans/2026-09-23-identidade-terminal/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/tars-mark.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Identidade terminal instrumentado — plano de implementação - TARS — Manual do Produto</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="amber">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#identidade-terminal-instrumentado-plano-de-implementacao" class="md-skip">
+          Pular para conteúdo
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabeçalho">
+    <a href="../../.." title="TARS — Manual do Produto" class="md-header__button md-logo" aria-label="TARS — Manual do Produto" data-md-component="logo">
+      
+  <img src="../../../assets/tars-mark.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            TARS — Manual do Produto
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Identidade terminal instrumentado — plano de implementação
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="amber"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Buscar" placeholder="Buscar" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Pesquisar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpar" aria-label="Limpar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando busca
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navegação" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="TARS — Manual do Produto" class="md-nav__button md-logo" aria-label="TARS — Manual do Produto" data-md-component="logo">
+      
+  <img src="../../../assets/tars-mark.svg" alt="logo">
+
+    </a>
+    TARS — Manual do Produto
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Início
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Produto
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Produto
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../produto/visao-geral/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Visão geral
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../produto/painel/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guia do painel
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../produto/atendimento/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Conversas e atendimento
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../produto/conhecimento/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Conhecimento e avaliações
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../produto/avaliacoes-publicacao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Avaliações antes de publicar
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../produto/publicacao-operacao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Publicação e operação
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../produto/seguranca/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Segurança e privacidade
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../produto/recuperacao-conta/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Recuperação de conta
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Engenharia
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Engenharia
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../engenharia/arquitetura/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Arquitetura
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../engenharia/fluxo-mensagem/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fluxo de uma mensagem
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../engenharia/apis-e-dados/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    APIs e banco
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../engenharia/desenvolvimento/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Executar localmente
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../engenharia/configuracao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Referência de configuração
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Integrações
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Integrações
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../integracoes/telegram/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Telegram
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../integracoes/webchat/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Webchat
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../integracoes/ferramentas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ferramentas externas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../integracoes/zendesk/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Zendesk
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../telas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Capturas de tela
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../estado/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Estado do produto
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#global-constraints" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Global Constraints
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Global Constraints">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#task-1-trocar-azeret-mono-por-ibm-plex-mono" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Task 1: Trocar Azeret Mono por IBM Plex Mono
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#task-2-tokens-unicos-e-a-regra-das-tres-camadas-com-teste" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Task 2: Tokens únicos e a regra das três camadas, com teste
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#task-3-aplicar-a-regra-das-tres-camadas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Task 3: Aplicar a regra das três camadas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#task-4-bug-cta-do-painel-vazio-ilegivel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Task 4: Bug — CTA do painel vazio ilegível
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#task-5-bug-navegacao-mobile-embaralhada-e-cortada" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Task 5: Bug — navegação mobile embaralhada e cortada
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#task-6-densidade-terminal-e-estados-vazios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Task 6: Densidade terminal e estados vazios
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#task-7-unificacao-botoes-cabecalhos-controles-nativos-e-piso-tipografico" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Task 7: Unificação — botões, cabeçalhos, controles nativos e piso tipográfico
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#task-8-erro-de-hidratacao-em-cadastro" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Task 8: Erro de hidratação em /cadastro
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#task-9-reescrever-o-designmd-e-recapturar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Task 9: Reescrever o DESIGN.md e recapturar
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#notas-para-quem-executar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Notas para quem executar
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="identidade-terminal-instrumentado-plano-de-implementacao">Identidade terminal instrumentado — plano de implementação<a class="headerlink" href="#identidade-terminal-instrumentado-plano-de-implementacao" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p><strong>For agentic workers:</strong> REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (<code>- [ ]</code>) syntax for tracking.</p>
+</blockquote>
+<p><strong>Goal:</strong> Substituir a contradição "datasheet vs liquid glass" por um sistema visual único, verificável por teste, e corrigir os quatro bugs de UI confirmados na auditoria.</p>
+<p><strong>Architecture:</strong> Uma regra de três camadas (folha opaca / o que paira / o que aciona) expressa em tokens CSS únicos, com teste estático que quebra a suíte se alguém voltar a usar literal ou <code>!important</code>. Os bugs são corrigidos na mesma PR, por decisão do operador.</p>
+<p><strong>Tech Stack:</strong> Next.js 15 (App Router), CSS puro com custom properties, <code>next/font/google</code>, <code>node --test</code> com asserção estática sobre o código-fonte (padrão já usado em <code>tests/*.test.mjs</code>).</p>
+<p><strong>Spec:</strong> <code>docs/superpowers/specs/2026-09-23-identidade-terminal-design.md</code></p>
+<h2 id="global-constraints">Global Constraints<a class="headerlink" href="#global-constraints" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Branch: <code>design/identidade-terminal</code>, criada de <code>origin/main</code>. Uma PR só.</li>
+<li>Nenhuma feature nova. Sessão de correção e coesão.</li>
+<li>Tokens de cor exatos: <code>--papel #08090A</code>, <code>--tinta #ECEEEF</code>, <code>--tinta-media #A2A8AA</code>, <code>--tinta-fraca #868C8F</code>, <code>--tenue #4A4F51</code>, <code>--regua #2B2F31</code>, <code>--ambar #E8A33D</code>, <code>--ciano #4DD4E8</code>, <code>--carmim #E0584C</code>.</li>
+<li>Tokens de superfície exatos: <code>--raio 16px</code>, <code>--raio-sm 10px</code>, <code>--vidro-blur blur(20px)</code>, <code>--vidro-fundo rgba(255,255,255,.06)</code>, <code>--vidro-borda rgba(255,255,255,.16)</code>.</li>
+<li>Fontes: <strong>Archivo</strong> (títulos e corpo) + <strong>IBM Plex Mono</strong> (dado, medida, rótulo técnico). Ambas por <code>next/font/google</code>.</li>
+<li>Piso absoluto de mono: <strong>11px</strong>. Hoje há 8px e 9px.</li>
+<li>Proibido: <code>text-shadow</code> decorativo, scanlines, <code>clip-path</code> ornamental, animação que não comunique estado real.</li>
+<li>Estado nunca é comunicado só por cor — sempre acompanha palavra.</li>
+<li><code>npm test</code> e <code>npx tsc --noEmit</code> verdes antes de cada commit.</li>
+</ul>
+<hr />
+<h3 id="task-1-trocar-azeret-mono-por-ibm-plex-mono">Task 1: Trocar Azeret Mono por IBM Plex Mono<a class="headerlink" href="#task-1-trocar-azeret-mono-por-ibm-plex-mono" title="Permanent link">&para;</a></h3>
+<p><strong>Files:</strong>
+- Modify: <code>app/layout.tsx:2</code>, <code>app/layout.tsx:26-31</code>
+- Test: <code>tests/identidade-visual.test.mjs</code> (criar)</p>
+<p><strong>Interfaces:</strong>
+- Produces: a variável CSS <code>--fonte-mono</code> continua com o mesmo nome; só a família muda. Nenhuma outra task precisa mudar por causa disto.</p>
+<ul>
+<li>[ ] <strong>Step 1: Escrever o teste que falha</strong></li>
+</ul>
+<p>Criar <code>tests/identidade-visual.test.mjs</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="cm">/**</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="cm"> * A identidade visual do TARS é uma regra de três camadas (ver</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="cm"> * docs/superpowers/specs/2026-09-23-identidade-terminal-design.md). A regra</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="cm"> * anterior apodreceu porque era só prosa no DESIGN.md — duas regras</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="cm"> * contraditórias vivas ao mesmo tempo e o empate resolvido no CSS com</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="cm"> * !important. Estes testes existem para que a regra quebre a suíte em vez de</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="cm"> * apodrecer de novo.</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="cm"> */</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="k">import</span><span class="w"> </span><span class="nx">test</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"node:test"</span><span class="p">;</span><span class="k">import</span><span class="w"> </span><span class="nx">assert</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"node:assert/strict"</span><span class="p">;</span><span class="k">import</span><span class="p">{</span><span class="nx">readFile</span><span class="p">}</span><span class="kr">from</span><span class="s2">"node:fs/promises"</span><span class="p">;</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="kd">const</span><span class="w"> </span><span class="nx">ler</span><span class="o">=</span><span class="nx">p</span><span class="p">=&gt;</span><span class="nx">readFile</span><span class="p">(</span><span class="ow">new</span><span class="w"> </span><span class="nx">URL</span><span class="p">(</span><span class="sb">`../</span><span class="si">${</span><span class="nx">p</span><span class="si">}</span><span class="sb">`</span><span class="p">,</span><span class="k">import</span><span class="p">.</span><span class="nx">meta</span><span class="p">.</span><span class="nx">url</span><span class="p">),</span><span class="s2">"utf8"</span><span class="p">);</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="nx">test</span><span class="p">(</span><span class="s2">"a mono do sistema é IBM Plex Mono, não Azeret"</span><span class="p">,</span><span class="k">async</span><span class="p">()=&gt;{</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">l</span><span class="o">=</span><span class="k">await</span><span class="w"> </span><span class="nx">ler</span><span class="p">(</span><span class="s2">"app/layout.tsx"</span><span class="p">);</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">  </span><span class="nx">assert</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="nx">l</span><span class="p">,</span><span class="sr">/IBM_Plex_Mono/</span><span class="p">);</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">  </span><span class="nx">assert</span><span class="p">.</span><span class="nx">doesNotMatch</span><span class="p">(</span><span class="nx">l</span><span class="p">,</span><span class="sr">/Azeret_Mono/</span><span class="p">);</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">  </span><span class="nx">assert</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="nx">l</span><span class="p">,</span><span class="sr">/variable:\s*"--fonte-mono"/</span><span class="p">);</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="p">});</span>
+</code></pre></div>
+<ul>
+<li>[ ] <strong>Step 2: Rodar e confirmar que falha</strong></li>
+</ul>
+<p>Run: <code>node --test tests/identidade-visual.test.mjs</code>
+Expected: FAIL — <code>assert.match(l,/IBM_Plex_Mono/)</code> não encontra nada.</p>
+<ul>
+<li>[ ] <strong>Step 3: Implementar</strong></li>
+</ul>
+<p>Em <code>app/layout.tsx</code>, trocar o import da linha 2:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Archivo</span><span class="p">,</span><span class="w"> </span><span class="nx">IBM_Plex_Mono</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"next/font/google"</span><span class="p">;</span>
+</code></pre></div>
+<p>e o bloco da fonte mono (linhas 26-31):</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">mono</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">IBM_Plex_Mono</span><span class="p">({</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span><span class="nx">subsets</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"latin"</span><span class="p">],</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">  </span><span class="nx">weight</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"400"</span><span class="p">,</span><span class="w"> </span><span class="s2">"500"</span><span class="p">],</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">  </span><span class="nx">variable</span><span class="o">:</span><span class="w"> </span><span class="s2">"--fonte-mono"</span><span class="p">,</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">  </span><span class="nx">display</span><span class="o">:</span><span class="w"> </span><span class="s2">"swap"</span><span class="p">,</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="p">});</span>
+</code></pre></div>
+<p>Atualizar o comentário de cabeçalho do arquivo, que hoje diz "Azeret Mono":</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a> * IBM Plex Mono -&gt; toda medida, número de peça e valor. Mono aqui é pra dado
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a> *              tabular e medição, não fantasia de "técnico". Substituiu a
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a> *              Azeret Mono, que era ilegível nos 8-9px em que o painel a usava.
+</code></pre></div>
+<ul>
+<li>[ ] <strong>Step 4: Rodar e confirmar que passa</strong></li>
+</ul>
+<p>Run: <code>node --test tests/identidade-visual.test.mjs</code>
+Expected: PASS</p>
+<ul>
+<li>[ ] <strong>Step 5: Confirmar que a suíte inteira e o tsc seguem verdes</strong></li>
+</ul>
+<p>Run: <code>npm test &amp;&amp; npx tsc --noEmit</code>
+Expected: todos os testes passando, tsc sem saída.</p>
+<ul>
+<li>[ ] <strong>Step 6: Commit</strong></li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>git<span class="w"> </span>add<span class="w"> </span>app/layout.tsx<span class="w"> </span>tests/identidade-visual.test.mjs
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">"feat: troca Azeret Mono por IBM Plex Mono"</span>
+</code></pre></div>
+<hr />
+<h3 id="task-2-tokens-unicos-e-a-regra-das-tres-camadas-com-teste">Task 2: Tokens únicos e a regra das três camadas, com teste<a class="headerlink" href="#task-2-tokens-unicos-e-a-regra-das-tres-camadas-com-teste" title="Permanent link">&para;</a></h3>
+<p><strong>Files:</strong>
+- Modify: <code>app/globals.css:36-45</code> (bloco <code>--glass-*</code>), e todas as ocorrências de <code>--glass-</code> em <code>app/globals.css</code> e <code>app/painel/observatory.css</code>
+- Test: <code>tests/identidade-visual.test.mjs</code></p>
+<p><strong>Interfaces:</strong>
+- Consumes: nada da Task 1.
+- Produces: os tokens <code>--vidro-fundo</code>, <code>--vidro-fundo-hover</code>, <code>--vidro-fundo-ativo</code>, <code>--vidro-borda</code>, <code>--vidro-borda-hover</code>, <code>--vidro-blur</code>, <code>--vidro-sombra</code>, <code>--raio</code>, <code>--raio-sm</code>, <code>--ciano</code>. Tasks 3 a 7 usam estes nomes.</p>
+<ul>
+<li>[ ] <strong>Step 1: Escrever os testes que falham</strong></li>
+</ul>
+<p>Acrescentar a <code>tests/identidade-visual.test.mjs</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">CSS</span><span class="o">=</span><span class="p">[</span><span class="s2">"app/globals.css"</span><span class="p">,</span><span class="s2">"app/painel/observatory.css"</span><span class="p">];</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="nx">test</span><span class="p">(</span><span class="s2">"existe um token de vidro só, em português, e o ciano de sucesso"</span><span class="p">,</span><span class="k">async</span><span class="p">()=&gt;{</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">g</span><span class="o">=</span><span class="k">await</span><span class="w"> </span><span class="nx">ler</span><span class="p">(</span><span class="s2">"app/globals.css"</span><span class="p">);</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">  </span><span class="k">for</span><span class="p">(</span><span class="kd">const</span><span class="w"> </span><span class="nx">t</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="p">[</span><span class="s2">"--vidro-fundo"</span><span class="p">,</span><span class="s2">"--vidro-borda"</span><span class="p">,</span><span class="s2">"--vidro-blur"</span><span class="p">,</span><span class="s2">"--raio:"</span><span class="p">,</span><span class="s2">"--raio-sm:"</span><span class="p">,</span><span class="s2">"--ciano:"</span><span class="p">])</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="w">    </span><span class="nx">assert</span><span class="p">.</span><span class="nx">ok</span><span class="p">(</span><span class="nx">g</span><span class="p">.</span><span class="nx">includes</span><span class="p">(</span><span class="nx">t</span><span class="p">),</span><span class="sb">`token ausente: </span><span class="si">${</span><span class="nx">t</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="w">  </span><span class="nx">assert</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="nx">g</span><span class="p">,</span><span class="sr">/--ciano:\s*#4dd4e8/i</span><span class="p">);</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="w">  </span><span class="nx">assert</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="nx">g</span><span class="p">,</span><span class="sr">/--raio:\s*16px/</span><span class="p">);</span>
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="w">  </span><span class="nx">assert</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="nx">g</span><span class="p">,</span><span class="sr">/--raio-sm:\s*10px/</span><span class="p">);</span>
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="w">  </span><span class="k">for</span><span class="p">(</span><span class="kd">const</span><span class="w"> </span><span class="nx">f</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="nx">CSS</span><span class="p">){</span>
+<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">c</span><span class="o">=</span><span class="k">await</span><span class="w"> </span><span class="nx">ler</span><span class="p">(</span><span class="nx">f</span><span class="p">);</span>
+<a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="w">    </span><span class="nx">assert</span><span class="p">.</span><span class="nx">doesNotMatch</span><span class="p">(</span><span class="nx">c</span><span class="p">,</span><span class="sr">/--glass-/</span><span class="p">,</span><span class="sb">`</span><span class="si">${</span><span class="nx">f</span><span class="si">}</span><span class="sb"> ainda usa o nome antigo --glass-*`</span><span class="p">);</span>
+<a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a><span class="w">  </span><span class="p">}</span>
+<a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a><span class="p">});</span>
+<a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a>
+<a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a><span class="nx">test</span><span class="p">(</span><span class="s2">"nenhum blur ou raio literal fora dos tokens"</span><span class="p">,</span><span class="k">async</span><span class="p">()=&gt;{</span>
+<a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a><span class="w">  </span><span class="k">for</span><span class="p">(</span><span class="kd">const</span><span class="w"> </span><span class="nx">f</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="nx">CSS</span><span class="p">){</span>
+<a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a><span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">c</span><span class="o">=</span><span class="k">await</span><span class="w"> </span><span class="nx">ler</span><span class="p">(</span><span class="nx">f</span><span class="p">);</span>
+<a id="__codelineno-5-19" name="__codelineno-5-19" href="#__codelineno-5-19"></a><span class="w">    </span><span class="c1">// blur() literal: só o token pode declarar o valor</span>
+<a id="__codelineno-5-20" name="__codelineno-5-20" href="#__codelineno-5-20"></a><span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">blurs</span><span class="o">=</span><span class="p">[...</span><span class="nx">c</span><span class="p">.</span><span class="nx">matchAll</span><span class="p">(</span><span class="sr">/backdrop-filter:\s*blur\(/g</span><span class="p">)];</span>
+<a id="__codelineno-5-21" name="__codelineno-5-21" href="#__codelineno-5-21"></a><span class="w">    </span><span class="nx">assert</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="nx">blurs</span><span class="p">.</span><span class="nx">length</span><span class="p">,</span><span class="mf">0</span><span class="p">,</span><span class="sb">`</span><span class="si">${</span><span class="nx">f</span><span class="si">}</span><span class="sb"> tem </span><span class="si">${</span><span class="nx">blurs</span><span class="p">.</span><span class="nx">length</span><span class="si">}</span><span class="sb"> backdrop-filter com blur() literal`</span><span class="p">);</span>
+<a id="__codelineno-5-22" name="__codelineno-5-22" href="#__codelineno-5-22"></a><span class="w">    </span><span class="c1">// border-radius: só 0, 50% ou os tokens</span>
+<a id="__codelineno-5-23" name="__codelineno-5-23" href="#__codelineno-5-23"></a><span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="kd">const</span><span class="w"> </span><span class="nx">m</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="nx">c</span><span class="p">.</span><span class="nx">matchAll</span><span class="p">(</span><span class="sr">/border-radius:\s*([^;}]+)/g</span><span class="p">)){</span>
+<a id="__codelineno-5-24" name="__codelineno-5-24" href="#__codelineno-5-24"></a><span class="w">      </span><span class="kd">const</span><span class="w"> </span><span class="nx">v</span><span class="o">=</span><span class="nx">m</span><span class="p">[</span><span class="mf">1</span><span class="p">].</span><span class="nx">trim</span><span class="p">();</span>
+<a id="__codelineno-5-25" name="__codelineno-5-25" href="#__codelineno-5-25"></a><span class="w">      </span><span class="nx">assert</span><span class="p">.</span><span class="nx">ok</span><span class="p">(</span><span class="sr">/^(0|50%|var\(--raio\)|var\(--raio-sm\))$/</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">v</span><span class="p">),</span>
+<a id="__codelineno-5-26" name="__codelineno-5-26" href="#__codelineno-5-26"></a><span class="w">        </span><span class="sb">`</span><span class="si">${</span><span class="nx">f</span><span class="si">}</span><span class="sb">: border-radius inválido "</span><span class="si">${</span><span class="nx">v</span><span class="si">}</span><span class="sb">" — use 0, 50% ou os tokens`</span><span class="p">);</span>
+<a id="__codelineno-5-27" name="__codelineno-5-27" href="#__codelineno-5-27"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-5-28" name="__codelineno-5-28" href="#__codelineno-5-28"></a><span class="w">  </span><span class="p">}</span>
+<a id="__codelineno-5-29" name="__codelineno-5-29" href="#__codelineno-5-29"></a><span class="p">});</span>
+<a id="__codelineno-5-30" name="__codelineno-5-30" href="#__codelineno-5-30"></a>
+<a id="__codelineno-5-31" name="__codelineno-5-31" href="#__codelineno-5-31"></a><span class="nx">test</span><span class="p">(</span><span class="s2">"nenhum !important em raio ou vidro"</span><span class="p">,</span><span class="k">async</span><span class="p">()=&gt;{</span>
+<a id="__codelineno-5-32" name="__codelineno-5-32" href="#__codelineno-5-32"></a><span class="w">  </span><span class="k">for</span><span class="p">(</span><span class="kd">const</span><span class="w"> </span><span class="nx">f</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="nx">CSS</span><span class="p">){</span>
+<a id="__codelineno-5-33" name="__codelineno-5-33" href="#__codelineno-5-33"></a><span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">c</span><span class="o">=</span><span class="k">await</span><span class="w"> </span><span class="nx">ler</span><span class="p">(</span><span class="nx">f</span><span class="p">);</span>
+<a id="__codelineno-5-34" name="__codelineno-5-34" href="#__codelineno-5-34"></a><span class="w">    </span><span class="nx">assert</span><span class="p">.</span><span class="nx">doesNotMatch</span><span class="p">(</span><span class="nx">c</span><span class="p">,</span><span class="sr">/border-radius:[^;}]*!important/</span><span class="p">,</span><span class="sb">`</span><span class="si">${</span><span class="nx">f</span><span class="si">}</span><span class="sb"> tem !important em border-radius`</span><span class="p">);</span>
+<a id="__codelineno-5-35" name="__codelineno-5-35" href="#__codelineno-5-35"></a><span class="w">    </span><span class="nx">assert</span><span class="p">.</span><span class="nx">doesNotMatch</span><span class="p">(</span><span class="nx">c</span><span class="p">,</span><span class="sr">/backdrop-filter:[^;}]*!important/</span><span class="p">,</span><span class="sb">`</span><span class="si">${</span><span class="nx">f</span><span class="si">}</span><span class="sb"> tem !important em backdrop-filter`</span><span class="p">);</span>
+<a id="__codelineno-5-36" name="__codelineno-5-36" href="#__codelineno-5-36"></a><span class="w">  </span><span class="p">}</span>
+<a id="__codelineno-5-37" name="__codelineno-5-37" href="#__codelineno-5-37"></a><span class="p">});</span>
+</code></pre></div>
+<ul>
+<li>[ ] <strong>Step 2: Rodar e confirmar que falham</strong></li>
+</ul>
+<p>Run: <code>node --test tests/identidade-visual.test.mjs</code>
+Expected: FAIL nos três — os tokens <code>--vidro-*</code> não existem, há 8 <code>backdrop-filter: blur(Npx)</code> literais e 5 <code>!important</code> em <code>border-radius</code>.</p>
+<ul>
+<li>[ ] <strong>Step 3: Substituir o bloco de tokens</strong></li>
+</ul>
+<p>Em <code>app/globals.css</code>, trocar o bloco das linhas 36-45 por:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="w">  </span><span class="c">/* --- as três camadas ---------------------------------------------------</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="c">   * 0  a folha       cards, campos, tabelas, linhas de especificação</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="c">   *                  -&gt; opaca, cantos vivos, régua de 1px</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="c">   * 1  o que paira   navegação, item ativo, barra de estado, diálogos, menus</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="c">   *                  -&gt; vidro + --raio</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="c">   * 2  o que aciona  botões de ação primários e secundários</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="c">   *                  -&gt; vidro + --raio-sm</span>
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="c">   *</span>
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="c">   * Em uma frase: vidro é o que paira ou o que você aciona; folha é o que</span>
+<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="c">   * você lê. O critério é funcional e não físico de propósito — um botão de</span>
+<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="c">   * ação vive DENTRO de um card, então "vidro é o que paira" quebraria nele.</span>
+<a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a><span class="c">   *</span>
+<a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a><span class="c">   * Um blur e dois raios, só por token. Valor literal fora daqui quebra</span>
+<a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a><span class="c">   * tests/identidade-visual.test.mjs — foi a falta desse freio que deixou o</span>
+<a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a><span class="c">   * arquivo com 5 !important brigando entre a regra do datasheet e a do vidro.</span>
+<a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a><span class="c">   */</span>
+<a id="__codelineno-6-17" name="__codelineno-6-17" href="#__codelineno-6-17"></a><span class="w">  </span><span class="nt">--vidro-fundo</span><span class="o">:</span><span class="w"> </span><span class="nt">rgba</span><span class="o">(</span><span class="nt">255</span><span class="o">,</span><span class="w"> </span><span class="nt">255</span><span class="o">,</span><span class="w"> </span><span class="nt">255</span><span class="o">,</span><span class="w"> </span><span class="nt">0</span><span class="p">.</span><span class="nc">06</span><span class="o">);</span>
+<a id="__codelineno-6-18" name="__codelineno-6-18" href="#__codelineno-6-18"></a><span class="w">  </span><span class="nt">--vidro-fundo-hover</span><span class="o">:</span><span class="w"> </span><span class="nt">rgba</span><span class="o">(</span><span class="nt">255</span><span class="o">,</span><span class="w"> </span><span class="nt">255</span><span class="o">,</span><span class="w"> </span><span class="nt">255</span><span class="o">,</span><span class="w"> </span><span class="nt">0</span><span class="p">.</span><span class="nc">1</span><span class="o">);</span>
+<a id="__codelineno-6-19" name="__codelineno-6-19" href="#__codelineno-6-19"></a><span class="w">  </span><span class="nt">--vidro-fundo-ativo</span><span class="o">:</span><span class="w"> </span><span class="nt">rgba</span><span class="o">(</span><span class="nt">255</span><span class="o">,</span><span class="w"> </span><span class="nt">255</span><span class="o">,</span><span class="w"> </span><span class="nt">255</span><span class="o">,</span><span class="w"> </span><span class="nt">0</span><span class="p">.</span><span class="nc">14</span><span class="o">);</span>
+<a id="__codelineno-6-20" name="__codelineno-6-20" href="#__codelineno-6-20"></a><span class="w">  </span><span class="nt">--vidro-borda</span><span class="o">:</span><span class="w"> </span><span class="nt">rgba</span><span class="o">(</span><span class="nt">255</span><span class="o">,</span><span class="w"> </span><span class="nt">255</span><span class="o">,</span><span class="w"> </span><span class="nt">255</span><span class="o">,</span><span class="w"> </span><span class="nt">0</span><span class="p">.</span><span class="nc">16</span><span class="o">);</span>
+<a id="__codelineno-6-21" name="__codelineno-6-21" href="#__codelineno-6-21"></a><span class="w">  </span><span class="nt">--vidro-borda-hover</span><span class="o">:</span><span class="w"> </span><span class="nt">rgba</span><span class="o">(</span><span class="nt">232</span><span class="o">,</span><span class="w"> </span><span class="nt">163</span><span class="o">,</span><span class="w"> </span><span class="nt">61</span><span class="o">,</span><span class="w"> </span><span class="nt">0</span><span class="p">.</span><span class="nc">4</span><span class="o">);</span>
+<a id="__codelineno-6-22" name="__codelineno-6-22" href="#__codelineno-6-22"></a><span class="w">  </span><span class="nt">--vidro-blur</span><span class="o">:</span><span class="w"> </span><span class="nt">blur</span><span class="o">(</span><span class="nt">20px</span><span class="o">);</span>
+<a id="__codelineno-6-23" name="__codelineno-6-23" href="#__codelineno-6-23"></a><span class="w">  </span><span class="nt">--vidro-sombra</span><span class="o">:</span><span class="w"> </span><span class="nt">0</span><span class="w"> </span><span class="nt">8px</span><span class="w"> </span><span class="nt">32px</span><span class="w"> </span><span class="nt">rgba</span><span class="o">(</span><span class="nt">0</span><span class="o">,</span><span class="w"> </span><span class="nt">0</span><span class="o">,</span><span class="w"> </span><span class="nt">0</span><span class="o">,</span><span class="w"> </span><span class="nt">0</span><span class="p">.</span><span class="nc">4</span><span class="o">),</span><span class="w"> </span><span class="nt">inset</span><span class="w"> </span><span class="nt">0</span><span class="w"> </span><span class="nt">1px</span><span class="w"> </span><span class="nt">0</span><span class="w"> </span><span class="nt">rgba</span><span class="o">(</span><span class="nt">255</span><span class="o">,</span><span class="w"> </span><span class="nt">255</span><span class="o">,</span><span class="w"> </span><span class="nt">255</span><span class="o">,</span><span class="w"> </span><span class="nt">0</span><span class="p">.</span><span class="nc">08</span><span class="o">);</span>
+<a id="__codelineno-6-24" name="__codelineno-6-24" href="#__codelineno-6-24"></a><span class="w">  </span><span class="nt">--raio</span><span class="o">:</span><span class="w"> </span><span class="nt">16px</span><span class="o">;</span>
+<a id="__codelineno-6-25" name="__codelineno-6-25" href="#__codelineno-6-25"></a><span class="w">  </span><span class="nt">--raio-sm</span><span class="o">:</span><span class="w"> </span><span class="nt">10px</span><span class="o">;</span>
+</code></pre></div>
+<p>E acrescentar o ciano logo depois de <code>--ambar</code>, no bloco de cor:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="w">  </span><span class="nt">--ciano</span><span class="o">:</span><span class="w"> </span><span class="p">#</span><span class="nn">4dd4e8</span><span class="o">;</span><span class="w"> </span><span class="c">/* sucesso, canal no ar, sonda saudável — fora do eixo verde/vermelho para não confundir com --carmim em deuteranopia */</span>
+</code></pre></div>
+<ul>
+<li>[ ] <strong>Step 4: Renomear as referências</strong></li>
+</ul>
+<p>Nos dois arquivos CSS, substituir mecanicamente:</p>
+<table>
+<thead>
+<tr>
+<th>De</th>
+<th>Para</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--glass-bg-hover</code></td>
+<td><code>--vidro-fundo-hover</code></td>
+</tr>
+<tr>
+<td><code>--glass-bg-active</code></td>
+<td><code>--vidro-fundo-ativo</code></td>
+</tr>
+<tr>
+<td><code>--glass-bg</code></td>
+<td><code>--vidro-fundo</code></td>
+</tr>
+<tr>
+<td><code>--glass-border-hover</code></td>
+<td><code>--vidro-borda-hover</code></td>
+</tr>
+<tr>
+<td><code>--glass-border</code></td>
+<td><code>--vidro-borda</code></td>
+</tr>
+<tr>
+<td><code>--glass-blur</code></td>
+<td><code>--vidro-blur</code></td>
+</tr>
+<tr>
+<td><code>--glass-shadow</code></td>
+<td><code>--vidro-sombra</code></td>
+</tr>
+<tr>
+<td><code>--glass-radius-sm</code></td>
+<td><code>--raio-sm</code></td>
+</tr>
+<tr>
+<td><code>--glass-radius</code></td>
+<td><code>--raio</code></td>
+</tr>
+</tbody>
+</table>
+<p>Atenção à ordem: os nomes mais longos primeiro, senão <code>--glass-bg</code> casa dentro de <code>--glass-bg-hover</code>.</p>
+<ul>
+<li>[ ] <strong>Step 5: Eliminar os literais</strong></li>
+</ul>
+<p>Trocar cada <code>backdrop-filter: blur(8px)</code> e <code>backdrop-filter: blur(10px)</code> por <code>backdrop-filter: var(--vidro-blur)</code>. São 8 ocorrências: 4 em <code>globals.css</code>, 4 em <code>observatory.css</code> (2 de 8px + 2 de 10px).</p>
+<p>Remover os 5 <code>!important</code> de <code>border-radius</code> e ajustar a especificidade do seletor se algum deixar de aplicar — se um seletor precisava de <code>!important</code>, ele está competindo com outro, e o certo é a Task 3 decidir qual camada ganha.</p>
+<ul>
+<li>[ ] <strong>Step 6: Rodar e confirmar que passam</strong></li>
+</ul>
+<p>Run: <code>node --test tests/identidade-visual.test.mjs</code>
+Expected: PASS nos três.</p>
+<ul>
+<li>[ ] <strong>Step 7: Verificar visualmente que nada quebrou</strong></li>
+</ul>
+<p>Run: <code>npx next dev -p 3210</code> e abrir <code>/painel</code>. O visual deve estar <strong>idêntico</strong> ao de antes — esta task é renomeação e unificação de valor, não mudança de aparência.</p>
+<ul>
+<li>[ ] <strong>Step 8: Commit</strong></li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>git<span class="w"> </span>add<span class="w"> </span>app/globals.css<span class="w"> </span>app/painel/observatory.css<span class="w"> </span>tests/identidade-visual.test.mjs
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">"refactor: um token de vidro só, em português, com a regra das tres camadas testada"</span>
+</code></pre></div>
+<hr />
+<h3 id="task-3-aplicar-a-regra-das-tres-camadas">Task 3: Aplicar a regra das três camadas<a class="headerlink" href="#task-3-aplicar-a-regra-das-tres-camadas" title="Permanent link">&para;</a></h3>
+<p><strong>Files:</strong>
+- Modify: <code>app/globals.css</code>, <code>app/painel/observatory.css</code></p>
+<p><strong>Interfaces:</strong>
+- Consumes: os tokens da Task 2.
+- Produces: nenhuma interface nova; a partir daqui a Task 7 pode assumir que raio e vidro estão corretos por camada.</p>
+<ul>
+<li>[ ] <strong>Step 1: Escrever o teste que falha</strong></li>
+</ul>
+<p>Acrescentar a <code>tests/identidade-visual.test.mjs</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="nx">test</span><span class="p">(</span><span class="s2">"a camada 0 (folha) não tem vidro nem raio"</span><span class="p">,</span><span class="k">async</span><span class="p">()=&gt;{</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">o</span><span class="o">=</span><span class="k">await</span><span class="w"> </span><span class="nx">ler</span><span class="p">(</span><span class="s2">"app/painel/observatory.css"</span><span class="p">);</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="w">  </span><span class="c1">// campos de formulário são folha: cantos vivos e sem blur</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">campos</span><span class="o">=</span><span class="nx">o</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="sr">/:is\(input:not\(\[type="checkbox"\][^{]*\{[^}]*\}/</span><span class="p">);</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="w">  </span><span class="nx">assert</span><span class="p">.</span><span class="nx">ok</span><span class="p">(</span><span class="nx">campos</span><span class="p">,</span><span class="s2">"bloco de campos de formulário não encontrado"</span><span class="p">);</span>
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="w">  </span><span class="nx">assert</span><span class="p">.</span><span class="nx">doesNotMatch</span><span class="p">(</span><span class="nx">campos</span><span class="p">[</span><span class="mf">0</span><span class="p">],</span><span class="sr">/backdrop-filter/</span><span class="p">);</span>
+<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="w">  </span><span class="nx">assert</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="nx">campos</span><span class="p">[</span><span class="mf">0</span><span class="p">],</span><span class="sr">/border-radius:\s*0/</span><span class="p">);</span>
+<a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="p">});</span>
+</code></pre></div>
+<ul>
+<li>[ ] <strong>Step 2: Rodar e confirmar o estado atual</strong></li>
+</ul>
+<p>Run: <code>node --test tests/identidade-visual.test.mjs</code>
+Expected: o teste pode já passar (o bloco de campos em <code>observatory.css:164</code> já tem <code>border-radius:0</code> e não tem blur). Se passar, isto é uma <strong>trava de regressão</strong>, não um bug a corrigir — registre isso no commit e siga.</p>
+<ul>
+<li>[ ] <strong>Step 3: Auditar cada seletor com <code>backdrop-filter</code> e classificá-lo</strong></li>
+</ul>
+<p>Listar os seletores que hoje declaram vidro:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>grep<span class="w"> </span>-n<span class="w"> </span><span class="s2">"backdrop-filter"</span><span class="w"> </span>app/globals.css<span class="w"> </span>app/painel/observatory.css
+</code></pre></div>
+<p>Para cada um, decidir a camada:</p>
+<ul>
+<li><strong>Camada 1 (paira)</strong> — mantém vidro + <code>var(--raio)</code>: <code>.dash-nav</code>, <code>.dash-nav__link.aqui</code>, barra de estado do rodapé, diálogos, menus, toasts.</li>
+<li><strong>Camada 2 (aciona)</strong> — mantém vidro + <code>var(--raio-sm)</code>: <code>button</code> de ação.</li>
+<li><strong>Camada 0 (folha)</strong> — <strong>perde</strong> <code>backdrop-filter</code> e passa a <code>border-radius: 0</code>: cards, <code>article</code>, <code>.metricas</code>, <code>.documentos-grade article</code>, <code>.eval-central-lista article</code>, <code>.conversa-filtros</code>, <code>.seguranca-bloco</code>, <code>.equipe-lista article</code>, e qualquer outro contêiner de conteúdo.</li>
+</ul>
+<p>O bloco <code>observatory.css:316</code> (<code>.dashboard .dash-router-content button, .dashboard .conversa-filtros button, …</code>) é camada 2 e fica.</p>
+<ul>
+<li>[ ] <strong>Step 4: Rodar a suíte inteira</strong></li>
+</ul>
+<p>Run: <code>npm test &amp;&amp; npx tsc --noEmit</code>
+Expected: verde. O teste "nenhum blur ou raio literal" da Task 2 continua valendo.</p>
+<ul>
+<li>[ ] <strong>Step 5: Recapturar e comparar</strong></li>
+</ul>
+<p>Rodar a varredura de capturas (ver Task 9) e conferir que cards ficaram de cantos vivos e navegação/botões continuam de vidro.</p>
+<ul>
+<li>[ ] <strong>Step 6: Commit</strong></li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>git<span class="w"> </span>add<span class="w"> </span>app/globals.css<span class="w"> </span>app/painel/observatory.css<span class="w"> </span>tests/identidade-visual.test.mjs
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">"feat: aplica a regra das tres camadas — folha opaca, vidro so no que paira e no que aciona"</span>
+</code></pre></div>
+<hr />
+<h3 id="task-4-bug-cta-do-painel-vazio-ilegivel">Task 4: Bug — CTA do painel vazio ilegível<a class="headerlink" href="#task-4-bug-cta-do-painel-vazio-ilegivel" title="Permanent link">&para;</a></h3>
+<p><strong>Files:</strong>
+- Modify: <code>app/painel/observatory.css:119-121</code>
+- Test: <code>tests/identidade-visual.test.mjs</code></p>
+<p><strong>Causa raiz (já diagnosticada, não repetir a investigação):</strong></p>
+<p><code>app/globals.css:1551</code> desenha <code>.dash-primeiros-passos</code> como um cartão <strong>claro</strong>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="p">.</span><span class="nc">dash-primeiros-passos</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">background</span><span class="p">:</span><span class="mh">#ecedee</span><span class="p">;</span><span class="w"> </span><span class="k">color</span><span class="p">:</span><span class="mh">#080907</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="p">.</span><span class="nc">dash-primeiros-passos</span><span class="w"> </span><span class="nt">p</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">color</span><span class="p">:</span><span class="mh">#656965</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<p><code>app/painel/observatory.css:119</code> escureceu só o <strong>fundo</strong> e o <code>span</code>, e nunca sobrescreveu a <strong>tinta</strong>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="p">.</span><span class="nc">dash-observatory</span><span class="w"> </span><span class="p">.</span><span class="nc">dash-primeiros-passos</span><span class="p">{</span><span class="k">margin-top</span><span class="p">:</span><span class="mi">11</span><span class="kt">px</span><span class="p">;</span><span class="k">border</span><span class="p">:</span><span class="mi">1</span><span class="kt">px</span><span class="w"> </span><span class="kc">solid</span><span class="w"> </span><span class="nf">var</span><span class="p">(</span><span class="nv">--regua</span><span class="p">);</span><span class="k">background</span><span class="p">:</span><span class="mh">#0d0f10</span><span class="p">}</span>
+</code></pre></div>
+<p>Resultado: o <code>h3</code> fica <code>#080907</code> sobre <code>#0d0f10</code> — razão de contraste <strong>1.03:1</strong>. Não é "cinza escuro": é preto sobre preto.</p>
+<ul>
+<li>[ ] <strong>Step 1: Escrever o teste que falha</strong></li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="nx">test</span><span class="p">(</span><span class="s2">"o CTA de primeiros passos herda tinta clara junto com o fundo escuro"</span><span class="p">,</span><span class="k">async</span><span class="p">()=&gt;{</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">o</span><span class="o">=</span><span class="k">await</span><span class="w"> </span><span class="nx">ler</span><span class="p">(</span><span class="s2">"app/painel/observatory.css"</span><span class="p">);</span>
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">bloco</span><span class="o">=</span><span class="nx">o</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="sr">/\.dash-observatory \.dash-primeiros-passos\{[^}]*\}/</span><span class="p">);</span>
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="w">  </span><span class="nx">assert</span><span class="p">.</span><span class="nx">ok</span><span class="p">(</span><span class="nx">bloco</span><span class="p">,</span><span class="s2">"bloco .dash-primeiros-passos não encontrado em observatory.css"</span><span class="p">);</span>
+<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="w">  </span><span class="nx">assert</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="nx">bloco</span><span class="p">[</span><span class="mf">0</span><span class="p">],</span><span class="sr">/color:var\(--tinta\)/</span><span class="p">,</span>
+<a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a><span class="w">    </span><span class="s2">"escurecer o fundo sem trocar a cor do texto deixa o h3 preto sobre preto"</span><span class="p">);</span>
+<a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a><span class="w">  </span><span class="nx">assert</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="nx">o</span><span class="p">,</span><span class="sr">/\.dash-observatory \.dash-primeiros-passos p\{[^}]*color:var\(--tinta-media\)/</span><span class="p">);</span>
+<a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a><span class="p">});</span>
+</code></pre></div>
+<ul>
+<li>[ ] <strong>Step 2: Rodar e confirmar que falha</strong></li>
+</ul>
+<p>Run: <code>node --test tests/identidade-visual.test.mjs</code>
+Expected: FAIL — o bloco não declara <code>color</code>.</p>
+<ul>
+<li>[ ] <strong>Step 3: Implementar</strong></li>
+</ul>
+<p>Em <code>app/painel/observatory.css</code>, trocar as linhas 119-121 por:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="c">/* O cartão-base em globals.css é CLARO (background:#ecedee;color:#080907). Aqui</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="c">   ele vira escuro — e a tinta tem que vir junto, senão o h3 herda #080907 sobre</span>
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="c">   #0d0f10 e some (1.03:1). Foi exatamente o que aconteceu até 2026-09-23. */</span>
+<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="p">.</span><span class="nc">dash-observatory</span><span class="w"> </span><span class="p">.</span><span class="nc">dash-primeiros-passos</span><span class="p">{</span><span class="k">margin-top</span><span class="p">:</span><span class="mi">11</span><span class="kt">px</span><span class="p">;</span><span class="k">border</span><span class="p">:</span><span class="mi">1</span><span class="kt">px</span><span class="w"> </span><span class="kc">solid</span><span class="w"> </span><span class="nf">var</span><span class="p">(</span><span class="nv">--regua</span><span class="p">);</span><span class="k">background</span><span class="p">:</span><span class="mh">#0d0f10</span><span class="p">;</span><span class="k">color</span><span class="p">:</span><span class="nf">var</span><span class="p">(</span><span class="nv">--tinta</span><span class="p">)}</span>
+<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="p">.</span><span class="nc">dash-observatory</span><span class="w"> </span><span class="p">.</span><span class="nc">dash-primeiros-passos</span><span class="w"> </span><span class="nt">span</span><span class="p">{</span><span class="k">color</span><span class="p">:</span><span class="nf">var</span><span class="p">(</span><span class="nv">--ambar</span><span class="p">)}</span>
+<a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a><span class="p">.</span><span class="nc">dash-observatory</span><span class="w"> </span><span class="p">.</span><span class="nc">dash-primeiros-passos</span><span class="w"> </span><span class="nt">h3</span><span class="p">{</span><span class="k">color</span><span class="p">:</span><span class="nf">var</span><span class="p">(</span><span class="nv">--tinta</span><span class="p">)}</span>
+<a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a><span class="p">.</span><span class="nc">dash-observatory</span><span class="w"> </span><span class="p">.</span><span class="nc">dash-primeiros-passos</span><span class="w"> </span><span class="nt">p</span><span class="p">{</span><span class="k">color</span><span class="p">:</span><span class="nf">var</span><span class="p">(</span><span class="nv">--tinta-media</span><span class="p">)}</span>
+<a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a><span class="p">.</span><span class="nc">dash-observatory</span><span class="w"> </span><span class="p">.</span><span class="nc">dash-primeiros-passos</span><span class="w"> </span><span class="nt">button</span><span class="p">{</span><span class="k">background</span><span class="p">:</span><span class="nf">var</span><span class="p">(</span><span class="nv">--tinta</span><span class="p">);</span><span class="k">color</span><span class="p">:</span><span class="nf">var</span><span class="p">(</span><span class="nv">--papel</span><span class="p">)}</span>
+</code></pre></div>
+<ul>
+<li>[ ] <strong>Step 4: Rodar e confirmar que passa</strong></li>
+</ul>
+<p>Run: <code>node --test tests/identidade-visual.test.mjs</code>
+Expected: PASS</p>
+<ul>
+<li>[ ] <strong>Step 5: Confirmar o contraste no navegador</strong></li>
+</ul>
+<p>Com <code>npx next dev -p 3210</code>, abrir <code>/painel</code> numa conta sem instância e rodar no console:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">h</span><span class="o">=</span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">".dash-primeiros-passos h3"</span><span class="p">);</span>
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">getComputedStyle</span><span class="p">(</span><span class="nx">h</span><span class="p">).</span><span class="nx">color</span><span class="p">,</span><span class="w"> </span><span class="nx">getComputedStyle</span><span class="p">(</span><span class="nx">h</span><span class="p">.</span><span class="nx">closest</span><span class="p">(</span><span class="s2">".dash-primeiros-passos"</span><span class="p">)).</span><span class="nx">backgroundColor</span><span class="p">);</span>
+</code></pre></div>
+<p>Expected: <code>rgb(236, 238, 239)</code> sobre <code>rgb(13, 15, 16)</code> — ≈16:1, bem acima do piso de 4.5:1.</p>
+<ul>
+<li>[ ] <strong>Step 6: Commit</strong></li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>git<span class="w"> </span>add<span class="w"> </span>app/painel/observatory.css<span class="w"> </span>tests/identidade-visual.test.mjs
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">"fix: CTA do painel vazio era preto sobre preto (1.03:1)"</span>
+</code></pre></div>
+<hr />
+<h3 id="task-5-bug-navegacao-mobile-embaralhada-e-cortada">Task 5: Bug — navegação mobile embaralhada e cortada<a class="headerlink" href="#task-5-bug-navegacao-mobile-embaralhada-e-cortada" title="Permanent link">&para;</a></h3>
+<p><strong>Files:</strong>
+- Modify: <code>app/painel/observatory.css:293-296</code>, <code>app/painel/observatory.css:301-305</code>
+- Test: <code>tests/identidade-visual.test.mjs</code></p>
+<p><strong>Sintoma confirmado:</strong> em 390×844 os rótulos de grupo (<code>NÚCLEO</code>, <code>ATENDIMENTO</code>, <code>SISTEMA</code>) se intercalam com os itens fora de ordem de leitura, e <code>CONFIGURAÇÕES</code> fica clipado na borda direita.</p>
+<p><strong>Origem:</strong> <code>observatory.css:294</code> vira o <code>.dash-nav</code> para <code>flex-direction:row</code>, mas <code>.dash-nav__section</code> continua <code>display:grid</code> (linha 151). Cada seção vira uma <strong>coluna</strong> dentro de uma faixa horizontal, então o que era uma lista vertical legível vira uma grade de colunas de alturas diferentes. O <code>DESIGN.md</code> promete "faixa horizontal compacta com rolagem" — colunas empilhadas não são isso.</p>
+<ul>
+<li>[ ] <strong>Step 1: Medir o estado atual antes de mexer</strong></li>
+</ul>
+<p>Com o servidor em 3210, rodar a medição (ela é a prova de que o bug existe, e vira a prova de que sumiu):</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="c1">// no console do navegador, viewport 390px</span>
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="p">[...</span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="s2">".dash-nav__link,.dash-nav__section&gt;small,.dash-nav__toggle"</span><span class="p">)]</span>
+<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="w">  </span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">e</span><span class="p">=&gt;({</span><span class="nx">txt</span><span class="o">:</span><span class="nx">e</span><span class="p">.</span><span class="nx">textContent</span><span class="p">.</span><span class="nx">trim</span><span class="p">().</span><span class="nx">slice</span><span class="p">(</span><span class="mf">0</span><span class="p">,</span><span class="mf">18</span><span class="p">),</span><span class="nx">t</span><span class="o">:</span><span class="nb">Math</span><span class="p">.</span><span class="nx">round</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">getBoundingClientRect</span><span class="p">().</span><span class="nx">top</span><span class="p">),</span><span class="nx">l</span><span class="o">:</span><span class="nb">Math</span><span class="p">.</span><span class="nx">round</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">getBoundingClientRect</span><span class="p">().</span><span class="nx">left</span><span class="p">),</span><span class="nx">r</span><span class="o">:</span><span class="nb">Math</span><span class="p">.</span><span class="nx">round</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">getBoundingClientRect</span><span class="p">().</span><span class="nx">right</span><span class="p">)}))</span>
+</code></pre></div>
+<p>Expected antes: <code>top</code> variando entre os itens (colunas), e ao menos um elemento com <code>right</code> maior que 390.</p>
+<ul>
+<li>[ ] <strong>Step 2: Escrever o teste que falha</strong></li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="nx">test</span><span class="p">(</span><span class="s2">"em tela estreita a navegação é uma faixa de rolagem, não colunas"</span><span class="p">,</span><span class="k">async</span><span class="p">()=&gt;{</span>
+<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">o</span><span class="o">=</span><span class="k">await</span><span class="w"> </span><span class="nx">ler</span><span class="p">(</span><span class="s2">"app/painel/observatory.css"</span><span class="p">);</span>
+<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">estreita</span><span class="o">=</span><span class="nx">o</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="nx">o</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="s2">"@media(max-width:540px)"</span><span class="p">));</span>
+<a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a><span class="w">  </span><span class="nx">assert</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="nx">estreita</span><span class="p">,</span><span class="sr">/\.dashboard \.dash-nav\s*\{[^}]*overflow-x:\s*auto/</span><span class="p">,</span>
+<a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a><span class="w">    </span><span class="s2">"a faixa precisa rolar, senão CONFIGURAÇÕES fica clipado"</span><span class="p">);</span>
+<a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a><span class="w">  </span><span class="nx">assert</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="nx">estreita</span><span class="p">,</span><span class="sr">/\.dashboard \.dash-nav__section\s*\{[^}]*(display:\s*flex|grid-auto-flow:\s*column)/</span><span class="p">,</span>
+<a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a><span class="w">    </span><span class="s2">"as seções precisam correr na horizontal, não virar colunas de grade"</span><span class="p">);</span>
+<a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a><span class="w">  </span><span class="nx">assert</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="nx">estreita</span><span class="p">,</span><span class="sr">/flex-wrap:\s*nowrap/</span><span class="p">);</span>
+<a id="__codelineno-19-9" name="__codelineno-19-9" href="#__codelineno-19-9"></a><span class="p">});</span>
+</code></pre></div>
+<ul>
+<li>[ ] <strong>Step 3: Rodar e confirmar que falha</strong></li>
+</ul>
+<p>Run: <code>node --test tests/identidade-visual.test.mjs</code>
+Expected: FAIL — o bloco de 540px não declara nada disso.</p>
+<ul>
+<li>[ ] <strong>Step 4: Implementar</strong></li>
+</ul>
+<p>Em <code>app/painel/observatory.css</code>, dentro de <code>@media(max-width:540px)</code> (linha 301), acrescentar:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="w">  </span><span class="c">/* Faixa horizontal de verdade: uma linha só, que rola. Antes, o .dash-nav</span>
+<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="c">     virava row mas o .dash-nav__section continuava grid — cada seção virava uma</span>
+<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a><span class="c">     COLUNA, e o resultado era uma grade de alturas diferentes com o</span>
+<a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a><span class="c">     CONFIGURAÇÕES clipado na borda. Ver captura de 2026-09-23. */</span>
+<a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a><span class="w">  </span><span class="p">.</span><span class="nc">dashboard</span><span class="w"> </span><span class="p">.</span><span class="nc">dash-nav</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">flex-wrap</span><span class="p">:</span><span class="kc">nowrap</span><span class="p">;</span><span class="w"> </span><span class="k">overflow-x</span><span class="p">:</span><span class="kc">auto</span><span class="p">;</span><span class="w"> </span><span class="k">overscroll-behavior-x</span><span class="p">:</span><span class="kc">contain</span><span class="p">;</span><span class="w"> </span><span class="k">gap</span><span class="p">:</span><span class="mi">6</span><span class="kt">px</span><span class="p">;</span><span class="w"> </span><span class="k">scrollbar-width</span><span class="p">:</span><span class="kc">none</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a><span class="w">  </span><span class="p">.</span><span class="nc">dashboard</span><span class="w"> </span><span class="p">.</span><span class="nc">dash-nav</span><span class="p">::</span><span class="nd">-webkit-scrollbar</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">display</span><span class="p">:</span><span class="kc">none</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a><span class="w">  </span><span class="p">.</span><span class="nc">dashboard</span><span class="w"> </span><span class="p">.</span><span class="nc">dash-nav__section</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">display</span><span class="p">:</span><span class="kc">flex</span><span class="p">;</span><span class="w"> </span><span class="k">flex-direction</span><span class="p">:</span><span class="kc">row</span><span class="p">;</span><span class="w"> </span><span class="k">flex</span><span class="p">:</span><span class="kc">none</span><span class="p">;</span><span class="w"> </span><span class="k">align-items</span><span class="p">:</span><span class="kc">center</span><span class="p">;</span><span class="w"> </span><span class="k">gap</span><span class="p">:</span><span class="mi">6</span><span class="kt">px</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<a id="__codelineno-20-8" name="__codelineno-20-8" href="#__codelineno-20-8"></a><span class="w">  </span><span class="p">.</span><span class="nc">dashboard</span><span class="w"> </span><span class="p">.</span><span class="nc">dash-nav__section</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="nt">small</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">display</span><span class="p">:</span><span class="kc">none</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<a id="__codelineno-20-9" name="__codelineno-20-9" href="#__codelineno-20-9"></a><span class="w">  </span><span class="p">.</span><span class="nc">dashboard</span><span class="w"> </span><span class="p">.</span><span class="nc">dash-nav__link</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">flex</span><span class="p">:</span><span class="kc">none</span><span class="p">;</span><span class="w"> </span><span class="k">min-height</span><span class="p">:</span><span class="mi">38</span><span class="kt">px</span><span class="p">;</span><span class="w"> </span><span class="k">white-space</span><span class="p">:</span><span class="kc">nowrap</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<a id="__codelineno-20-10" name="__codelineno-20-10" href="#__codelineno-20-10"></a><span class="w">  </span><span class="p">.</span><span class="nc">dashboard</span><span class="w"> </span><span class="p">.</span><span class="nc">dash-nav__settings</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">min-width</span><span class="p">:</span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<a id="__codelineno-20-11" name="__codelineno-20-11" href="#__codelineno-20-11"></a><span class="w">  </span><span class="p">.</span><span class="nc">dashboard</span><span class="w"> </span><span class="p">.</span><span class="nc">dash-nav__toggle</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">width</span><span class="p">:</span><span class="kc">auto</span><span class="p">;</span><span class="w"> </span><span class="k">flex</span><span class="p">:</span><span class="kc">none</span><span class="p">;</span><span class="w"> </span><span class="k">white-space</span><span class="p">:</span><span class="kc">nowrap</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<a id="__codelineno-20-12" name="__codelineno-20-12" href="#__codelineno-20-12"></a><span class="w">  </span><span class="p">.</span><span class="nc">dashboard</span><span class="w"> </span><span class="p">.</span><span class="nc">dash-nav__submenu</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">display</span><span class="p">:</span><span class="kc">none</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<p>Os rótulos de grupo somem em tela estreita porque numa faixa horizontal eles
+deixam de agrupar — viram ruído intercalado.</p>
+<p><strong>CORREÇÃO (2026-09-23, durante a execução).</strong> A versão anterior deste passo
+mandava esconder o submenu em ≤540px, afirmando que <code>CONFIGURAÇÕES</code> levaria a
+<code>/painel/configuracoes/assistentes</code>, "que já tem a sua própria navegação interna".
+<strong>A afirmação era falsa.</strong> <code>components/NavegacaoPainel.tsx</code> é o ÚNICO arquivo do
+projeto que renderiza link para as seções de configuração:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>grep -rln "configuracoes/conhecimento|configuracoes/avaliacoes|configuracoes/seguranca" --include=*.tsx .
+<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>  -&gt; app/painel/[...secoes]/page.tsx   (mapa de rotas, nao links)
+<a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a>  -&gt; components/NavegacaoPainel.tsx    (os links de verdade)
+</code></pre></div>
+<p>Esconder o submenu deixaria <strong>Conhecimento, Avaliações, Ferramentas API, Zendesk,
+Equipe e Segurança inalcançáveis no mobile</strong> — seis seções sem rota, pior que o bug
+que esta task veio consertar.</p>
+<p><strong>O que vale:</strong> em ≤540px o submenu é <strong>achatado</strong> dentro da própria faixa. Os sete
+links de configuração entram em sequência como itens normais; não há <code>&lt;button&gt;</code> de
+alternância nessa largura. A faixa já rola, então mais itens só a deixam mais longa —
+que é exatamente o que uma faixa com rolagem existe para resolver. O requisito
+inegociável: nenhuma das treze seções fica sem rota em 390px, e isso vale para
+teclado e leitor de tela, não só para o toque.</p>
+<p>O componente troca <code>&lt;button&gt;</code> por links via <code>matchMedia</code>, com <code>useState(false)</code> +
+<code>useEffect</code> — estado inicial igual ao do servidor, troca só depois de montar, para
+não criar mismatch de hidratação. O breakpoint do CSS e o do JS ganham um teste que
+trava a concordância entre os dois.</p>
+<ul>
+<li>[ ] <strong>Step 5: Rodar e confirmar que passa</strong></li>
+</ul>
+<p>Run: <code>node --test tests/identidade-visual.test.mjs</code>
+Expected: PASS</p>
+<ul>
+<li>[ ] <strong>Step 6: Medir de novo no navegador, em 390px</strong></li>
+</ul>
+<p>Repetir a medição do Step 1.
+Expected depois: todos os itens com o <strong>mesmo</strong> <code>top</code> (uma linha só), e nenhum item cortado sem poder rolar — <code>document.querySelector(".dash-nav").scrollWidth &gt; 390</code> com rolagem funcionando.</p>
+<ul>
+<li>[ ] <strong>Step 7: Commit</strong></li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>git<span class="w"> </span>add<span class="w"> </span>app/painel/observatory.css<span class="w"> </span>tests/identidade-visual.test.mjs
+<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">"fix: navegacao mobile virava grade de colunas em vez de faixa com rolagem"</span>
+</code></pre></div>
+<hr />
+<h3 id="task-6-densidade-terminal-e-estados-vazios">Task 6: Densidade terminal e estados vazios<a class="headerlink" href="#task-6-densidade-terminal-e-estados-vazios" title="Permanent link">&para;</a></h3>
+<p><strong>Files:</strong>
+- Modify: <code>components/CentralPainel.tsx:76</code> e o bloco de métricas, <code>app/painel/observatory.css</code></p>
+<ul>
+<li>[ ] <strong>Step 1: Escrever o teste que falha</strong></li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="nx">test</span><span class="p">(</span><span class="s2">"bloco sem dado não renderiza caixa vazia"</span><span class="p">,</span><span class="k">async</span><span class="p">()=&gt;{</span>
+<a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">c</span><span class="o">=</span><span class="k">await</span><span class="w"> </span><span class="nx">ler</span><span class="p">(</span><span class="s2">"components/CentralPainel.tsx"</span><span class="p">);</span>
+<a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a><span class="w">  </span><span class="nx">assert</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="nx">c</span><span class="p">,</span><span class="sr">/desempenho[\s\S]{0,400}\?\s*\(/i</span><span class="p">,</span>
+<a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a><span class="w">    </span><span class="s2">"o bloco de desempenho por bot precisa ser condicional, não um retângulo com título"</span><span class="p">);</span>
+<a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a><span class="p">});</span>
+</code></pre></div>
+<ul>
+<li>[ ] <strong>Step 2: Rodar e confirmar que falha</strong></li>
+</ul>
+<p>Run: <code>node --test tests/identidade-visual.test.mjs</code>
+Expected: FAIL.</p>
+<ul>
+<li>[ ] <strong>Step 3: Ler o componente ANTES de escrever</strong></li>
+</ul>
+<p><code>components/CentralPainel.tsx</code> tem 86 linhas em estilo denso. Abrir e anotar os nomes
+reais: como o resumo chega (<code>resumo?.instancias</code> é usado na linha 76), como a série
+diária é montada, e qual variável alimenta "DESEMPENHO POR BOT". <strong>Os nomes abaixo são
+ilustrativos</strong> — use os que existirem no arquivo, não estes.</p>
+<ul>
+<li>[ ] <strong>Step 4: Implementar</strong></li>
+</ul>
+<p>Envolver o bloco "DESEMPENHO POR BOT" numa condicional que só renderiza quando há linha,
+e trocar o gráfico de série diária por uma linha de estado quando a série estiver vazia
+ou toda zerada. A forma (adaptando os nomes reais do Step 3):</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="p">{</span><span class="nx">temDesempenho</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a><span class="w">  </span><span class="p">&lt;</span><span class="nt">section</span><span class="w"> </span><span class="na">className</span><span class="o">=</span><span class="s">"dash-bloco"</span><span class="p">&gt;</span><span class="err">…</span><span class="p">&lt;/</span><span class="nt">section</span><span class="p">&gt;</span>
+<a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a><span class="p">)}</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="p">{</span><span class="nx">temSerie</span>
+<a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a><span class="w">  </span><span class="o">?</span><span class="w"> </span><span class="p">&lt;&gt;</span><span class="err">…</span><span class="nx">o</span><span class="w"> </span><span class="nx">gráfico</span><span class="w"> </span><span class="nx">como</span><span class="w"> </span><span class="nx">já</span><span class="w"> </span><span class="nx">é</span><span class="w"> </span><span class="nx">hoje</span><span class="err">…</span><span class="p">&lt;/&gt;</span>
+<a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a><span class="w">  </span><span class="o">:</span><span class="w"> </span><span class="p">&lt;</span><span class="nt">p</span><span class="w"> </span><span class="na">className</span><span class="o">=</span><span class="s">"dash-vazio-linha"</span><span class="p">&gt;</span><span class="nx">SEM</span><span class="w"> </span><span class="nx">MENSAGENS</span><span class="w"> </span><span class="nx">NO</span><span class="w"> </span><span class="nx">PERÍODO</span><span class="w"> </span><span class="err">·</span><span class="w"> </span><span class="mf">14</span><span class="w"> </span><span class="nx">DIAS</span><span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;}</span>
+</code></pre></div>
+<p>Acrescentar em <code>observatory.css</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="p">.</span><span class="nc">dash-observatory</span><span class="w"> </span><span class="p">.</span><span class="nc">dash-vazio-linha</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">margin</span><span class="p">:</span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="k">padding</span><span class="p">:</span><span class="mi">14</span><span class="kt">px</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="k">border-top</span><span class="p">:</span><span class="mi">1</span><span class="kt">px</span><span class="w"> </span><span class="kc">solid</span><span class="w"> </span><span class="nf">var</span><span class="p">(</span><span class="nv">--regua</span><span class="p">);</span><span class="w"> </span><span class="k">color</span><span class="p">:</span><span class="nf">var</span><span class="p">(</span><span class="nv">--tinta-media</span><span class="p">);</span><span class="w"> </span><span class="k">font</span><span class="p">:</span><span class="mi">11</span><span class="kt">px</span><span class="w"> </span><span class="nf">var</span><span class="p">(</span><span class="nv">--fonte-mono</span><span class="p">),</span><span class="kc">monospace</span><span class="p">;</span><span class="w"> </span><span class="k">letter-spacing</span><span class="p">:</span><span class="mf">.12</span><span class="kt">em</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<p>Comprimir a régua de espaço do painel para a densidade escolhida: em <code>observatory.css</code>, reduzir <code>padding:clamp(24px,2.8vw,46px)</code> (linha 11) para <code>clamp(16px,1.8vw,28px)</code> e o <code>gap</code> das grades de blocos na mesma proporção.</p>
+<ul>
+<li>[ ] <strong>Step 4: Rodar e confirmar que passa</strong></li>
+</ul>
+<p>Run: <code>npm test &amp;&amp; npx tsc --noEmit</code>
+Expected: verde.</p>
+<ul>
+<li>[ ] <strong>Step 5: Conferir no navegador</strong></li>
+</ul>
+<p>Abrir <code>/painel</code> numa conta sem instância: o gráfico gigante vazio deve ter virado uma linha, e "DESEMPENHO POR BOT" não deve existir.</p>
+<ul>
+<li>[ ] <strong>Step 6: Commit</strong></li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>git<span class="w"> </span>add<span class="w"> </span>components/CentralPainel.tsx<span class="w"> </span>app/painel/observatory.css<span class="w"> </span>tests/identidade-visual.test.mjs
+<a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">"feat: densidade terminal — grafico vazio vira linha de estado, caixa sem dado some"</span>
+</code></pre></div>
+<hr />
+<h3 id="task-7-unificacao-botoes-cabecalhos-controles-nativos-e-piso-tipografico">Task 7: Unificação — botões, cabeçalhos, controles nativos e piso tipográfico<a class="headerlink" href="#task-7-unificacao-botoes-cabecalhos-controles-nativos-e-piso-tipografico" title="Permanent link">&para;</a></h3>
+<p><strong>Files:</strong>
+- Modify: <code>components/Painel.tsx</code>, <code>components/CentralZendesk.tsx</code>, <code>app/globals.css</code>, <code>app/painel/observatory.css</code></p>
+<ul>
+<li>[ ] <strong>Step 1: Escrever os testes que falham</strong></li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="nx">test</span><span class="p">(</span><span class="s2">"piso de 11px na mono — 8px e 9px são ilegíveis"</span><span class="p">,</span><span class="k">async</span><span class="p">()=&gt;{</span>
+<a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a><span class="w">  </span><span class="k">for</span><span class="p">(</span><span class="kd">const</span><span class="w"> </span><span class="nx">f</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="nx">CSS</span><span class="p">){</span>
+<a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a><span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">c</span><span class="o">=</span><span class="k">await</span><span class="w"> </span><span class="nx">ler</span><span class="p">(</span><span class="nx">f</span><span class="p">);</span>
+<a id="__codelineno-28-4" name="__codelineno-28-4" href="#__codelineno-28-4"></a><span class="w">    </span><span class="c1">// O piso de 11px é da MONO (spec, secao 4) — não um piso global. Um</span>
+<a id="__codelineno-28-5" name="__codelineno-28-5" href="#__codelineno-28-5"></a><span class="w">    </span><span class="c1">// font-size:10px em Archivo não é o problema que a auditoria mediu.</span>
+<a id="__codelineno-28-6" name="__codelineno-28-6" href="#__codelineno-28-6"></a><span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="kd">const</span><span class="w"> </span><span class="nx">m</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="nx">c</span><span class="p">.</span><span class="nx">matchAll</span><span class="p">(</span><span class="sr">/font(?:-size)?:\s*(?:\d+\s+)?(\d+)px[^;}]*var\(--fonte-mono\)/g</span><span class="p">))</span>
+<a id="__codelineno-28-7" name="__codelineno-28-7" href="#__codelineno-28-7"></a><span class="w">      </span><span class="nx">assert</span><span class="p">.</span><span class="nx">ok</span><span class="p">(</span><span class="nb">Number</span><span class="p">(</span><span class="nx">m</span><span class="p">[</span><span class="mf">1</span><span class="p">])</span><span class="o">&gt;=</span><span class="mf">11</span><span class="p">,</span><span class="sb">`</span><span class="si">${</span><span class="nx">f</span><span class="si">}</span><span class="sb">: mono a </span><span class="si">${</span><span class="nx">m</span><span class="p">[</span><span class="mf">1</span><span class="p">]</span><span class="si">}</span><span class="sb">px — piso é 11px`</span><span class="p">);</span>
+<a id="__codelineno-28-8" name="__codelineno-28-8" href="#__codelineno-28-8"></a><span class="w">    </span><span class="c1">// blocos que declaram tamanho e família em linhas separadas dentro do</span>
+<a id="__codelineno-28-9" name="__codelineno-28-9" href="#__codelineno-28-9"></a><span class="w">    </span><span class="c1">// mesmo seletor: pegar o seletor inteiro e checar se ele é mono</span>
+<a id="__codelineno-28-10" name="__codelineno-28-10" href="#__codelineno-28-10"></a><span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="kd">const</span><span class="w"> </span><span class="nx">bloco</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="nx">c</span><span class="p">.</span><span class="nx">matchAll</span><span class="p">(</span><span class="sr">/\{[^}]*\}/g</span><span class="p">)){</span>
+<a id="__codelineno-28-11" name="__codelineno-28-11" href="#__codelineno-28-11"></a><span class="w">      </span><span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="sr">/var\(--fonte-mono\)/</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">bloco</span><span class="p">[</span><span class="mf">0</span><span class="p">]))</span><span class="w"> </span><span class="k">continue</span><span class="p">;</span>
+<a id="__codelineno-28-12" name="__codelineno-28-12" href="#__codelineno-28-12"></a><span class="w">      </span><span class="k">for</span><span class="p">(</span><span class="kd">const</span><span class="w"> </span><span class="nx">m</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="nx">bloco</span><span class="p">[</span><span class="mf">0</span><span class="p">].</span><span class="nx">matchAll</span><span class="p">(</span><span class="sr">/font-size:\s*(\d+)px/g</span><span class="p">))</span>
+<a id="__codelineno-28-13" name="__codelineno-28-13" href="#__codelineno-28-13"></a><span class="w">        </span><span class="nx">assert</span><span class="p">.</span><span class="nx">ok</span><span class="p">(</span><span class="nb">Number</span><span class="p">(</span><span class="nx">m</span><span class="p">[</span><span class="mf">1</span><span class="p">])</span><span class="o">&gt;=</span><span class="mf">11</span><span class="p">,</span><span class="sb">`</span><span class="si">${</span><span class="nx">f</span><span class="si">}</span><span class="sb">: mono a </span><span class="si">${</span><span class="nx">m</span><span class="p">[</span><span class="mf">1</span><span class="p">]</span><span class="si">}</span><span class="sb">px — piso é 11px`</span><span class="p">);</span>
+<a id="__codelineno-28-14" name="__codelineno-28-14" href="#__codelineno-28-14"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-28-15" name="__codelineno-28-15" href="#__codelineno-28-15"></a><span class="w">  </span><span class="p">}</span>
+<a id="__codelineno-28-16" name="__codelineno-28-16" href="#__codelineno-28-16"></a><span class="p">});</span>
+<a id="__codelineno-28-17" name="__codelineno-28-17" href="#__codelineno-28-17"></a>
+<a id="__codelineno-28-18" name="__codelineno-28-18" href="#__codelineno-28-18"></a><span class="nx">test</span><span class="p">(</span><span class="s2">"uma ação, um botão: assistentes não tem dois estilos para criar instância"</span><span class="p">,</span><span class="k">async</span><span class="p">()=&gt;{</span>
+<a id="__codelineno-28-19" name="__codelineno-28-19" href="#__codelineno-28-19"></a><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">p</span><span class="o">=</span><span class="k">await</span><span class="w"> </span><span class="nx">ler</span><span class="p">(</span><span class="s2">"components/Painel.tsx"</span><span class="p">);</span>
+<a id="__codelineno-28-20" name="__codelineno-28-20" href="#__codelineno-28-20"></a><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">rotulos</span><span class="o">=</span><span class="p">[...</span><span class="nx">p</span><span class="p">.</span><span class="nx">matchAll</span><span class="p">(</span><span class="sr">/criar a primeira|\+ nova inst[âa]ncia/gi</span><span class="p">)].</span><span class="nx">map</span><span class="p">(</span><span class="nx">m</span><span class="p">=&gt;</span><span class="nx">m</span><span class="p">[</span><span class="mf">0</span><span class="p">].</span><span class="nx">toLowerCase</span><span class="p">());</span>
+<a id="__codelineno-28-21" name="__codelineno-28-21" href="#__codelineno-28-21"></a><span class="w">  </span><span class="nx">assert</span><span class="p">.</span><span class="nx">ok</span><span class="p">(</span><span class="nx">rotulos</span><span class="p">.</span><span class="nx">length</span><span class="o">&lt;=</span><span class="mf">1</span><span class="p">,</span><span class="sb">`dois botões para a mesma ação: </span><span class="si">${</span><span class="nx">rotulos</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s2">", "</span><span class="p">)</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+<a id="__codelineno-28-22" name="__codelineno-28-22" href="#__codelineno-28-22"></a><span class="p">});</span>
+</code></pre></div>
+<ul>
+<li>[ ] <strong>Step 2: Rodar e confirmar que falham</strong></li>
+</ul>
+<p>Run: <code>node --test tests/identidade-visual.test.mjs</code>
+Expected: FAIL — há <code>font:8px var(--fonte-mono)</code> e <code>font:9px var(--fonte-mono)</code> em ambos os CSS, e os dois rótulos de botão convivem.</p>
+<ul>
+<li>[ ] <strong>Step 3: Elevar a escala tipográfica</strong></li>
+</ul>
+<p>Substituir em <code>globals.css</code> e <code>observatory.css</code>: todo <code>8px var(--fonte-mono)</code> e <code>9px var(--fonte-mono)</code> vira <code>11px var(--fonte-mono)</code>; todo <code>font-size:8px</code>/<code>font-size:9px</code> em contexto mono vira <code>11px</code>. Os pontos conhecidos são <code>observatory.css</code> linhas 7, 14, 17, 19, 148, 152, 153, 154, 161 e o bloco <code>.dash-primeiros-passos span</code> em <code>globals.css:1551</code>.</p>
+<p>Ajustar <code>letter-spacing</code> para baixo onde o texto ficar largo demais (<code>.12em</code> → <code>.08em</code>).</p>
+<ul>
+<li>[ ] <strong>Step 4: Unificar os dois botões de criar instância</strong></li>
+</ul>
+<p>Em <code>components/Painel.tsx</code>, manter <strong>um</strong> caminho de criação. O botão do trilho (<code>+ nova instância</code>) fica, porque é o que existe em todos os estados; o "criar a primeira" do estado vazio passa a usar a mesma classe e o mesmo rótulo, ou é removido em favor de uma frase que aponta para o botão do trilho.</p>
+<ul>
+<li>[ ] <strong>Step 5: Unificar o cabeçalho de seção</strong></li>
+</ul>
+<p>Em <code>components/CentralZendesk.tsx</code>, trocar o cabeçalho de três colunas pelo mesmo padrão do <code>/painel</code>: sobretítulo <strong>acima</strong>, depois <code>h2</code>, depois <code>p</code>. A regra vale para <code>.dash-view &gt; header</code>, já definida em <code>observatory.css:140-142</code>.</p>
+<ul>
+<li>[ ] <strong>Step 6: Domar os controles nativos</strong></li>
+</ul>
+<p>O <code>&lt;select&gt;</code> de ~95px na Zendesk vem de herdar <code>min-height:46px</code> do bloco de campos <strong>mais</strong> o padding próprio. Fixar altura igual à dos demais campos e desenhar a seta em CSS:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="p">.</span><span class="nc">dashboard</span><span class="w"> </span><span class="p">:</span><span class="nd">is</span><span class="o">(</span><span class="p">.</span><span class="nc">dash-router-content</span><span class="o">,</span><span class="p">.</span><span class="nc">dash-view</span><span class="o">,</span><span class="p">.</span><span class="nc">painel</span><span class="o">)</span><span class="w"> </span><span class="nt">select</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">height</span><span class="p">:</span><span class="mi">46</span><span class="kt">px</span><span class="p">;</span><span class="w"> </span><span class="k">min-height</span><span class="p">:</span><span class="mi">46</span><span class="kt">px</span><span class="p">;</span><span class="w"> </span><span class="k">padding-right</span><span class="p">:</span><span class="mi">38</span><span class="kt">px</span><span class="p">;</span><span class="w"> </span><span class="k">appearance</span><span class="p">:</span><span class="kc">none</span><span class="p">;</span><span class="w"> </span><span class="k">background-image</span><span class="p">:</span><span class="nb">linear-gradient</span><span class="p">(</span><span class="mi">45</span><span class="kt">deg</span><span class="p">,</span><span class="kc">transparent</span><span class="w"> </span><span class="mi">50</span><span class="kt">%</span><span class="p">,</span><span class="nf">var</span><span class="p">(</span><span class="nv">--tinta-media</span><span class="p">)</span><span class="w"> </span><span class="mi">50</span><span class="kt">%</span><span class="p">),</span><span class="nb">linear-gradient</span><span class="p">(</span><span class="mi">135</span><span class="kt">deg</span><span class="p">,</span><span class="nf">var</span><span class="p">(</span><span class="nv">--tinta-media</span><span class="p">)</span><span class="w"> </span><span class="mi">50</span><span class="kt">%</span><span class="p">,</span><span class="kc">transparent</span><span class="w"> </span><span class="mi">50</span><span class="kt">%</span><span class="p">);</span><span class="w"> </span><span class="k">background-position</span><span class="p">:</span><span class="nb">calc</span><span class="p">(</span><span class="mi">100</span><span class="kt">%</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">20</span><span class="kt">px</span><span class="p">)</span><span class="w"> </span><span class="mi">21</span><span class="kt">px</span><span class="p">,</span><span class="nb">calc</span><span class="p">(</span><span class="mi">100</span><span class="kt">%</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">14</span><span class="kt">px</span><span class="p">)</span><span class="w"> </span><span class="mi">21</span><span class="kt">px</span><span class="p">;</span><span class="w"> </span><span class="k">background-size</span><span class="p">:</span><span class="mi">6</span><span class="kt">px</span><span class="w"> </span><span class="mi">6</span><span class="kt">px</span><span class="p">;</span><span class="w"> </span><span class="k">background-repeat</span><span class="p">:</span><span class="kc">no-repeat</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a><span class="p">.</span><span class="nc">dashboard</span><span class="w"> </span><span class="p">:</span><span class="nd">is</span><span class="o">(</span><span class="p">.</span><span class="nc">dash-router-content</span><span class="o">,</span><span class="p">.</span><span class="nc">dash-view</span><span class="o">,</span><span class="p">.</span><span class="nc">painel</span><span class="o">)</span><span class="w"> </span><span class="nt">input</span><span class="o">[</span><span class="nt">type</span><span class="o">=</span><span class="s2">"date"</span><span class="o">]</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">font</span><span class="p">:</span><span class="mi">13</span><span class="kt">px</span><span class="w"> </span><span class="nf">var</span><span class="p">(</span><span class="nv">--fonte-mono</span><span class="p">),</span><span class="kc">monospace</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a><span class="p">.</span><span class="nc">dashboard</span><span class="w"> </span><span class="p">:</span><span class="nd">is</span><span class="o">(</span><span class="p">.</span><span class="nc">dash-router-content</span><span class="o">,</span><span class="p">.</span><span class="nc">dash-view</span><span class="o">,</span><span class="p">.</span><span class="nc">painel</span><span class="o">)</span><span class="w"> </span><span class="nt">input</span><span class="o">[</span><span class="nt">type</span><span class="o">=</span><span class="s2">"date"</span><span class="o">]</span><span class="p">::</span><span class="nd">-webkit-calendar-picker-indicator</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">filter</span><span class="p">:</span><span class="nb">invert</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="nb">opacity</span><span class="p">(</span><span class="mf">.6</span><span class="p">);</span><span class="w"> </span><span class="k">cursor</span><span class="p">:</span><span class="kc">pointer</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<p>Isso resolve o Arial 13.3px medido em Conhecimento, Ferramentas e Zendesk — ele vinha do widget nativo, que não herdava <code>font-family</code>.</p>
+<ul>
+<li>[ ] <strong>Step 7: Rodar e confirmar que passam</strong></li>
+</ul>
+<p>Run: <code>npm test &amp;&amp; npx tsc --noEmit</code>
+Expected: verde.</p>
+<ul>
+<li>[ ] <strong>Step 8: Commit</strong></li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a>git<span class="w"> </span>add<span class="w"> </span>components<span class="w"> </span>app/globals.css<span class="w"> </span>app/painel/observatory.css<span class="w"> </span>tests/identidade-visual.test.mjs
+<a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">"fix: unifica botoes, cabecalhos e controles nativos; piso de 11px na mono"</span>
+</code></pre></div>
+<hr />
+<h3 id="task-8-erro-de-hidratacao-em-cadastro">Task 8: Erro de hidratação em /cadastro<a class="headerlink" href="#task-8-erro-de-hidratacao-em-cadastro" title="Permanent link">&para;</a></h3>
+<p><strong>Files:</strong>
+- Modify: a definir pela investigação (provavelmente <code>components/FormularioAcesso.tsx</code> ou <code>app/cadastro/page.tsx</code>)</p>
+<ul>
+<li>[ ] <strong>Step 1: Reproduzir e ler a mensagem inteira</strong></li>
+</ul>
+<p>Com o servidor em 3210, abrir <code>/cadastro</code> com o console aberto. A mensagem é: <em>"A tree hydrated but some attributes of the server rendered HTML didn't match the client properties."</em></p>
+<p>Rodar e anotar <strong>qual atributo</strong> difere — a mensagem completa do React aponta o nó. Não adivinhar.</p>
+<ul>
+<li>[ ] <strong>Step 2: Localizar a origem</strong></li>
+</ul>
+<p><code>FormularioAcesso.tsx</code> usa <code>useSearchParams()</code> (linha 8), que é a suspeita mais provável de divergência servidor/cliente. Confirmar antes de mexer.</p>
+<ul>
+<li>[ ] <strong>Step 3: Corrigir a causa encontrada</strong></li>
+</ul>
+<p>Se for o <code>useSearchParams</code>, a correção é envolver o componente num <code>&lt;Suspense&gt;</code> na página, que é o que o Next exige para leitura de query em componente cliente.</p>
+<ul>
+<li>[ ] <strong>Step 4: Confirmar que o console fica limpo</strong></li>
+</ul>
+<p>Recarregar <code>/cadastro</code>. Expected: nenhum erro de hidratação.</p>
+<ul>
+<li>[ ] <strong>Step 5: Commit</strong></li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a>git<span class="w"> </span>commit<span class="w"> </span>-am<span class="w"> </span><span class="s2">"fix: erro de hidratacao em /cadastro"</span>
+</code></pre></div>
+<hr />
+<h3 id="task-9-reescrever-o-designmd-e-recapturar">Task 9: Reescrever o DESIGN.md e recapturar<a class="headerlink" href="#task-9-reescrever-o-designmd-e-recapturar" title="Permanent link">&para;</a></h3>
+<p><strong>Files:</strong>
+- Modify: <code>DESIGN.md</code></p>
+<ul>
+<li>[ ] <strong>Step 1: Reescrever o documento</strong></li>
+</ul>
+<p>Remover a seção "Atualização — liquid glass" e a regra "zero arredondamento" — as duas desaparecem, substituídas pela regra das três camadas. O documento passa a descrever <strong>um</strong> sistema: a tabela de camadas, a tabela de tokens (incluindo <code>--ciano</code>), a escala tipográfica com o piso de 11px, a leitura de sci-fi como instrumentação com a lista do que é proibido, e a nota de que a regra é verificada por <code>tests/identidade-visual.test.mjs</code>.</p>
+<p>Manter as seções que continuam verdadeiras e bem escritas: "Visual world" (a folha de dados como organização de conteúdo e tom), "As duas folhas", "Components", "Accessibility".</p>
+<ul>
+<li>[ ] <strong>Step 2: Recapturar todas as telas</strong></li>
+</ul>
+<p>Rodar a mesma varredura da auditoria (19 rotas desktop em 1440×900, 6 em 390×844) e comparar com as capturas de antes.</p>
+<ul>
+<li>[ ] <strong>Step 3: Conferir a lista de bugs</strong></li>
+</ul>
+<p>Item a item: CTA legível, nav mobile em linha única e rolável, estados vazios resolvidos, raios coerentes por camada, um botão por ação, cabeçalho igual entre telas, nenhum Arial.</p>
+<ul>
+<li>[ ] <strong>Step 4: Suíte e tipos</strong></li>
+</ul>
+<p>Run: <code>npm test &amp;&amp; npx tsc --noEmit</code>
+Expected: verde.</p>
+<ul>
+<li>[ ] <strong>Step 5: Commit e abrir a PR</strong></li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a>git<span class="w"> </span>add<span class="w"> </span>DESIGN.md
+<a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">"docs: DESIGN.md descreve um sistema so"</span>
+<a id="__codelineno-32-3" name="__codelineno-32-3" href="#__codelineno-32-3"></a>git<span class="w"> </span>push<span class="w"> </span>-u<span class="w"> </span>origin<span class="w"> </span>design/identidade-terminal
+<a id="__codelineno-32-4" name="__codelineno-32-4" href="#__codelineno-32-4"></a>gh<span class="w"> </span>pr<span class="w"> </span>create<span class="w"> </span>--base<span class="w"> </span>main<span class="w"> </span>--title<span class="w"> </span><span class="s2">"feat: identidade terminal instrumentado + 4 bugs de UI"</span>
+</code></pre></div>
+<hr />
+<h2 id="notas-para-quem-executar">Notas para quem executar<a class="headerlink" href="#notas-para-quem-executar" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Não invente bug.</strong> A auditoria confirmou visualmente o que está aqui; qualquer coisa fora desta lista precisa de captura antes de virar trabalho.</li>
+<li><strong>Task 2 não muda aparência.</strong> Se a tela mudar depois dela, algo foi renomeado errado.</li>
+<li><strong>O teste é o produto tanto quanto o CSS.</strong> A regra anterior falhou por ser só prosa; se um teste ficar chato de satisfazer, isso é a regra funcionando, não um obstáculo.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Voltar para o topo
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.sections", "navigation.top", "navigation.indexes", "content.code.copy", "content.code.annotate", "search.suggest", "toc.follow"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado para \u00e1rea de transfer\u00eancia", "clipboard.copy": "Copiar para \u00e1rea de transfer\u00eancia", "search.result.more.one": "mais 1 nesta p\u00e1gina", "search.result.more.other": "# mais nesta p\u00e1gina", "search.result.none": "Nenhum documento encontrado", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Digite para iniciar a busca", "search.result.term.missing": "Ausente", "select.version": "Selecione a vers\u00e3o"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>
