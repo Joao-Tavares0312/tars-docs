@@ -1,0 +1,1300 @@
+
+<!doctype html>
+<html lang="pt" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Guia de uso, arquitetura, segurança e referência técnica do TARS.">
+      
+      
+        <meta name="author" content="TARS">
+      
+      
+        <link rel="canonical" href="https://joao-tavares0312.github.io/tars-docs/superpowers/plans/2026-10-08-ferramentas-acoes/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/tars-mark.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Ferramentas de escrita com confirmação do cliente (ideia 20) — plano (08/10/2026) - TARS — Manual do Produto</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="amber">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#ferramentas-de-escrita-com-confirmacao-do-cliente-ideia-20-plano-08102026" class="md-skip">
+          Pular para conteúdo
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabeçalho">
+    <a href="../../.." title="TARS — Manual do Produto" class="md-header__button md-logo" aria-label="TARS — Manual do Produto" data-md-component="logo">
+      
+  <img src="../../../assets/tars-mark.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            TARS — Manual do Produto
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Ferramentas de escrita com confirmação do cliente (ideia 20) — plano (08/10/2026)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="amber"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Buscar" placeholder="Buscar" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Pesquisar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpar" aria-label="Limpar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando busca
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navegação" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="TARS — Manual do Produto" class="md-nav__button md-logo" aria-label="TARS — Manual do Produto" data-md-component="logo">
+      
+  <img src="../../../assets/tars-mark.svg" alt="logo">
+
+    </a>
+    TARS — Manual do Produto
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Início
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Produto
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Produto
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../produto/visao-geral/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Visão geral
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../produto/painel/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guia do painel
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../produto/atendimento/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Conversas e atendimento
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../produto/conhecimento/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Conhecimento e avaliações
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../produto/avaliacoes-publicacao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Avaliações antes de publicar
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../produto/publicacao-operacao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Publicação e operação
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../produto/seguranca/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Segurança e privacidade
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../produto/recuperacao-conta/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Recuperação de conta
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Engenharia
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Engenharia
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../engenharia/arquitetura/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Arquitetura
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../engenharia/fluxo-mensagem/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fluxo de uma mensagem
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../engenharia/apis-e-dados/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    APIs e banco
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../engenharia/desenvolvimento/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Executar localmente
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../engenharia/configuracao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Referência de configuração
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Integrações
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Integrações
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../integracoes/telegram/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Telegram
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../integracoes/webchat/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Webchat
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../integracoes/ferramentas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ferramentas externas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../integracoes/zendesk/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Zendesk
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../integracoes/api-webhooks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API e webhooks
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../integracoes/meta/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WhatsApp e Instagram (planejado)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../telas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Capturas de tela
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../estado/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Estado do produto
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#task-1-acoes-post-com-confirmacao-do-cliente" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Task 1 — Ações POST com confirmação do cliente
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="ferramentas-de-escrita-com-confirmacao-do-cliente-ideia-20-plano-08102026">Ferramentas de escrita com confirmação do cliente (ideia 20) — plano (08/10/2026)<a class="headerlink" href="#ferramentas-de-escrita-com-confirmacao-do-cliente-ideia-20-plano-08102026" title="Permanent link">&para;</a></h1>
+<p>Spec: a seção "20. Ferramentas de escrita com confirmação fora de banda" de
+<code>reports/Ideias para evoluir o TARS.md</code> e a pendência "Ferramentas externas são
+somente leitura…" do <code>ROADMAP.md</code>. Valem as Global Constraints de
+<code>docs/superpowers/plans/2026-10-08-onda-3-parcial.md</code> (migração nos dois
+lugares + RLS/REVOKE, lógica pura em <code>.mjs</code>, sistema visual, teste antes,
+docs + ROADMAP, E2E só pelo <code>flock</code>, nada pago, sem subagentes).</p>
+<p>Branch: <code>feat/ferramentas-acoes</code>, criada de <code>chore/ci-e2e-a11y</code> (topo da pilha
+de PRs #17–#22). Worktree: <code>/home/joaopedro/GITHUB/tars-wt/ferramentas-acoes</code>.</p>
+<h2 id="task-1-acoes-post-com-confirmacao-do-cliente">Task 1 — Ações POST com confirmação do cliente<a class="headerlink" href="#task-1-acoes-post-com-confirmacao-do-cliente" title="Permanent link">&para;</a></h2>
+<p><strong>Objetivo.</strong> Hoje as ferramentas externas são só <code>GET</code>. O operador passa a
+poder cadastrar uma <strong>ação</strong> (<code>POST</code>): agendar, abrir chamado, registrar
+lead. O modelo nunca executa a ação: ele só a <em>propõe</em>; o servidor grava uma
+ação pendente, mostra ao cliente um resumo montado por <strong>template</strong> (não pelo
+modelo) com os botões <strong>Confirmar</strong> e <strong>Cancelar</strong>, e só executa quando o
+clique chega pelo canal (<code>callback_data</code> no Telegram, <code>botao</code> no Webchat), um
+sinal que texto injetado não consegue falsificar (OWASP LLM06). Execução
+única e idempotente.</p>
+<p><strong>Decisões já tomadas (não reabrir):</strong>
+- Toda ação <code>POST</code> pede confirmação, sempre. Não existe "sem confirmação"
+  nem campo <code>risco</code>: regra simples, sem exceção. A "Rule of Two" do relatório
+  fica satisfeita por construção; documente isso.
+- O resumo é template do operador com <code>{parametro}</code>; nunca passa pelo modelo.
+- A resposta depois de executar também é fixa: "Pronto! <resumo>" / "Não
+  consegui concluir. Tente de novo ou fale com a equipe." / "Tudo bem, não
+  fiz nada." / "Esse pedido de confirmação expirou. Se ainda quiser, me peça
+  de novo." Sem segunda chamada ao modelo.
+- Uma ação pendente por conversa: nova proposta cancela a anterior.
+- Ações não rodam no playground (sem botão para confirmar): ferramenta POST
+  fica fora da lista lá, com <code>Aviso</code> na tela, como já acontece com campo
+  coletado.</p>
+<p><strong>Como.</strong>
+1. <strong>Schema</strong> (<code>lib/db/schema.sql</code> + <code>garantirSchemaAplicacao</code> em <code>lib/db/cliente.ts</code>):
+   - <code>ferramentas_api</code>: <code>ALTER TABLE … ADD COLUMN IF NOT EXISTS metodo TEXT NOT NULL DEFAULT 'GET'</code>
+     (CHECK em <code>('GET','POST')</code>) e <code>resumo_template TEXT</code>.
+   - <code>acoes_pendentes(id TEXT PK, instancia_id FK CASCADE, ferramenta_id FK
+     CASCADE, canal TEXT, chat_id TEXT, argumentos JSONB NOT NULL, resumo TEXT
+     NOT NULL, status TEXT NOT NULL DEFAULT 'pendente' CHECK IN
+     ('pendente','executando','executada','falhou','cancelada','expirada'),
+     status_http INTEGER, erro TEXT, criado_em, expira_em TIMESTAMPTZ NOT NULL,
+     concluida_em TIMESTAMPTZ)</code> + índice <code>(instancia_id, canal, chat_id,
+     status)</code> + RLS + REVOKE. Ao inserir, apagar linhas com mais de 30 dias da
+     mesma instância (mesmo padrão de poda de <code>webhook_entregas</code>).
+2. <strong>Config</strong> (<code>lib/ferramentas/config.ts</code>, <code>lib/db/ferramentas.ts</code>,
+   <code>app/api/ferramentas/route.ts</code>): <code>metodo</code> (<code>GET</code> | <code>POST</code>, default GET) e
+   <code>resumo_template</code> (obrigatório quando POST; ≤ 300 chars; só placeholders
+   <code>{nome}</code> de parâmetros existentes; validado por
+   <code>validarTemplate(template, parametros)</code> puro). Nas leituras, linhas antigas
+   sem <code>metodo</code> valem <code>GET</code>.
+3. <strong>Puro</strong> em <code>lib/ferramentas/confirmacao.mjs</code> + <code>tests/ferramentas-confirmacao.test.mjs</code>:
+   <code>validarTemplate</code>, <code>preencherTemplate(template, argumentos)</code> (placeholder
+   sem valor vira "—"), <code>botoesAcao(id)</code> → <code>[[{texto:"Confirmar",dado:"acao:&lt;id&gt;:ok"},{texto:"Cancelar",dado:"acao:&lt;id&gt;:nao"}]]</code>,
+   <code>lerBotaoAcao(dado)</code> → <code>{acaoId, confirmar}</code> | null (formato estrito, id
+   <code>^[A-Za-z0-9_-]{1,64}$</code>), e as quatro frases fixas (<code>fraseAcao(estado, resumo)</code>).
+4. <strong>Proposta</strong> (<code>lib/ferramentas/executar.ts</code>): quando a chamada do modelo é
+   de ferramenta <code>POST</code>, em vez de <code>chamarApiSegura</code>: validar/montar os
+   argumentos como hoje (fixos e coletados incluídos), <code>criarAcaoPendente</code>
+   (<code>lib/ferramentas/acoes.ts</code>: cancela a pendente anterior da conversa,
+   insere com <code>expira_em = now() + 10 min</code>, <code>id = novoId("acao")</code>), e devolver
+   uma <code>RespostaInferencia</code> com <code>texto = resumo preenchido + " Confirma?"</code>
+   (ou o template já em forma de pergunta; decida e documente) e
+   <code>botoes = botoesAcao(id)</code>. <code>RespostaInferencia</code> (<code>lib/inferencia/tipos.ts</code>)
+   ganha <code>botoes?: Botao[][]</code> opcional. Sem <code>chatId</code> (playground) a
+   ferramenta POST nem entra na lista (<code>disponiveis</code>).
+5. <strong>Canais</strong>:
+   - Telegram (<code>app/api/telegram/[instanciaId]/route.ts</code>): resposta com
+     <code>botoes</code> sai por <code>enviarComBotoes</code> (ver como <code>/start</code> e o CSAT fazem);
+     <code>callback_query</code> com <code>lerBotaoAcao(data)</code> → <code>confirmarAcao</code>/<code>cancelarAcao</code>
+     e responde o texto fixo (e <code>answerCallbackQuery</code> como o CSAT faz).
+   - Webchat (<code>app/api/webchat/[instanciaId]/route.ts</code>): o JSON da resposta
+     leva <code>botoes</code> quando houver; o POST com <code>b.botao</code> que casa
+     <code>lerBotaoAcao</code> → mesmo fluxo, devolve <code>{texto}</code>. Widget
+     (<code>app/api/webchat/widget/route.ts</code>): quando a resposta do envio traz
+     <code>botoes</code>, renderiza a mesma linha de botões usada nas mensagens da
+     equipe (<code>[data-acoes]</code>, <code>post({botao: dado})</code>, desabilita após o clique
+     e mostra <code>d.texto</code>).
+   - Registrar a mensagem do bot com os botões (<code>botoes</code> na tabela
+     <code>mensagens</code>, como <code>enviarAoCanal</code> já faz) para o histórico e o painel.
+6. <strong>Execução</strong> (<code>lib/ferramentas/acoes.ts</code>): <code>confirmarAcao(instanciaId,
+   canal, chatId, acaoId)</code> faz
+   <code>UPDATE acoes_pendentes SET status='executando' WHERE id=… AND instancia_id=… AND canal=… AND chat_id=… AND status='pendente' AND expira_em &gt; now() RETURNING *</code>;
+   sem linha → devolve o estado real (<code>expirada</code>, <code>executada</code>, <code>cancelada</code>
+   ou inexistente) para a frase certa. Com linha: <code>chamarApiSegura({ metodo:
+   "POST", confirmada: true, corpo: argumentos, cabecalhos: credencial,
+   cabecalhosDoServidor: { "Idempotency-Key": acaoId }, timeoutMs: 10_000 })</code>,
+   grava <code>status</code>/<code>status_http</code>/<code>erro</code>/<code>concluida_em</code>, chama
+   <code>registrarExecucaoFerramenta</code> (campo novo <code>metodo</code> opcional na linha ou só
+   no <code>nome</code>; sem gravar argumentos nem resposta, como hoje). <code>cancelarAcao</code>
+   idem com <code>status='cancelada'</code>. Expiração: a própria condição <code>expira_em &gt;
+   now()</code>; sem cron.
+7. <strong>Modo de teste</strong>: como os webhooks (<code>lib/webhooks/entregar.ts</code>:
+   <code>destinoLocalDeTeste</code> + <code>modoTeste()</code>), aceitar endpoint <code>http://127.0.0.1</code>
+   para ferramentas quando <code>modoTeste()</code> — na validação do cadastro e na
+   chamada (fetch simples com <code>redirect: "manual"</code>). Nunca fora do modo de
+   teste.
+8. <strong>Provedor falso</strong> (<code>lib/inferencia/teste.ts</code>): se ainda não gera
+   <code>chamadasFerramenta</code>, adicionar um gatilho determinístico: mensagem do
+   usuário começando com <code>/usar &lt;nome&gt; &lt;json&gt;</code> e <code>ferramentas</code> presentes →
+   devolve uma chamada daquela ferramenta com aqueles argumentos. Só no
+   provedor falso.
+9. <strong>Painel</strong> (<code>AbaConsultas</code> em <code>components/telas/Integracoes.tsx</code>): campo
+   "Tipo" (Consulta <code>GET</code> / Ação <code>POST</code>, com ajuda: "Ação pede confirmação do
+   cliente antes de executar"), e, quando Ação, campo "Texto de confirmação"
+   com ajuda mostrando os placeholders disponíveis (<code>{data}</code>, …). Lista:
+   etiqueta "ação" / "consulta". Cartão "Ações recentes" (últimas 20 da
+   instância: ferramenta, resumo, status como etiqueta com palavra, quando),
+   via <code>GET /api/ferramentas/acoes?instancia_id=</code> com <code>podeAcessarInstancia(…,"ler")</code>.
+   Aviso no playground quando há ferramenta POST ativa.
+10. <strong>Docs</strong>: <code>docs/integracoes/ferramentas.md</code> (seção "Ações com
+    confirmação do cliente": como cadastrar, o template, o que o cliente vê,
+    <code>Idempotency-Key</code>, 10 minutos, uma pendente por conversa, por que sempre
+    confirma), <code>docs/produto/seguranca.md</code> (LLM06), <code>docs/engenharia/apis-e-dados.md</code>
+    (tabela nova), <code>ROADMAP.md</code> (implementado; remover a pendência "somente
+    leitura").
+11. <strong>Testes</strong>:
+    - <code>tests/ferramentas-confirmacao.test.mjs</code> (puro) e teste estático
+      provando que <code>executar.ts</code> nunca chama <code>chamarApiSegura</code> com <code>POST</code>
+      fora de <code>acoes.ts</code>, e que <code>acoes.ts</code> usa <code>status='pendente'</code> no UPDATE
+      e manda <code>Idempotency-Key</code>.
+    - E2E <code>tests/e2e/acoes.spec.mjs</code>: servidor falso ganha <code>POST /acao-destino</code>
+      (guarda corpo + cabeçalhos) e <code>GET /acoes-recebidas</code>. Fluxo Webchat:
+      cadastra ação <code>agendar</code> (parâmetro <code>data</code> do modelo + <code>loja</code> fixo,
+      template "Agendar para {data} na loja {loja}?") → <code>/usar agendar
+      {"data":"amanhã"}</code> → resposta com o resumo e dois botões, nada chegou ao
+      falso → clica Confirmar → falso recebeu um POST com <code>{data:"amanhã",
+      loja:…}</code> e <code>Idempotency-Key</code> → texto "Pronto! …" → clica de novo →
+      frase de já concluída/expirada; segundo pedido + Cancelar → nada no
+      falso. Fluxo Telegram: mesmo com <code>cliqueTelegram</code>. Expiração: ajustar
+      <code>expira_em</code> para o passado via <code>tests/e2e/banco.mjs</code> e clicar →
+      "expirou", nada no falso. Também: ferramenta POST não aparece no
+      playground (aviso na tela).
+    - A aba/tela nova de ações entra em <code>responsivo.spec.mjs</code> se for rota ou
+      aba própria (é um cartão na aba existente: só garantir que a rota já
+      coberta continua sem rolagem).</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Voltar para o topo
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.sections", "navigation.top", "navigation.indexes", "content.code.copy", "content.code.annotate", "search.suggest", "toc.follow"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado para \u00e1rea de transfer\u00eancia", "clipboard.copy": "Copiar para \u00e1rea de transfer\u00eancia", "search.result.more.one": "mais 1 nesta p\u00e1gina", "search.result.more.other": "# mais nesta p\u00e1gina", "search.result.none": "Nenhum documento encontrado", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Digite para iniciar a busca", "search.result.term.missing": "Ausente", "select.version": "Selecione a vers\u00e3o"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

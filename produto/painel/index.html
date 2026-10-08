@@ -1,0 +1,1509 @@
+
+<!doctype html>
+<html lang="pt" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Guia de uso, arquitetura, segurança e referência técnica do TARS.">
+      
+      
+        <meta name="author" content="TARS">
+      
+      
+        <link rel="canonical" href="https://joao-tavares0312.github.io/tars-docs/produto/painel/">
+      
+      
+        <link rel="prev" href="../visao-geral/">
+      
+      
+        <link rel="next" href="../atendimento/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/tars-mark.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Guia do painel - TARS — Manual do Produto</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="amber">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#guia-do-painel" class="md-skip">
+          Pular para conteúdo
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabeçalho">
+    <a href="../.." title="TARS — Manual do Produto" class="md-header__button md-logo" aria-label="TARS — Manual do Produto" data-md-component="logo">
+      
+  <img src="../../assets/tars-mark.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            TARS — Manual do Produto
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Guia do painel
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="amber"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Buscar" placeholder="Buscar" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Pesquisar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpar" aria-label="Limpar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando busca
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navegação" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="TARS — Manual do Produto" class="md-nav__button md-logo" aria-label="TARS — Manual do Produto" data-md-component="logo">
+      
+  <img src="../../assets/tars-mark.svg" alt="logo">
+
+    </a>
+    TARS — Manual do Produto
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Início
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Produto
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Produto
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../visao-geral/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Visão geral
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guia do painel
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guia do painel
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#acesso-e-contas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Acesso e contas
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#para-quem-e" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Para quem é
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#o-menu-organizado-pela-sua-rotina" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        O menu, organizado pela sua rotina
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#modelos-prontos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Modelos prontos
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#o-assistente-escolhido" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        O assistente escolhido
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#aparencia" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Aparência
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#estados-das-listas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Estados das listas
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#papeis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Papéis
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#idioma-do-assistente" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Idioma do assistente
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#contatos-e-identidade" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Contatos e identidade
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../atendimento/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Conversas e atendimento
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../conhecimento/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Conhecimento e avaliações
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../avaliacoes-publicacao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Avaliações antes de publicar
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../publicacao-operacao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Publicação e operação
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../seguranca/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Segurança e privacidade
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../recuperacao-conta/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Recuperação de conta
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Engenharia
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Engenharia
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../engenharia/arquitetura/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Arquitetura
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../engenharia/fluxo-mensagem/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fluxo de uma mensagem
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../engenharia/apis-e-dados/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    APIs e banco
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../engenharia/desenvolvimento/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Executar localmente
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../engenharia/configuracao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Referência de configuração
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Integrações
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Integrações
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../integracoes/telegram/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Telegram
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../integracoes/webchat/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Webchat
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../integracoes/ferramentas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ferramentas externas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../integracoes/zendesk/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Zendesk
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../integracoes/api-webhooks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API e webhooks
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../integracoes/meta/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WhatsApp e Instagram (planejado)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../telas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Capturas de tela
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../estado/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Estado do produto
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#acesso-e-contas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Acesso e contas
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#para-quem-e" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Para quem é
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#o-menu-organizado-pela-sua-rotina" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        O menu, organizado pela sua rotina
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#modelos-prontos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Modelos prontos
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#o-assistente-escolhido" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        O assistente escolhido
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#aparencia" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Aparência
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#estados-das-listas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Estados das listas
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#papeis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Papéis
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#idioma-do-assistente" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Idioma do assistente
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#contatos-e-identidade" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Contatos e identidade
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="guia-do-painel">Guia do painel<a class="headerlink" href="#guia-do-painel" title="Permanent link">&para;</a></h1>
+<h2 id="acesso-e-contas">Acesso e contas<a class="headerlink" href="#acesso-e-contas" title="Permanent link">&para;</a></h2>
+<p>O painel fica em <code>/painel</code>. Sem sessão válida, o servidor redireciona para <code>/login</code>; as rotas de API respondem <code>401</code>. A tela de login aceita e-mail, senha e, quando a verificação em duas etapas está ativa, um código do aplicativo autenticador ou um código de recuperação.</p>
+<p>Uma conta pode ter vários assistentes. Cada assistente pode compartilhar acesso com membros da equipe sem compartilhar os outros assistentes da conta.</p>
+<h2 id="para-quem-e">Para quem é<a class="headerlink" href="#para-quem-e" title="Permanent link">&para;</a></h2>
+<p>Para a dona de uma loja ou clínica, ou para quem atende por ela. O painel foi desenhado para o celular tanto quanto para o computador: toda tela cabe em 390 px sem rolagem horizontal, e os botões têm pelo menos 40 px de altura.</p>
+<h2 id="o-menu-organizado-pela-sua-rotina">O menu, organizado pela sua rotina<a class="headerlink" href="#o-menu-organizado-pela-sua-rotina" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Área</th>
+<th>O que você faz lá</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Início</strong></td>
+<td>O que precisa de você agora: quantos clientes esperam uma pessoa, quantas perguntas o bot não soube responder, alertas. Depois, os números do período: conversas, mensagens, satisfação no atendimento humano (nota de 1 a 5) e respostas do bot que resolveram. Primeiros passos aparecem até o assistente estar no ar.</td>
+</tr>
+<tr>
+<td><strong>Fila de atendimento</strong></td>
+<td>Os clientes que pediram uma pessoa ou que o bot não conseguiu atender. Abra a conversa, responda pelo próprio painel (a mensagem chega no canal do cliente), use respostas prontas com <code>/atalho</code> ou peça uma sugestão ao copiloto. Resolver envia a pesquisa de satisfação automaticamente.</td>
+</tr>
+<tr>
+<td><strong>Conversas</strong></td>
+<td>Tudo o que o bot conversou, pelo nome do cliente. Busque por nome, telefone ou trecho; filtre por assistente, canal e período; exporte.</td>
+</tr>
+<tr>
+<td><strong>Contatos</strong></td>
+<td>Quem já conversou com seus assistentes: ficha com nome, e-mail, etiquetas e notas, as identidades de canal e o histórico de cada uma.</td>
+</tr>
+<tr>
+<td><strong>Base de conhecimento</strong></td>
+<td>O que o assistente sabe. Quatro abas: <strong>Documentos</strong> (arquivo, texto ou endereço da web; ficam em rascunho até publicar), <strong>Perguntas sem resposta</strong> (o que a base não cobriu e o que o cliente marcou como "não resolveu"; cada item vira rascunho de artigo com um clique), <strong>Testes</strong> (teste uma pergunta agora e cadastre casos que, se marcados como obrigatórios, bloqueiam a publicação) e <strong>Publicações</strong> (histórico com restauração). O botão <strong>Validar e publicar</strong> mora aqui, e só aqui.</td>
+</tr>
+<tr>
+<td><strong>Assistentes</strong></td>
+<td>Como cada assistente se apresenta (instruções e exemplos), o motor de IA (recolhido, para quem quiser ajustar), as regras de atendimento (horário, assuntos proibidos, quando chamar uma pessoa, dados a pedir, respostas rápidas, exceções por canal), os canais (chat no site, Telegram, alertas) e as versões. O nome do assistente é editável no título. Alterações ficam como rascunho até <strong>Gravar</strong>.</td>
+</tr>
+<tr>
+<td><strong>Operação</strong></td>
+<td>Se os canais estão no ar, quanto cada assistente usou hoje, alertas, falhas para reenviar, uso de IA e documentos mais usados. Atualiza sozinha a cada minuto.</td>
+</tr>
+<tr>
+<td><strong>Integrações</strong></td>
+<td>Consultas a sistemas seus por API (só leitura), ações que o cliente confirma por botão antes de rodar, e Zendesk.</td>
+</tr>
+<tr>
+<td><strong>Equipe</strong></td>
+<td>Convites por link, papéis e histórico de alterações.</td>
+</tr>
+<tr>
+<td><strong>Segurança</strong></td>
+<td>Senha, verificação em duas etapas, sessões, seus dados e exclusão da conta.</td>
+</tr>
+</tbody>
+</table>
+<p>As rotas antigas continuam valendo: <code>/painel/feedback</code> e <code>/painel/configuracoes/avaliacoes</code> abrem a Base de conhecimento na aba certa.</p>
+<h2 id="modelos-prontos">Modelos prontos<a class="headerlink" href="#modelos-prontos" title="Permanent link">&para;</a></h2>
+<p>Ao clicar em <strong>Novo assistente</strong>, além do nome você escolhe por onde começar: <strong>Em branco</strong> (o padrão) ou um modelo pronto para o tipo de negócio — <strong>Loja</strong>, <strong>Restaurante ou delivery</strong>, <strong>Clínica ou consultório</strong>, <strong>Prestador de serviços</strong> ou <strong>Escola ou cursos</strong>. Escolher um modelo sugere o nome do assistente quando o campo está vazio (o nome que você digitou nunca é trocado).</p>
+<p>O modelo já preenche:</p>
+<ul>
+<li><strong>Identidade</strong>: instruções com o foco do negócio, a orientação de responder só com o que está na base (e dizer "não encontrei" fora dela) e de passar para uma pessoa quando o cliente pedir, mais dois exemplos de resposta;</li>
+<li><strong>Regras de atendimento</strong>: palavras que chamam uma pessoa, assuntos proibidos, mensagens de encaminhamento e de fora do horário e até três respostas rápidas. Só o modelo de clínica pede dados ao cliente (nome e telefone);</li>
+<li><strong>Respostas prontas</strong> da equipe: três atalhos genéricos (<code>/ola</code>, <code>/verificando</code>, <code>/encerrar</code>), sem marcador nem promessa, porque já podem ser enviados ao cliente pela Fila de atendimento;</li>
+<li><strong>Testes</strong>: dois casos informativos, que não travam a publicação;</li>
+<li><strong>Base de conhecimento</strong>: um documento de perguntas frequentes de exemplo, com marcadores <code>[preencha: …]</code> e a primeira linha avisando que é um modelo.</li>
+</ul>
+<p>Nada é publicado. O documento de exemplo fica em rascunho: troque os marcadores pelos dados do seu negócio antes de publicar. Logo depois de criar, um aviso na aba Identidade lembra o que revisar.</p>
+<h2 id="o-assistente-escolhido">O assistente escolhido<a class="headerlink" href="#o-assistente-escolhido" title="Permanent link">&para;</a></h2>
+<p>Telas que trabalham por assistente (Base de conhecimento, Assistentes, Integrações, Equipe, respostas prontas) compartilham a mesma escolha. Ela fica guardada no navegador; com um só assistente, não há seletor.</p>
+<h2 id="aparencia">Aparência<a class="headerlink" href="#aparencia" title="Permanent link">&para;</a></h2>
+<p>No rodapé do menu, acima do seu nome, o grupo <strong>Aparência</strong> escolhe entre <strong>Claro</strong>, <strong>Escuro</strong> e <strong>Automático</strong> (acompanha o modo claro ou escuro do seu celular ou computador). A escolha fica guardada neste navegador e vale para todo o painel; o site da loja, o chat do site e a tela de entrada não mudam.</p>
+<h2 id="estados-das-listas">Estados das listas<a class="headerlink" href="#estados-das-listas" title="Permanent link">&para;</a></h2>
+<p>Toda lista tem três estados distintos: <strong>carregando</strong> (esqueleto animado, enquanto os dados chegam), <strong>vazio</strong> (com a orientação do que fazer) e <strong>erro</strong> (com "Tentar de novo"). Em produção, o primeiro acesso do dia pode levar alguns segundos; o painel não mostra "nenhum dado" enquanto ainda está carregando.</p>
+<h2 id="papeis">Papéis<a class="headerlink" href="#papeis" title="Permanent link">&para;</a></h2>
+<p>As ações são filtradas por papel. Analistas consultam; atendentes operam a fila; editores alteram assistente e base; administradores gerenciam a equipe. Só o titular da conta apaga um assistente.</p>
+<h2 id="idioma-do-assistente">Idioma do assistente<a class="headerlink" href="#idioma-do-assistente" title="Permanent link">&para;</a></h2>
+<p>Na aba Identidade, o campo <strong>Idioma</strong> aceita <em>Automático</em>, <em>Português do Brasil</em>, <em>Inglês</em>, <em>Espanhol</em> ou <em>Outro…</em> (texto livre). No automático, o assistente responde no idioma em que o cliente escreveu a última mensagem (português, inglês ou espanhol); se a mensagem for curta demais para saber, ele acompanha o idioma do cliente e a recusa "não encontrei essa informação" sai em português. As mensagens fixas (fora do horário, transferência) continuam como você escreveu.</p>
+<h2 id="contatos-e-identidade">Contatos e identidade<a class="headerlink" href="#contatos-e-identidade" title="Permanent link">&para;</a></h2>
+<p>Os contatos são separados por assistente. Cada conversa cria uma identidade de canal; o sistema não presume que duas sessões sejam da mesma pessoa. No chat do site, nome e e-mail só chegam quando a identificação opcional do widget está ligada. A equipe pode editar a ficha e juntar fichas manualmente, só dentro do mesmo assistente; a junção fica na auditoria. A limpeza automática segue a retenção configurada das conversas.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Voltar para o topo
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.sections", "navigation.top", "navigation.indexes", "content.code.copy", "content.code.annotate", "search.suggest", "toc.follow"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado para \u00e1rea de transfer\u00eancia", "clipboard.copy": "Copiar para \u00e1rea de transfer\u00eancia", "search.result.more.one": "mais 1 nesta p\u00e1gina", "search.result.more.other": "# mais nesta p\u00e1gina", "search.result.none": "Nenhum documento encontrado", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Digite para iniciar a busca", "search.result.term.missing": "Ausente", "select.version": "Selecione a vers\u00e3o"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>
