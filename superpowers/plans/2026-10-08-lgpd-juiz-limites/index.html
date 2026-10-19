@@ -1,0 +1,1349 @@
+
+<!doctype html>
+<html lang="pt" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Guia de uso, arquitetura, segurança e referência técnica do TARS.">
+      
+      
+        <meta name="author" content="TARS">
+      
+      
+        <link rel="canonical" href="https://joao-tavares0312.github.io/tars-docs/superpowers/plans/2026-10-08-lgpd-juiz-limites/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/tars-mark.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Modo LGPD, juiz LLM e limites do #25 — plano (08/10/2026, fim da tarde) - TARS — Manual do Produto</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="amber">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#modo-lgpd-juiz-llm-e-limites-do-25-plano-08102026-fim-da-tarde" class="md-skip">
+          Pular para conteúdo
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabeçalho">
+    <a href="../../.." title="TARS — Manual do Produto" class="md-header__button md-logo" aria-label="TARS — Manual do Produto" data-md-component="logo">
+      
+  <img src="../../../assets/tars-mark.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            TARS — Manual do Produto
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Modo LGPD, juiz LLM e limites do #25 — plano (08/10/2026, fim da tarde)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="amber"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Buscar" placeholder="Buscar" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Pesquisar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpar" aria-label="Limpar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando busca
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navegação" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="TARS — Manual do Produto" class="md-nav__button md-logo" aria-label="TARS — Manual do Produto" data-md-component="logo">
+      
+  <img src="../../../assets/tars-mark.svg" alt="logo">
+
+    </a>
+    TARS — Manual do Produto
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Início
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Produto
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Produto
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../produto/visao-geral/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Visão geral
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../produto/painel/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guia do painel
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../produto/atendimento/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Conversas e atendimento
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../produto/conhecimento/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Conhecimento e avaliações
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../produto/avaliacoes-publicacao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Avaliações antes de publicar
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../produto/publicacao-operacao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Publicação e operação
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../produto/seguranca/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Segurança e privacidade
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../produto/recuperacao-conta/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Recuperação de conta
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Engenharia
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Engenharia
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../engenharia/arquitetura/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Arquitetura
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../engenharia/fluxo-mensagem/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fluxo de uma mensagem
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../engenharia/apis-e-dados/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    APIs e banco
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../engenharia/desenvolvimento/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Executar localmente
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../engenharia/configuracao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Referência de configuração
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Integrações
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Integrações
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../integracoes/telegram/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Telegram
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../integracoes/webchat/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Webchat
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../integracoes/ferramentas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ferramentas externas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../integracoes/zendesk/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Zendesk
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../integracoes/api-webhooks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API e webhooks
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../integracoes/meta/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WhatsApp e Instagram (planejado)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../telas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Capturas de tela
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../estado/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Estado do produto
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#task-1-modo-lgpd-mascarar-dados-pessoais-antes-do-provedor-ideia-25" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Task 1 — Modo LGPD: mascarar dados pessoais antes do provedor (ideia 25)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#task-2-juiz-llm-no-gate-de-publicacao-ideia-19" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Task 2 — Juiz LLM no gate de publicação (ideia 19)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#task-3-fechar-os-limites-que-o-25-documentou" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Task 3 — Fechar os limites que o #25 documentou
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="modo-lgpd-juiz-llm-e-limites-do-25-plano-08102026-fim-da-tarde">Modo LGPD, juiz LLM e limites do #25 — plano (08/10/2026, fim da tarde)<a class="headerlink" href="#modo-lgpd-juiz-llm-e-limites-do-25-plano-08102026-fim-da-tarde" title="Permanent link">&para;</a></h1>
+<p>Spec: respostas do João em 08/10 às 17h25 às perguntas da seção 3.3 da nota de
+handoff: entram o <strong>modo LGPD (ideia 25)</strong>, o <strong>juiz LLM no gate de publicação
+(ideia 19)</strong> e o <strong>fechamento dos limites que o PR #25 documentou</strong>. Prompt
+Guard fica como está; nenhuma credencial nova. Valem as Global Constraints de
+<code>docs/superpowers/plans/2026-10-08-onda-3-parcial.md</code> (migração nos dois
+lugares + RLS, lógica pura em <code>.mjs</code>, sistema visual, teste antes, docs +
+ROADMAP, E2E só pelo <code>flock</code>, nada pago, sem subagentes). Três branches
+independentes a partir de <code>main</code> (<code>bca675b</code>), um PR cada:</p>
+<table>
+<thead>
+<tr>
+<th>Task</th>
+<th>Branch</th>
+<th>Worktree</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><code>feat/modo-lgpd</code></td>
+<td><code>/home/joaopedro/GITHUB/tars-wt/modo-lgpd</code></td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>feat/juiz-publicacao</code></td>
+<td><code>/home/joaopedro/GITHUB/tars-wt/juiz-publicacao</code></td>
+</tr>
+<tr>
+<td>3</td>
+<td><code>fix/limites-acabamento</code></td>
+<td><code>/home/joaopedro/GITHUB/tars-wt/limites-acabamento</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="task-1-modo-lgpd-mascarar-dados-pessoais-antes-do-provedor-ideia-25">Task 1 — Modo LGPD: mascarar dados pessoais antes do provedor (ideia 25)<a class="headerlink" href="#task-1-modo-lgpd-mascarar-dados-pessoais-antes-do-provedor-ideia-25" title="Permanent link">&para;</a></h2>
+<p><strong>Objetivo.</strong> Com o modo ligado, CPF, e-mail e telefone escritos pelo cliente
+não chegam ao provedor de IA: vão como marcadores numerados e voltam ao texto
+na resposta, para o assistente ainda poder dizer "enviei para o seu e-mail
+x@y". O banco do operador continua guardando o texto original (é dado dele;
+a LGPD aqui é sobre o terceiro). Padrão: <strong>desligado</strong> (não muda o
+comportamento de quem já usa).</p>
+<p><strong>Como.</strong>
+1. <code>lib/inferencia/pii.mjs</code> (puro, testado em <code>tests/pii.test.mjs</code>, ≥ 15 casos):
+   - <code>mascarar(texto, mapa?)</code> → <code>{ texto, mapa }</code>: substitui <strong>CPF</strong> (com e
+     sem pontuação; só se os dígitos verificadores batem, para não mascarar
+     número de pedido), <strong>e-mail</strong> (RFC simples) e <strong>telefone BR</strong> (fixo e
+     celular, com DDD, com/sem +55, parênteses, espaços, hífen; ≥ 10 dígitos
+     para não pegar CEP/valor) por <code>[CPF-1]</code>, <code>[E-MAIL-1]</code>, <code>[TELEFONE-2]</code>…,
+     reaproveitando o número quando o mesmo valor repete; o <code>mapa</code> acumula
+     entre chamadas (histórico + mensagem atual compartilham numeração).
+   - <code>restaurar(texto, mapa)</code> → troca os marcadores de volta (tolerante a
+     espaço/caixa: <code>[e-mail-1]</code>, <code>[ E-MAIL-1 ]</code>).
+   - <code>temDadosPessoais(texto)</code> → boolean (para a métrica).
+2. Configuração: <code>regras.mascarar_dados_pessoais: boolean</code> (default false) em
+   <code>RegrasCanal</code>/<code>normalizar</code> de <code>lib/db/instancias.ts</code> (herda por canal como
+   os outros campos). Sem migração (JSONB).
+3. Aplicação: um único ponto, <code>lib/inferencia/provedor.ts</code> → <code>inferir</code>: se
+   <code>p.mascararDadosPessoais === true</code>, mascara <code>content</code> de TODAS as mensagens
+   do pedido (system, user, assistant, tool) antes de chamar o adapter e
+   restaura <code>texto</code> da resposta (e <code>chamadasFerramenta[].function.arguments</code>,
+   para a ação receber o valor real). <code>PedidoInferencia</code> ganha o campo
+   opcional. Quem passa o campo: telegram, webchat, playground, copiloto
+   (<code>atendimentos/sugerir</code>), reescrita da pergunta (<code>pergunta-busca.ts</code>),
+   publicação (casos) e juiz — todos lendo <code>regrasParaCanal(inst, canal)</code> ou
+   <code>inst.regras</code> quando não há canal. Grep <code>inferir(</code> e
+   <code>inferirComFerramentas(</code> para não esquecer nenhum.
+4. Ferramentas: os argumentos que o modelo escolhe voltam restaurados; o
+   resumo da ação (template) usa os valores reais (ele vai ao cliente, não
+   ao provedor). O <code>Prompt Guard</code>/verificação de injeção na ingestão NÃO
+   mascara (documento é do operador).
+5. Métrica: <code>uso_provedores</code> ou a telemetria existente ganha
+   <code>dados_mascarados INTEGER</code> (quantos marcadores no pedido) — migração nos
+   dois lugares — e a Operação mostra "Dados pessoais mascarados no período:
+   N" quando o modo está ligado em algum assistente.
+6. Painel: em Regras de atendimento, <code>Chave</code> "Não enviar CPF, e-mail e
+   telefone ao provedor de IA (modo LGPD)" com ajuda: "O cliente escreve
+   normalmente; o assistente recebe marcadores e a resposta volta com os
+   dados. O histórico no painel continua completo."
+7. Docs: <code>docs/produto/seguranca.md</code> (seção "Modo LGPD": o que mascara, o
+   que não, limites: nome próprio e endereço não são mascarados; documento
+   da base não é mascarado), <code>docs/produto/painel.md</code>, <code>ROADMAP.md</code>.
+8. Testes: puro; estático provando que <code>inferir</code> é o único ponto e que todos
+   os chamadores passam o campo; E2E <code>tests/e2e/lgpd.spec.mjs</code>: liga o modo
+   na instância, manda pelo webchat "meu e-mail é ana@exemplo.com e meu CPF
+   é 529.982.247-25", e confere via <code>pedidosProvedor</code> que o provedor falso
+   recebeu <code>[E-MAIL-1]</code>/<code>[CPF-1]</code> e não os valores; a resposta ao cliente
+   (o eco do provedor falso devolve o que recebeu) volta com os valores
+   reais; com o modo desligado, o provedor recebe o texto cru.</p>
+<h2 id="task-2-juiz-llm-no-gate-de-publicacao-ideia-19">Task 2 — Juiz LLM no gate de publicação (ideia 19)<a class="headerlink" href="#task-2-juiz-llm-no-gate-de-publicacao-ideia-19" title="Permanent link">&para;</a></h2>
+<p><strong>Objetivo.</strong> Hoje um caso de teste passa por <code>avaliarCaso</code> (regra
+determinística sobre <code>esperado</code>/<code>documento_esperado</code>). Casos com resposta
+esperada em linguagem natural falham por sinônimo e travam a publicação, ou
+passam por acaso. Um <strong>juiz</strong> (segunda chamada ao modelo, prompt fixo,
+resposta JSON) decide quando a regra determinística reprova e há
+<code>esperado</code> textual.</p>
+<p><strong>Como.</strong>
+1. <code>lib/avaliacoes/juiz.mjs</code> (puro, testado): <code>promptDoJuiz({pergunta,
+   esperado, resposta, fontes})</code> → mensagens com a instrução fixa
+   "TAREFA: julgar resposta" (JSON estrito <code>{"aprovado": true|false,
+   "motivo": "&lt;até 200 chars&gt;"}</code>, critérios: mesma informação factual que a
+   esperada, sem contradição, sem inventar; estilo não conta);
+   <code>lerVeredito(texto)</code> → <code>{aprovado, motivo} | null</code> (tolerante a cerca de
+   código e texto em volta; null se não houver JSON válido → conta como
+   reprovado com motivo "O juiz não respondeu em formato válido").
+2. Em <code>app/api/publicar/route.ts</code> (e onde mais a avaliação roda: grep
+   <code>avaliarCaso(</code>), depois de <code>avaliarCaso</code>: se <code>!passou &amp;&amp; c.esperado.trim()</code>,
+   chama <code>inferir</code> com o prompt do juiz (<code>temperatura: 0</code>, <code>maxTokens: 200</code>,
+   <code>exigirGroq: false</code>), e o resultado ganha <code>juiz: {aprovado, motivo}</code>;
+   <code>passou = aprovado</code>. Erro na chamada do juiz → mantém a reprovação
+   determinística, <code>motivo</code> = "Juiz indisponível: <erro>". Casos
+   informativos também passam pelo juiz (para o painel mostrar o motivo),
+   sem bloquear.
+3. Provedor falso (<code>lib/inferencia/teste.ts</code>): se o system contém
+   "TAREFA: julgar resposta", devolve <code>{"aprovado": &lt;resposta contém
+   esperado ignorando caixa e acentos&gt;, "motivo": "teste"}</code>; e, para o E2E
+   exercitar o caminho útil, trata <code>esperado</code> que começa com <code>~</code> como
+   "aprovar por sinônimo" (<code>{"aprovado": true, "motivo": "sinônimo aceito
+   pelo juiz de teste"}</code>).
+4. Painel (Base de conhecimento → Testes e o resultado da publicação): cada
+   caso mostra "Regra: reprovou · Juiz: aprovou — <motivo>" como etiquetas +
+   texto (palavra, não só cor). Ajuda do campo "Resposta esperada": "Pode
+   escrever com suas palavras: um juiz de IA compara o sentido quando a
+   comparação exata falha."
+5. Custo: uma chamada extra só quando a regra reprova; registrar em
+   <code>registrarUsoProvedor</code> com <code>modelo</code>/<code>provedor</code> do juiz como hoje.
+6. Docs: <code>docs/produto/avaliacoes-publicacao.md</code> (como o juiz decide, o que
+   ele não faz, como ler o motivo), <code>ROADMAP.md</code>.
+7. Testes: puro (<code>lerVeredito</code> com 6 formatos); estático (publicar chama o
+   juiz só quando reprovou e há esperado); E2E <code>tests/e2e/juiz.spec.mjs</code>:
+   caso obrigatório com <code>esperado</code> "~entregamos em dois dias" e documento
+   que diz "prazo de entrega: 2 dias úteis" → sem juiz a publicação travava
+   (RED contra <code>main</code>), com juiz publica e o painel mostra o motivo.</p>
+<h2 id="task-3-fechar-os-limites-que-o-25-documentou">Task 3 — Fechar os limites que o #25 documentou<a class="headerlink" href="#task-3-fechar-os-limites-que-o-25-documentou" title="Permanent link">&para;</a></h2>
+<ol>
+<li><strong><code>acao.falhou</code> em execução morta</strong> (<code>lib/ferramentas/acoes.ts</code>): quando
+   <code>estadoReal</code> converte <code>executando</code> vencido em <code>falhou</code>, emitir
+   <code>acao.falhou</code> (mesmo payload do caminho normal, <code>erro: 'sem resposta da
+   função'</code>). Teste estático/unitário.</li>
+<li><strong>Freio por IP só por falhas</strong> (<code>app/api/v1/*</code> / módulo de auth da v1):
+   o contador de <code>janela("api-v1-invalida", 30)</code> incrementa <strong>só</strong> quando a
+   chave é inválida (depois da consulta), e a checagem antes do banco
+   bloqueia só IPs já estourados; uma chave válida nunca recebe 429 por
+   culpa de terceiros no mesmo IP a não ser que o próprio IP já tenha 30
+   falhas no minuto. Teste puro da janela (já existe <code>JanelaDeTaxa</code>) +
+   estático.</li>
+<li><strong>Telegram com erro não conta como canal ativo</strong> (select "Campo
+   coletado" em <code>components/telas/Integracoes.tsx</code> e o aviso): canal ativo =
+   integração com <code>status === 'ativo'</code> (ver <code>lib/db/integracoes.ts</code> para o
+   nome do campo) ou <code>webchat_ativo</code>. Teste estático.</li>
+<li><strong>Salvar ferramenta com campo coletado que sumiu</strong> (<code>validarFerramentaApi</code></li>
+<li>formulário): ao editar, o formulário mostra o <code>Aviso</code> "O campo X não
+   existe mais nas regras; escolha outro ou troque para valor fixo" e
+   permite <strong>desativar</strong> (<code>ativo: false</code>) sem revalidar o campo; salvar
+   ativa continua recusando. Teste estático + unitário da validação.</li>
+<li><strong>"atendimento humano" em três lugares</strong>: uma constante em
+   <code>lib/ferramentas/confirmacao.mjs</code> (<code>MOTIVO_ATENDIMENTO_HUMANO</code>) usada
+   pelos três. Teste estático.</li>
+<li>Docs: remover os limites correspondentes de <code>docs/integracoes/ferramentas.md</code>
+   e <code>docs/integracoes/api-webhooks.md</code>; <code>ROADMAP.md</code>.</li>
+</ol>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Voltar para o topo
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.sections", "navigation.top", "navigation.indexes", "content.code.copy", "content.code.annotate", "search.suggest", "toc.follow"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado para \u00e1rea de transfer\u00eancia", "clipboard.copy": "Copiar para \u00e1rea de transfer\u00eancia", "search.result.more.one": "mais 1 nesta p\u00e1gina", "search.result.more.other": "# mais nesta p\u00e1gina", "search.result.none": "Nenhum documento encontrado", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Digite para iniciar a busca", "search.result.term.missing": "Ausente", "select.version": "Selecione a vers\u00e3o"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,1660 @@
+
+<!doctype html>
+<html lang="pt" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Guia de uso, arquitetura, segurança e referência técnica do TARS.">
+      
+      
+        <meta name="author" content="TARS">
+      
+      
+        <link rel="canonical" href="https://joao-tavares0312.github.io/tars-docs/superpowers/plans/2026-10-08-onda-3-parcial/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/tars-mark.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Onda 3 parcial + tema escuro — plano de execução (08/10/2026) - TARS — Manual do Produto</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="amber">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#onda-3-parcial-tema-escuro-plano-de-execucao-08102026" class="md-skip">
+          Pular para conteúdo
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabeçalho">
+    <a href="../../.." title="TARS — Manual do Produto" class="md-header__button md-logo" aria-label="TARS — Manual do Produto" data-md-component="logo">
+      
+  <img src="../../../assets/tars-mark.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            TARS — Manual do Produto
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Onda 3 parcial + tema escuro — plano de execução (08/10/2026)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="amber"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Buscar" placeholder="Buscar" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Pesquisar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpar" aria-label="Limpar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando busca
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navegação" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="TARS — Manual do Produto" class="md-nav__button md-logo" aria-label="TARS — Manual do Produto" data-md-component="logo">
+      
+  <img src="../../../assets/tars-mark.svg" alt="logo">
+
+    </a>
+    TARS — Manual do Produto
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Início
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Produto
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Produto
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../produto/visao-geral/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Visão geral
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../produto/painel/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guia do painel
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../produto/atendimento/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Conversas e atendimento
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../produto/conhecimento/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Conhecimento e avaliações
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../produto/avaliacoes-publicacao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Avaliações antes de publicar
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../produto/publicacao-operacao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Publicação e operação
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../produto/seguranca/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Segurança e privacidade
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../produto/recuperacao-conta/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Recuperação de conta
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Engenharia
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Engenharia
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../engenharia/arquitetura/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Arquitetura
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../engenharia/fluxo-mensagem/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fluxo de uma mensagem
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../engenharia/apis-e-dados/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    APIs e banco
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../engenharia/desenvolvimento/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Executar localmente
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../engenharia/configuracao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Referência de configuração
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Integrações
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Integrações
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../integracoes/telegram/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Telegram
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../integracoes/webchat/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Webchat
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../integracoes/ferramentas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ferramentas externas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../integracoes/zendesk/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Zendesk
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../integracoes/api-webhooks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API e webhooks
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../integracoes/meta/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WhatsApp e Instagram (planejado)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../telas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Capturas de tela
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../estado/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Estado do produto
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#global-constraints-valem-para-todas-as-tasks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Global Constraints (valem para TODAS as tasks)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#task-1-tema-escuro-do-painel-feattema-escuro" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Task 1 — Tema escuro do painel (feat/tema-escuro)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#task-2-idioma-automatico-featidioma-automatico-ideia-28" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Task 2 — Idioma automático (feat/idioma-automatico, ideia 28)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#task-3-parametros-fixos-e-coletados-nas-ferramentas-externas-featferramentas-parametros-fixos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Task 3 — Parâmetros fixos e coletados nas ferramentas externas (feat/ferramentas-parametros-fixos)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#task-4-chaves-de-api-e-webhooks-de-saida-featapi-webhooks-ideia-21" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Task 4 — Chaves de API e webhooks de saída (feat/api-webhooks, ideia 21)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#task-5-modelos-por-tipo-de-negocio-no-primeiro-uso-featonboarding-modelos-ideia-22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Task 5 — Modelos por tipo de negócio no primeiro uso (feat/onboarding-modelos, ideia 22)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#task-6-acessibilidade-automatica-e-ci-dos-testes-choreci-e2e-a11y" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Task 6 — Acessibilidade automática e CI dos testes (chore/ci-e2e-a11y)
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="onda-3-parcial-tema-escuro-plano-de-execucao-08102026">Onda 3 parcial + tema escuro — plano de execução (08/10/2026)<a class="headerlink" href="#onda-3-parcial-tema-escuro-plano-de-execucao-08102026" title="Permanent link">&para;</a></h1>
+<p>Spec: não há spec separada. A autoridade é o pedido do João nesta sessão
+("realize os que não dependem de mim, e crie um tema escuro para o painel"),
+a seção "Onda 3" do handoff de 08/10 (ideias 21, 22, 28 do relatório
+<code>reports/Ideias para evoluir o TARS.md</code>), a pendência "parâmetros fixos por
+conversa" do <code>ROADMAP.md</code> e o <code>DESIGN.md</code> reescrito no PR #16.</p>
+<h2 id="global-constraints-valem-para-todas-as-tasks">Global Constraints (valem para TODAS as tasks)<a class="headerlink" href="#global-constraints-valem-para-todas-as-tasks" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Base:</strong> cada task nasce da branch <code>feat/redesign-painel-operador</code> (PR #16,
+  commit <code>2bfc255</code>) e vive numa branch própria, num worktree próprio (ver
+  tabela). Nunca commitar em <code>main</code> nem em <code>feat/redesign-painel-operador</code>.</li>
+<li><strong>Proibido sem perguntar:</strong> <code>vercel env pull</code>, qualquer serviço pago,
+  <code>npm audit fix --force</code>, <code>pkill -f "next dev"</code>. Nenhuma chave real existe
+  no ambiente; tudo roda com <code>TARS_MODO_TESTE=1</code> (provedor falso).</li>
+<li><strong>Migração</strong> vai nos dois lugares: <code>lib/db/cliente.ts</code> (<code>garantirSchemaAplicacao</code>)
+  e <code>lib/db/schema.sql</code>. Tabela nova: <code>ENABLE ROW LEVEL SECURITY</code> +
+  <code>REVOKE ALL ON &lt;tabela&gt; FROM anon, authenticated</code>. Parâmetro que pode ser
+  nulo no <code>sql</code> tagged template leva <code>::text</code>.</li>
+<li><strong>Lógica pura em <code>.mjs</code></strong> com teste em <code>tests/&lt;nome&gt;.test.mjs</code>
+  (<code>node --test</code>). Nunca o mesmo nome-base para um <code>.ts</code> e um <code>.mjs</code>.
+  Estado compartilhado em memória vive em <code>globalThis</code>.</li>
+<li><strong>Sistema visual do painel</strong> (<code>DESIGN.md</code>, travado por
+  <code>tests/sistema-visual.test.mjs</code>): seis tamanhos de fonte por token, um
+  botão (<code>components/ui/Botao.tsx</code>), cor só por token, estados
+  carregando/vazio/erro (<code>components/ui/Estados.tsx</code>), linguagem de operador
+  (sem jargão: "assistente", "cliente", "equipe"), 390px sem rolagem
+  horizontal (<code>tests/e2e/responsivo.spec.mjs</code> percorre todas as rotas e abas;
+  toda aba nova entra lá).</li>
+<li><strong>Teste antes:</strong> toda correção/feature tem teste que falhava antes.
+  Verificação mínima por task, no worktree: <code>npm test</code>, <code>npx tsc --noEmit</code>.
+  E2E: <strong>só</strong> via <code>flock /tmp/claude-1000/tars-e2e.lock npx playwright test -c playwright.build.config.mjs &lt;spec&gt;</code>
+  (porta 3100/4599 e o banco <code>tars_e2e</code> são compartilhados entre worktrees; o
+  lock serializa). Antes do E2E: <code>docker start tars_pg</code>. Nunca rode a suíte
+  inteira; rode os specs que a task toca.</li>
+<li><strong>Docs:</strong> cada task atualiza o que toca em <code>docs/</code> (<code>mkdocs build --strict</code>
+  passa) e o <code>ROADMAP.md</code> (implementado + pendência removida/alterada).</li>
+<li><strong>Commits:</strong> mensagem em português, terminando com
+  <code>Co-Authored-By: Claude Fable 5.1 &lt;noreply@anthropic.com&gt;</code>.</li>
+<li><strong>Sem subagentes</strong> dentro das tasks. Sem <code>window.confirm</code>. Sem hex fora do
+  bloco de tokens de <code>app/painel/painel.css</code>.</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Task</th>
+<th>Branch</th>
+<th>Worktree</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><code>feat/tema-escuro</code></td>
+<td><code>/home/joaopedro/GITHUB/tars-wt/tema-escuro</code></td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>feat/idioma-automatico</code></td>
+<td><code>/home/joaopedro/GITHUB/tars-wt/idioma-automatico</code></td>
+</tr>
+<tr>
+<td>3</td>
+<td><code>feat/ferramentas-parametros-fixos</code></td>
+<td><code>/home/joaopedro/GITHUB/tars-wt/ferramentas-parametros-fixos</code></td>
+</tr>
+<tr>
+<td>4</td>
+<td><code>feat/api-webhooks</code></td>
+<td><code>/home/joaopedro/GITHUB/tars-wt/api-webhooks</code></td>
+</tr>
+<tr>
+<td>5</td>
+<td><code>feat/onboarding-modelos</code></td>
+<td><code>/home/joaopedro/GITHUB/tars-wt/onboarding-modelos</code></td>
+</tr>
+<tr>
+<td>6</td>
+<td><code>chore/ci-e2e-a11y</code></td>
+<td><code>/home/joaopedro/GITHUB/tars-wt/ci-e2e-a11y</code></td>
+</tr>
+</tbody>
+</table>
+<p>Os worktrees já existem, com <code>node_modules</code> ligado por symlink ao checkout
+principal. Trabalhe SEMPRE dentro do seu worktree.</p>
+<hr />
+<h2 id="task-1-tema-escuro-do-painel-feattema-escuro">Task 1 — Tema escuro do painel (<code>feat/tema-escuro</code>)<a class="headerlink" href="#task-1-tema-escuro-do-painel-feattema-escuro" title="Permanent link">&para;</a></h2>
+<p><strong>Objetivo.</strong> O painel (<code>.app</code>, só ele; landing e login não mudam) ganha um
+tema escuro com três modos: Claro, Escuro e Automático (segue
+<code>prefers-color-scheme</code>). A escolha persiste no navegador e não pisca ao
+carregar.</p>
+<p><strong>Como.</strong>
+1. Em <code>app/painel/painel.css</code>, cada token <code>--cor-*</code> que é cor vira
+   <code>light-dark(&lt;claro&gt;, &lt;escuro&gt;)</code> <strong>no mesmo bloco <code>.app</code></strong> (o teste de hex
+   só permite hex nesse bloco). <code>.app { color-scheme: light dark }</code>,
+   <code>.app[data-tema="claro"] { color-scheme: light }</code>,
+   <code>.app[data-tema="escuro"] { color-scheme: dark }</code>. Sombras: criar
+   <code>--cor-sombra-cor: light-dark(rgba(27,29,31,.08), rgba(0,0,0,.55))</code> e
+   compor <code>--cor-sombra</code>/<code>--cor-sombra-alta</code> a partir dela.
+   Paleta escura de referência (ajuste se o contraste exigir):
+   fundo <code>#121416</code>, superfície <code>#1b1e21</code>, superfície-2 <code>#24282c</code>,
+   borda <code>#2e3338</code>, borda-forte <code>#6b7177</code>, texto <code>#e8e9ea</code>, texto-2 <code>#b4b9be</code>,
+   texto-3 <code>#9aa0a6</code>, tinta <code>#e8e9ea</code> (botão primário claro sobre fundo
+   escuro, texto do botão escuro), tinta-hover <code>#ffffff</code>, marca <code>#e8a33d</code>,
+   marca-texto <code>#f3c270</code>, marca-fundo <code>#3a2a10</code>, ok <code>#7fd3a3</code>/<code>#12301f</code>,
+   aviso <code>#f3c270</code>/<code>#3a2a10</code>, erro <code>#ff8a80</code>/<code>#3b1512</code>, info <code>#8ab4f8</code>/<code>#12243a</code>,
+   foco <code>#8ab4f8</code>. Todo texto precisa de ≥ 4,5:1 sobre a superfície em que
+   aparece e borda-forte ≥ 3:1 (WCAG 1.4.11). Verifique onde o botão
+   primário usa <code>--cor-tinta</code> como fundo com texto <code>#fff</code>/<code>--cor-superficie</code>:
+   no escuro o texto do botão primário tem de ser escuro (<code>--cor-fundo</code>), ou
+   crie <code>--cor-tinta-texto: light-dark(#ffffff, #121416)</code> e use nos dois.
+2. Comente no topo do bloco de tokens a regra 5: "TEMA POR <code>light-dark()</code>:
+   todo token de cor tem o par claro/escuro no mesmo lugar".
+3. <strong>Sem piscar:</strong> em <code>app/painel/layout.tsx</code>, logo após <code>&lt;main className="app"&gt;</code>,
+   um <code>&lt;script&gt;</code> inline (via <code>dangerouslySetInnerHTML</code>, 3 linhas) que lê
+   <code>localStorage.getItem("tars.tema")</code> e, se for <code>claro</code> ou <code>escuro</code>, faz
+   <code>document.currentScript.parentElement.dataset.tema = valor</code>. Roda durante o
+   parse, antes de pintar. Não há CSP com nonce no projeto (confirme com
+   <code>grep -rn Content-Security-Policy next.config.mjs app</code>).
+4. <strong>Controle:</strong> no rodapé do menu (<code>components/painel/MenuPainel.tsx</code>,
+   <code>.app-menu__rodape</code>), acima da pessoa, um grupo rotulado "Aparência" com
+   três botões segmentados (<code>.abas--segmentada</code>, <code>aria-pressed</code>, como os
+   chips de período do Início): "Claro", "Escuro", "Automático". Clicar grava
+   em <code>localStorage</code> (<code>tars.tema</code>: <code>claro</code> | <code>escuro</code>; Automático remove a
+   chave) e ajusta <code>data-tema</code> do <code>main.app</code> mais próximo. Estado inicial lido
+   do <code>localStorage</code> num <code>useEffect</code>. Lógica pura (<code>proximoTema</code>,
+   <code>aplicarEscolha(valor)-&gt;{atributo|null, guardar|remover}</code>) em
+   <code>lib/painel/tema.mjs</code> com teste.
+5. Passe por TODAS as telas no escuro (rode o app no worktree com
+   <code>npx next dev -p 3105</code> e olhe, ou use o E2E com prints) e corrija o que
+   depende de branco implícito: <code>#fff</code> literais no CSS (o teste os tolera,
+   mas no escuro viram manchas: troque por <code>--cor-superficie</code> onde for fundo
+   e por <code>--cor-tinta-texto</code> onde for texto sobre tinta), o logo/wordmark
+   do menu (se for SVG escuro sobre fundo escuro, use <code>filter: invert()</code> só
+   no escuro, ou um token), o gráfico de barras, a conversa
+   (<code>li[data-autor]</code>), o diff, a etiqueta e o esqueleto. O widget do site
+   (<code>app/api/webchat/widget/route.ts</code>) NÃO muda.
+6. <strong>Testes.</strong>
+   - <code>tests/sistema-visual.test.mjs</code>: (a) todo <code>--cor-*</code> do bloco <code>.app</code> que
+     tem hex usa <code>light-dark(</code>; (b) <strong>contraste</strong>: parse dos pares
+     <code>light-dark(#a, #b)</code> dos tokens de texto (<code>texto</code>, <code>texto-2</code>, <code>texto-3</code>,
+     <code>marca-texto</code>, <code>ok</code>, <code>aviso</code>, <code>erro</code>, <code>info</code>) contra <code>fundo</code>,
+     <code>superficie</code> e <code>superficie-2</code> do mesmo tema ≥ 4,5:1, e <code>borda-forte</code>
+     contra <code>superficie</code> ≥ 3:1, nos dois temas. Função de contraste WCAG pura
+     em <code>lib/cor.mjs</code> (<code>luminancia</code>, <code>contraste</code>) com teste próprio.
+   - <code>tests/e2e/tema.spec.mjs</code> (novo): login, clica "Escuro", <code>main.app</code> tem
+     <code>data-tema="escuro"</code>, a cor de fundo computada do <code>main.app</code> tem
+     luminância &lt; 0,2; recarrega e continua escuro; "Automático" remove o
+     atributo. Com <code>PRINTS_DIR</code> definido, grava <code>tema-escuro-01-inicio-desktop.png</code>,
+     <code>tema-escuro-05-fila-desktop.png</code>, <code>tema-escuro-02-assistentes-mobile.png</code>.
+   - <code>tests/e2e/responsivo.spec.mjs</code>: a medição de alvos/rolagem roda uma vez
+     também no escuro para as rotas <code>01-inicio</code>, <code>05-fila</code>, <code>08-conhecimento</code>
+     (sem prints), para garantir que o tema não quebra layout.
+7. <strong>Docs.</strong> <code>DESIGN.md</code>: seção "Tema escuro" (o que é token, o que é
+   <code>light-dark</code>, a regra do texto sobre tinta, onde fica o controle).
+   <code>docs/produto/painel.md</code>: um parágrafo "Aparência". <code>ROADMAP.md</code>.</p>
+<p><strong>Entregável:</strong> commits na branch; <code>npm test</code>, <code>npx tsc --noEmit</code> verdes;
+E2E <code>tema</code> e <code>responsivo</code> verdes (com flock, build config).</p>
+<hr />
+<h2 id="task-2-idioma-automatico-featidioma-automatico-ideia-28">Task 2 — Idioma automático (<code>feat/idioma-automatico</code>, ideia 28)<a class="headerlink" href="#task-2-idioma-automatico-featidioma-automatico-ideia-28" title="Permanent link">&para;</a></h2>
+<p><strong>Objetivo.</strong> O assistente pode responder no idioma em que o cliente
+escreveu, sem o operador fixar um idioma.</p>
+<p><strong>Como.</strong>
+1. <code>lib/inferencia/idioma.mjs</code> (novo, puro): <code>detectarIdioma(texto)</code> →
+   <code>"pt" | "en" | "es" | null</code> por listas de palavras funcionais e marcas
+   ortográficas (ã/õ/ç/"não"/"você" → pt; "the/and/you/is" → en;
+   "el/los/usted/¿/¡/ñ" → es). Empate ou texto &lt; 3 palavras sem marca → null.
+   <code>nomeIdioma(codigo)</code> → "português do Brasil" | "inglês" | "espanhol".
+   <code>fraseSemResposta(codigo)</code> → a recusa fixa no idioma: pt =
+   <code>FRASE_SEM_RESPOSTA</code> atual; en = "I couldn't find that information in our
+   knowledge base."; es = "No encontré esa información en nuestra base."
+   Testes em <code>tests/idioma.test.mjs</code> (≥ 12 casos, inclusive mistos e vazios).
+2. O campo <code>idioma</code> da instância aceita o valor especial <code>auto</code>. Em
+   <code>lib/inferencia/prompt.ts</code> (linha "Responda sempre em ..."): se
+   <code>inst.idioma === "auto"</code>, detecta na mensagem atual do usuário; se
+   detectou, "Responda em <nome>."; se não, "Responda no mesmo idioma da
+   última mensagem do usuário." Em modo auto a frase de recusa no prompt
+   (<code>lib/inferencia/conhecimento-prompt.mjs</code>) é a do idioma detectado (ou a
+   pt se null).
+3. <code>lib/inferencia/pos-resposta.mjs</code> / onde a recusa fixa é reconhecida
+   (<code>grep -rn FRASE_SEM_RESPOSTA lib app</code>): reconhecer as três frases, não só
+   a pt. Teste estático/puro que prova isso.
+4. UI: <code>components/painel/GrupoIdentidade.tsx</code>: o campo Idioma vira um
+   <code>select</code> com "Automático (o idioma do cliente)", "Português do Brasil",
+   "Inglês", "Espanhol" e "Outro…" (que mostra o input livre atual). Valor
+   gravado: <code>auto</code>, <code>pt-BR</code>, <code>en</code>, <code>es</code> ou texto livre. Ajuda do campo:
+   "No automático, o assistente responde no idioma em que o cliente
+   escreveu. As mensagens fixas (fora do horário, transferência) continuam
+   como você escreveu."
+5. Default do banco continua <code>pt-BR</code>. Nada de migração.
+6. Docs: <code>docs/produto/conhecimento.md</code> ou <code>docs/produto/painel.md</code> (onde
+   fala de Identidade), <code>ROADMAP.md</code> (implementado).</p>
+<p><strong>Testes mínimos:</strong> <code>tests/idioma.test.mjs</code>; teste estático em
+<code>tests/contratos.test.mjs</code> ou novo que prova que <code>prompt.ts</code> trata <code>auto</code>;
+E2E opcional não é exigido (provedor falso não traduz).</p>
+<hr />
+<h2 id="task-3-parametros-fixos-e-coletados-nas-ferramentas-externas-featferramentas-parametros-fixos">Task 3 — Parâmetros fixos e coletados nas ferramentas externas (<code>feat/ferramentas-parametros-fixos</code>)<a class="headerlink" href="#task-3-parametros-fixos-e-coletados-nas-ferramentas-externas-featferramentas-parametros-fixos" title="Permanent link">&para;</a></h2>
+<p><strong>Objetivo.</strong> Fechar a pendência do ROADMAP: hoje o modelo escolhe TODOS os
+argumentos da consulta a partir do que o cliente anônimo escreveu. Passa a
+existir argumento que o servidor preenche: valor fixo definido pelo operador
+(ex.: <code>loja_id</code>) ou campo coletado na conversa (<code>regras.campos_obrigatorios</code>,
+tabela <code>conversa_coletas</code>), que o modelo não vê nem altera.</p>
+<p><strong>Como.</strong>
+1. <code>lib/ferramentas/config.ts</code> (<code>ParametroFerramenta</code>): novo campo
+   <code>origem: "modelo" | "fixo" | "coleta"</code> (default <code>modelo</code> para configs
+   antigas), <code>valor?: string</code> (origem fixo, ≤ 500 chars, sem quebra de linha)
+   e <code>campo?: string</code> (origem coleta: chave de um campo obrigatório,
+   <code>^[a-z][a-z0-9_]{0,31}$</code>). <code>validarFerramentaApi</code> valida: fixo exige
+   <code>valor</code>; coleta exige <code>campo</code>; parâmetro fixo/coleta não pode ser
+   <code>obrigatorio</code> para o modelo (o servidor preenche sempre). <code>descricao</code> segue
+   obrigatória (aparece no painel).
+2. Lógica pura em <code>lib/ferramentas/argumentos.mjs</code> (novo):
+   <code>parametrosDoModelo(parametros)</code> (só origem modelo),
+   <code>montarArgumentos({parametros, doModelo, coletados})</code> → objeto final;
+   lança <code>Error("A ferramenta recebeu parâmetros não autorizados.")</code> se
+   <code>doModelo</code> tem chave fixa/coleta; lança
+   <code>Error("Falta na conversa o campo &lt;rotulo|chave&gt; que a ferramenta &lt;nome&gt; usa.")</code>
+   se um campo de coleta não está em <code>coletados</code>. Testes em
+   <code>tests/ferramentas-argumentos.test.mjs</code>.
+3. <code>lib/ferramentas/executar.ts</code>: <code>definicao()</code> expõe ao modelo só
+   <code>parametrosDoModelo</code>; <code>inferirComFerramentas</code> recebe opcional
+   <code>chatId?: string</code> (telegram e webchat passam o chat/sessão; playground
+   não). Antes de montar as definições: ferramentas com parâmetro de coleta
+   só entram se <code>chatId</code> existe e a coleta da conversa está concluída
+   (<code>lib/db/coletas.ts</code>: nova <code>dadosColetados(instanciaId, canal, chatId)</code> →
+   <code>Record&lt;string,string&gt; | null</code>, null se não concluída); caso contrário a
+   ferramenta fica fora da lista daquela mensagem (sem erro). Na execução,
+   <code>montarArgumentos</code> preenche fixos e coletados; só os do modelo passam por
+   <code>validarArgumentos</code>.
+4. UI (<code>components/telas/Integracoes.tsx</code>, aba Consultas API): para cada
+   parâmetro, um <code>select</code> "Quem preenche" com "O assistente, pela conversa"
+   / "Valor fixo" / "Campo coletado". Fixo mostra campo "Valor"; coleta
+   mostra select com os <code>campos_obrigatorios</code> do assistente (rótulo) e, se
+   não houver nenhum, um aviso com link para a aba Regras de atendimento.
+   Na lista de ferramentas, cada parâmetro mostra sua origem como etiqueta
+   ("fixo", "da conversa"). Aviso existente sobre "argumentos escolhidos pelo
+   modelo" passa a dizer que fixos/coletados são preenchidos pelo servidor.
+   Playground: se alguma ferramenta ativa tem parâmetro de coleta, mostrar um
+   <code>Aviso</code> "Esta ferramenta usa dados coletados na conversa e não roda no
+   playground."
+5. Compatibilidade: configs antigas sem <code>origem</code> continuam funcionando
+   (<code>modelo</code>). Nada de migração.
+6. Docs: <code>docs/integracoes/ferramentas.md</code> (seção "Quem preenche cada
+   parâmetro"), <code>docs/produto/seguranca.md</code> (pendência → fechada),
+   <code>ROADMAP.md</code> (remover a pendência, adicionar ao implementado).</p>
+<p><strong>Testes mínimos:</strong> <code>tests/ferramentas-argumentos.test.mjs</code>; teste estático
+que prova que <code>definicao</code> usa <code>parametrosDoModelo</code> e que telegram/webchat
+passam <code>chatId</code>; <code>tests/seguranca-web.test.mjs</code> ou similar com caso
+"modelo manda valor de parâmetro fixo → recusado".</p>
+<hr />
+<h2 id="task-4-chaves-de-api-e-webhooks-de-saida-featapi-webhooks-ideia-21">Task 4 — Chaves de API e webhooks de saída (<code>feat/api-webhooks</code>, ideia 21)<a class="headerlink" href="#task-4-chaves-de-api-e-webhooks-de-saida-featapi-webhooks-ideia-21" title="Permanent link">&para;</a></h2>
+<p><strong>Objetivo.</strong> O operador integra o TARS a outros sistemas sem a Zendesk:
+webhooks assinados a cada evento relevante e uma API REST só leitura por
+assistente, com chave própria.</p>
+<p><strong>Como.</strong>
+1. <strong>Tabelas</strong> (<code>schema.sql</code> + <code>cliente.ts</code>, com RLS/REVOKE):
+   - <code>chaves_api(id TEXT PK, instancia_id FK CASCADE, nome TEXT, prefixo TEXT,
+     hash TEXT UNIQUE, criado_por FK SET NULL, criado_em, ultimo_uso_em,
+     revogada_em)</code>. O token é <code>tars_&lt;32 bytes base64url&gt;</code>; guarda-se só
+     <code>sha256</code> hex e os 8 primeiros caracteres para exibição.
+   - <code>webhooks(id TEXT PK, instancia_id FK CASCADE, url TEXT, segredo_cifrado
+     TEXT, eventos JSONB DEFAULT '[]', ativo BOOLEAN DEFAULT true,
+     falhas_seguidas INTEGER DEFAULT 0, ultimo_status INTEGER, ultimo_envio_em,
+     criado_por, criado_em)</code>. Máximo 5 webhooks e 5 chaves por assistente.
+   - <code>webhook_entregas(id BIGSERIAL, webhook_id FK CASCADE, evento TEXT,
+     status_http INTEGER, sucesso BOOLEAN, latencia_ms INTEGER, erro TEXT,
+     criado_em)</code>; manter as 50 últimas por webhook (DELETE das mais antigas a
+     cada inserção).
+2. <strong>Eventos</strong> (nomes fixos): <code>mensagem.recebida</code>, <code>mensagem.respondida</code>,
+   <code>atendimento.aberto</code>, <code>atendimento.resolvido</code>, <code>csat.respondido</code>. Pontos
+   de emissão: <code>registrarEntrada</code>/<code>registrarTurno</code> em <code>lib/db/mensagens.ts</code>
+   ou nas rotas telegram/webchat (escolha o ponto onde o canal e o chat já
+   são conhecidos, uma emissão por evento), <code>abrirAtendimento</code> e
+   <code>mudarAtendimento</code> (status resolvido) em <code>lib/db/atendimentos.ts</code>, registro
+   do CSAT. Payload JSON: <code>{ id, evento, ocorrido_em, instancia_id, canal,
+   chat_id, dados }</code> com <code>dados</code> = texto da mensagem (≤ 2000 chars), autor
+   (<code>cliente|bot|equipe</code>), ticket (id, status, prioridade) ou nota de CSAT.
+   Nunca prompt, trechos, credenciais ou e-mail do operador.
+3. <strong>Assinatura</strong> em <code>lib/webhooks/assinatura.mjs</code> (puro):
+   <code>assinar(segredo, timestamp, corpo)</code> → hex de HMAC-SHA256 de
+   <code>${timestamp}.${corpo}</code>; <code>verificar(segredo, cabecalho, corpo, agora,
+   toleranciaSeg=300)</code> com comparação em tempo constante
+   (<code>crypto.timingSafeEqual</code>). Cabeçalhos enviados: <code>X-TARS-Assinatura:
+   t=&lt;unix&gt;,v1=&lt;hex&gt;</code>, <code>X-TARS-Evento</code>, <code>X-TARS-Entrega</code> (id),
+   <code>Content-Type: application/json</code>, <code>User-Agent: TARS-Webhook/1</code>.
+   Testes em <code>tests/webhooks-assinatura.test.mjs</code> (assinatura conhecida,
+   timestamp vencido, assinatura errada, formato inválido).
+4. <strong>Entrega</strong> em <code>lib/webhooks/entregar.ts</code>: <code>emitirEvento(instanciaId,
+   evento, payload)</code> carrega webhooks ativos que assinam o evento, e para cada
+   um faz POST com timeout de 5 s via <code>chamarApiSegura</code> (<code>metodo: "POST"</code>,
+   <code>confirmada: true</code>, destino validado por <code>validarDestinoApi</code>; em
+   <code>modoTeste()</code> — <code>lib/inferencia/teste.ts</code> — <code>127.0.0.1</code> é permitido para o
+   E2E). Sem retentativa automática (Vercel Hobby não tem fila); registra a
+   entrega; <code>falhas_seguidas</code> incrementa/zera; ao chegar a 10, desativa o
+   webhook e abre alerta (<code>alertar(inst, 'integracao', ...)</code>) uma vez. O
+   envio não pode atrasar a resposta ao cliente: use <code>after()</code> de
+   <code>next/server</code> (Next 15.5) nas rotas, ou <code>void emitirEvento(...)</code> com
+   <code>.catch</code> onde <code>after</code> não se aplica (funções de <code>lib/db</code>). Decida um
+   padrão e documente no cabeçalho do arquivo.
+5. <strong>API REST</strong> <code>app/api/v1/*/route.ts</code>, <code>runtime = "nodejs"</code>:
+   autenticação <code>Authorization: Bearer tars_...</code> → <code>sha256</code> → chave ativa
+   (<code>revogada_em IS NULL</code>), atualiza <code>ultimo_uso_em</code> (no máximo uma vez por
+   minuto). Freio <code>janela("api-v1", 120)</code> por chave. Sem chave válida → 401
+   <code>{erro}</code>; corpo sempre JSON; CORS fechado.
+   - <code>GET /api/v1/conversas?canal=&amp;q=&amp;limite=50&amp;antes=&lt;cursor&gt;</code> → lista
+     (reutilize <code>listarConversas</code> de <code>lib/db/analytics.ts</code>, adaptando a
+     assinatura para aceitar <code>instanciaId</code> direto, sem <code>usuarioId</code>: a chave
+     já é o escopo).
+   - <code>GET /api/v1/conversas/{canal}/{chat_id}</code> → mensagens (<code>lerConversa</code>).
+   - <code>GET /api/v1/atendimentos?status=</code> → tickets (<code>listarAtendimentos</code>).
+   - <code>GET /api/v1/contatos?q=</code> → contatos (<code>listarContatos</code>).
+   - <code>GET /api/v1/eu</code> → <code>{ instancia: {id, nome}, chave: {nome, prefixo} }</code>.
+   Cada resposta inclui <code>proximo</code> (cursor) quando há mais.
+6. <strong>UI</strong>: <code>components/telas/Integracoes.tsx</code> ganha a aba "API e webhooks"
+   (rota <code>/painel/configuracoes/api</code>, mapeada em <code>app/painel/[...secoes]/page.tsx</code>,
+   <code>rotasAbaPainel</code>, <code>TelaPainel.tsx</code>, e em <code>ROTAS</code>/abas do
+   <code>responsivo.spec.mjs</code>). Dois cartões:
+   - "Chaves de API": lista (nome, prefixo…, criada em, último uso), botão
+     "Nova chave" → pede nome → mostra o token UMA vez num campo com "Copiar"
+     e o aviso "Guarde agora. Não vamos mostrar de novo."; "Revogar" com
+     <code>Confirmavel</code>.
+   - "Webhooks": formulário (URL https, eventos como caixas de seleção,
+     segredo gerado pelo servidor e mostrado uma vez), lista com estado
+     (etiqueta "ativo"/"desligado após falhas"), "Enviar teste" (evento
+     <code>teste.ping</code>), últimas entregas (<code>.tabela</code>: evento, status, latência,
+     quando), "Remover" com <code>Confirmavel</code>.
+   Rotas de painel: <code>app/api/chaves-api/route.ts</code> (GET/POST/DELETE) e
+   <code>app/api/webhooks/route.ts</code> (+ <code>/teste</code>), permissão <code>podeAcessarInstancia(
+   usuario.id, instanciaId, "editar")</code>, auditoria (<code>registrarAuditoria</code>) em
+   criar/revogar/remover, sem gravar token nem segredo.
+7. <strong>Docs</strong>: novo <code>docs/integracoes/api-webhooks.md</code> (como criar a chave,
+   endpoints com exemplos <code>curl</code>, formato do evento, como verificar a
+   assinatura em Node e em Python, limites) + entrada no <code>nav</code> do
+   <code>mkdocs.yml</code>; <code>docs/engenharia/apis-e-dados.md</code> (tabelas novas);
+   <code>ROADMAP.md</code>.
+8. <strong>E2E</strong> <code>tests/e2e/api-webhooks.spec.mjs</code>: o servidor falso
+   (<code>tests/e2e/servidor-falso.mjs</code>) ganha <code>POST /webhook-destino</code> que guarda
+   corpo e cabeçalhos e <code>GET /webhook-recebidos</code>. Fluxo: conta → assistente →
+   cria chave pela UI → <code>GET /api/v1/eu</code> com o token responde 200 e sem token
+   401 → cadastra webhook apontando para <code>URL_FALSO + "/webhook-destino"</code>
+   com <code>mensagem.recebida</code> → manda mensagem no webchat → o falso recebeu um
+   POST com <code>X-TARS-Assinatura</code> válida (verifique com <code>verificar</code> do
+   <code>.mjs</code>) e <code>evento = "mensagem.recebida"</code> → revoga a chave → 401.</p>
+<hr />
+<h2 id="task-5-modelos-por-tipo-de-negocio-no-primeiro-uso-featonboarding-modelos-ideia-22">Task 5 — Modelos por tipo de negócio no primeiro uso (<code>feat/onboarding-modelos</code>, ideia 22)<a class="headerlink" href="#task-5-modelos-por-tipo-de-negocio-no-primeiro-uso-featonboarding-modelos-ideia-22" title="Permanent link">&para;</a></h2>
+<p><strong>Objetivo.</strong> Quem cria o primeiro assistente escolhe um modelo pronto (Loja,
+Restaurante ou delivery, Clínica ou consultório, Prestador de serviços,
+Escola ou cursos) e já recebe identidade, regras, respostas rápidas,
+respostas prontas da equipe, casos de teste e um documento de exemplo para
+editar. "Em branco" continua existindo e é o padrão.</p>
+<p><strong>Como.</strong>
+1. <code>lib/onboarding/modelos.mjs</code> (puro): <code>MODELOS</code> (array de 5) com
+   <code>{ id, titulo, descricao (1 frase), nomeSugerido, prompt_sistema,
+   exemplos: [2], regras: { termos_handoff, assuntos_bloqueados,
+   mensagem_handoff, mensagem_fora_horario, sugestoes: [3],
+   campos_obrigatorios? }, respostasProntas: [3 {atalho, texto}],
+   casos: [2 {pergunta, esperado}], documento: { nome, texto } }</code> e
+   <code>modeloPorId(id)</code>. O prompt de cada modelo segue o <code>DESIGN</code>/<code>PRODUCT</code>:
+   persona curta, foco no negócio, orientação de recusar fora da base,
+   quando transferir. O documento é um FAQ de exemplo com marcadores
+   <code>[preencha: horário]</code> etc. e a primeira linha "Este é um modelo: troque
+   pelos dados do seu negócio antes de publicar." Clínica tem
+   <code>campos_obrigatorios</code> (nome e telefone) — é o único com coleta.
+   Teste <code>tests/onboarding-modelos.test.mjs</code>: 5 modelos, ids únicos,
+   atalhos únicos por modelo, <code>sugestoes</code> ≤ 3 e ≤ 40 chars, textos dentro
+   de <code>LIMITES</code> (<code>lib/seguranca-web.mjs</code>), nenhum caso <code>obrigatorio</code>.
+2. <code>POST /api/instancias</code> aceita <code>modelo</code> (id). Depois de <code>criarInstancia</code>,
+   aplica em sequência: <code>atualizarInstancia</code> (prompt_sistema, exemplos,
+   regras mesclando com <code>normalizar</code>), respostas prontas (reaproveite a
+   função de <code>app/api/respostas-prontas/route.ts</code> / <code>lib/db</code>), casos
+   (<code>criarCaso(..., obrigatorio=false)</code>), documento de texto (o mesmo
+   caminho que o upload de texto manual usa: ache por
+   <code>grep -rn "texto manual\|tipo.*texto" app/api/conhecimento</code>). Tudo como
+   rascunho, nada publicado. Auditoria <code>instancia_criada</code> com
+   <code>detalhes.modelo</code>. Se o <code>modelo</code> não existe → 400.
+   Extraia a aplicação para <code>lib/onboarding/aplicar.ts</code>.
+3. UI (<code>components/telas/Assistentes.tsx</code>, fluxo "Novo assistente"): além
+   do nome, uma lista de <code>.item-selecionavel</code> (radio) com "Em branco"
+   (selecionado) e os 5 modelos (título + descrição). Escolher um modelo
+   sugere o nome se o campo estiver vazio. Depois de criar, abre a aba
+   Identidade do novo assistente, com um <code>Aviso</code> tipo info: "Criado a partir
+   do modelo <título>. Revise a identidade, as regras e o documento de
+   exemplo na Base de conhecimento antes de publicar." (some ao navegar).
+4. <code>components/telas/Inicio.tsx</code> ("Primeiros passos"): o passo "Crie o
+   assistente" passa a dizer "Escolha um modelo pronto ou comece em branco."
+   Nada mais muda ali.
+5. Docs: <code>docs/produto/painel.md</code> (Assistentes → "Modelos prontos"),
+   <code>docs/produto/visao-geral.md</code> se falar de primeiro uso, <code>ROADMAP.md</code>.
+6. E2E <code>tests/e2e/onboarding.spec.mjs</code>: cria pela UI com "Loja"; a aba
+   "Regras de atendimento" mostra um termo de transferência do modelo; a
+   Base de conhecimento lista o documento de exemplo; a tela de respostas
+   prontas (Fila → "Respostas prontas") lista os 3 atalhos; Testes lista 2
+   casos informativos. Também cobre "Em branco" (nenhum documento criado).
+   Adicione a tela/aba nova (se houver) ao <code>responsivo.spec.mjs</code>.</p>
+<hr />
+<h2 id="task-6-acessibilidade-automatica-e-ci-dos-testes-choreci-e2e-a11y">Task 6 — Acessibilidade automática e CI dos testes (<code>chore/ci-e2e-a11y</code>)<a class="headerlink" href="#task-6-acessibilidade-automatica-e-ci-dos-testes-choreci-e2e-a11y" title="Permanent link">&para;</a></h2>
+<p><strong>Objetivo.</strong> A suíte responsiva passa a conferir acessibilidade com axe, e
+o GitHub Actions roda unitários, tipos e E2E (build de produção) em todo PR
+para <code>main</code>.</p>
+<p><strong>Como.</strong>
+1. <code>npm i -D @axe-core/playwright</code> (gratuito). Em
+   <code>tests/e2e/responsivo.spec.mjs</code>, depois de <code>assentar(page)</code> em cada rota
+   (desktop e móvel), rodar <code>new AxeBuilder({ page }).withTags(["wcag2a",
+   "wcag2aa"]).analyze()</code> e falhar com a lista legível (<code>id</code>, <code>impact</code>,
+   primeiro <code>target</code>) quando houver violação de impacto <code>serious</code> ou
+   <code>critical</code>. Violações <code>moderate</code>/<code>minor</code> vão para o <code>relatorio.json</code>
+   (campo <code>a11y</code>) sem falhar. <strong>Corrija as violações que aparecerem</strong> nos
+   componentes (contraste, rótulo faltando, landmark duplicado…) — é o
+   motivo do teste existir. Registre no report o que foi encontrado e o que
+   foi corrigido.
+2. <code>.github/workflows/testes.yml</code>: <code>on: pull_request</code> (para <code>main</code>) e
+   <code>workflow_dispatch</code>; <code>concurrency</code> cancelando o anterior; job em
+   <code>ubuntu-latest</code> com <code>services: postgres:16</code> (usuário/senha/db de teste,
+   porta 5432); passos: checkout, <code>actions/setup-node@v4</code> (node 22, cache
+   npm), <code>npm ci</code>, <code>npx playwright install --with-deps chromium</code>,
+   <code>npm test</code>, <code>npx tsc --noEmit</code>, <code>npx playwright test -c
+   playwright.build.config.mjs</code> com as variáveis que <code>tests/e2e/banco.mjs</code>
+   espera (leia-o: ele deriva <code>tars_e2e</code> da URL do banco de dev) e
+   <code>TARS_ENCRYPTION_KEY</code> de teste; upload de <code>playwright-report</code> como
+   artefato em falha. Timeout do job 30 min. Permissões <code>contents: read</code>.
+3. <code>docs/engenharia/desenvolvimento.md</code>: seção "Integração contínua" (o que
+   roda, quanto demora, que o plano gratuito do GitHub Actions para
+   repositório privado dá 2.000 minutos/mês e a suíte gasta ~10 por
+   execução). <code>ROADMAP.md</code>.
+4. Teste local: rode <code>flock ... npx playwright test -c playwright.build.config.mjs responsivo</code>
+   até passar. O workflow em si não dá para rodar localmente: valide o YAML
+   (<code>npx -y yaml-lint .github/workflows/testes.yml</code> ou <code>python3 -c
+   "import yaml,sys;yaml.safe_load(open(sys.argv[1]))" ...</code>) e confira
+   nomes de ações/versões existentes.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Voltar para o topo
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.sections", "navigation.top", "navigation.indexes", "content.code.copy", "content.code.annotate", "search.suggest", "toc.follow"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado para \u00e1rea de transfer\u00eancia", "clipboard.copy": "Copiar para \u00e1rea de transfer\u00eancia", "search.result.more.one": "mais 1 nesta p\u00e1gina", "search.result.more.other": "# mais nesta p\u00e1gina", "search.result.none": "Nenhum documento encontrado", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Digite para iniciar a busca", "search.result.term.missing": "Ausente", "select.version": "Selecione a vers\u00e3o"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>
